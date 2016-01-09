@@ -9,8 +9,8 @@
 import UIKit
 
 protocol TaskCellDelegate {
-	func completeTask(index: Int)
-	func deleteTask(index: Int)
+	func completeTask(task: Task)
+	func deleteTask(task: Task)
 }
 
 class TaskCell: UITableViewCell {
@@ -18,7 +18,11 @@ class TaskCell: UITableViewCell {
 	@IBOutlet weak var titleLabel: UILabel!
 	
 	var delegate: TaskCellDelegate?
-	var index: Int!
+	var task: Task! {
+		didSet {
+			titleLabel.text = task.title
+		}
+	}
 	
 	var originalCenter = CGPoint()
 	var markComplete = false, delete = false
@@ -26,6 +30,7 @@ class TaskCell: UITableViewCell {
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
+		
 		
 		let recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
 		recognizer.delegate = self
@@ -56,12 +61,17 @@ class TaskCell: UITableViewCell {
 		if recognizer.state == .Ended {
 			if markComplete {
 				if let delegate = delegate {
-					delegate.completeTask(index)
+					delegate.completeTask(task)
 				}
 				resetFrame()
 			} else if delete {
 				if let delegate = delegate {
-					delegate.deleteTask(index)
+					delegate.deleteTask(task)
+					UIView.animateWithDuration(0.2, animations: { () -> Void in
+						self.stageView.removeFromSuperview()
+						}, completion: { _ in
+//							self.stageView
+					})
 				}
 			} else {
 				resetFrame()

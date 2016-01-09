@@ -62,6 +62,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="!procrastinate" id="WBN-by-L8X"/>
+                    <connections>
+                        <outlet property="tableView" destination="ywV-gD-QBF" id="fpO-kw-KxR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

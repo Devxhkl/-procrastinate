@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 	
+	@IBOutlet weak var tableView: UITableView!
+	
 	var tasks: [Task] = []
 
 	override func viewDidLoad() {
@@ -25,11 +27,10 @@ class ViewController: UIViewController {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-
-
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+	
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
@@ -43,8 +44,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
 		
 		cell.delegate = self
-		cell.index = indexPath.row
-		cell.titleLabel.text = tasks[indexPath.row].title
+		cell.task = tasks[indexPath.row]
 		
 		return cell
 	}
@@ -69,11 +69,16 @@ extension ViewController: UITextViewDelegate {
 
 extension ViewController: TaskCellDelegate {
 	
-	func completeTask(index: Int) {
-		print("Complete \(index)")
+	func completeTask(task: Task) {
+		print("Complete \(task.title)")
 	}
-	func deleteTask(index: Int) {
-		print("Delete \(index)")
+	func deleteTask(task: Task) {
+		print("Delete \(task.title)")
+		let index = tasks.indexOf { $0.title == task.title }
+		tasks.removeAtIndex(index!)
+		tableView.beginUpdates()
+		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
+		tableView.endUpdates()
 	}
 }
 
