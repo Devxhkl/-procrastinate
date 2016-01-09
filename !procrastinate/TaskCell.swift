@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol TaskCellDelegate {
+	func completeTask(index: Int)
+	func deleteTask(index: Int)
+}
+
 class TaskCell: UITableViewCell {
+	
+	var delegate: TaskCellDelegate?
+	var index: Int!
 	
 	var originalCenter = CGPoint()
 	var markComplete = false, delete = false
@@ -31,7 +39,7 @@ class TaskCell: UITableViewCell {
 			let translation = recognizer.translationInView(self)
 			center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
 			
-			markComplete = frame.origin.x > frame.size.width / 3.0 && frame.origin.x < (frame.size.width / 3.0) * 2
+			markComplete = frame.origin.x > frame.size.width / 4.0 && frame.origin.x < (frame.size.width / 4.0) * 3
 			if markComplete {
 				stageView.backgroundColor = UIColor.greenColor()
 			}
@@ -44,15 +52,29 @@ class TaskCell: UITableViewCell {
 //			}
 		}
 		if recognizer.state == .Ended {
-			
-			let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
-			UIView.animateWithDuration(0.2, animations: { () -> Void in
-				self.frame = originalFrame
-				}, completion: { _ in
-					self.stageView.removeFromSuperview()
-					self.stageView.backgroundColor = UIColor.whiteColor()
-			})
+			if markComplete {
+				if let delegate = delegate {
+					delegate.completeTask(index)
+				}
+				resetFrame()
+			} else if delete {
+				if let delegate = delegate {
+					delegate.deleteTask(index)
+				}
+			} else {
+				resetFrame()
+			}
 		}
+	}
+	
+	func resetFrame() {
+		let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+		UIView.animateWithDuration(0.2, animations: { () -> Void in
+			self.frame = originalFrame
+			}, completion: { _ in
+				self.stageView.removeFromSuperview()
+				self.stageView.backgroundColor = UIColor.whiteColor()
+		})
 	}
 	
 	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {

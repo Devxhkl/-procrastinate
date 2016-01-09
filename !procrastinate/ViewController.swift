@@ -34,7 +34,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
+		
+		cell.delegate = self
+		cell.index = indexPath.row
 		
 		return cell
 	}
@@ -54,6 +57,16 @@ extension ViewController: UITextViewDelegate {
 //			addFieldHeightConstraint.constant = newSize.height + 150
 //			view.layoutIfNeeded()
 //		}
+	}
+}
+
+extension ViewController: TaskCellDelegate {
+	
+	func completeTask(index: Int) {
+		print("Complete \(index)")
+	}
+	func deleteTask(index: Int) {
+		print("Delete \(index)")
 	}
 }
 
