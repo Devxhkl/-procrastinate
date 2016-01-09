@@ -11,7 +11,7 @@ import UIKit
 class TaskCell: UITableViewCell {
 	
 	var originalCenter = CGPoint()
-	var deleteOnDragRelease = false
+	var deleteOnDragRelease = false, completeOnDragRelease = false
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -29,11 +29,16 @@ class TaskCell: UITableViewCell {
 		if recognizer.state == .Changed {
 			let translation = recognizer.translationInView(self)
 			center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
+			completeOnDragRelease = frame.origin.x > frame.size.width / 2.0
 			deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
 		}
 		if recognizer.state == .Ended {
 			let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
-			if !deleteOnDragRelease {
+			if completeOnDragRelease {
+				print("Complete")
+				UIView.animateWithDuration(0.2, animations: { self.frame = originalFrame })
+			} else if !deleteOnDragRelease {
+				print("Delete")
 				UIView.animateWithDuration(0.2, animations: { self.frame = originalFrame })
 			}
 		}
