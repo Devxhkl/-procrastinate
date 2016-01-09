@@ -15,6 +15,8 @@ protocol TaskCellDelegate {
 
 class TaskCell: UITableViewCell {
 	
+	@IBOutlet weak var titleLabel: UILabel!
+	
 	var delegate: TaskCellDelegate?
 	var index: Int!
 	

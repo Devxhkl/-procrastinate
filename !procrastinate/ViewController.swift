@@ -9,10 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+	
+	var tasks: [Task] = []
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+		
+		tasks = [
+			Task(title: "Figure out how to add items"),
+			Task(title: "What to use for Backend?!")
+		]
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -30,7 +36,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		return tasks.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -38,6 +44,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 		
 		cell.delegate = self
 		cell.index = indexPath.row
+		cell.titleLabel.text = tasks[indexPath.row].title
 		
 		return cell
 	}
