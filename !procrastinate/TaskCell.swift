@@ -30,7 +30,7 @@ class TaskCell: UITableViewCell {
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		
+
 		let recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
 		recognizer.delegate = self
 		addGestureRecognizer(recognizer)
@@ -58,6 +58,8 @@ class TaskCell: UITableViewCell {
 			if markComplete {
 				if let delegate = delegate {
 					delegate.completeTask(task)
+					let attributedString = NSAttributedString(string: titleLabel.text!, attributes: [NSStrikethroughStyleAttributeName: 1])
+					titleLabel.attributedText = attributedString
 				}
 				resetFrame()
 			} else if delete {
