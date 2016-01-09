@@ -45,7 +45,7 @@ class TaskCell: UITableViewCell {
 			let translation = recognizer.translationInView(self)
 			center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
 			
-			markComplete = frame.origin.x > frame.size.width / 4.0 && frame.origin.x < (frame.size.width / 4.0) * 3
+			markComplete = frame.origin.x > 0.0 && frame.origin.x < (frame.size.width / 4.0) * 3
 			if markComplete {
 				stageView.backgroundColor = UIColor.greenColor()
 			}
