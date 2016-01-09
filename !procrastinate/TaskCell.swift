@@ -11,7 +11,8 @@ import UIKit
 class TaskCell: UITableViewCell {
 	
 	var originalCenter = CGPoint()
-	var deleteOnDragRelease = false, completeOnDragRelease = false
+	var markComplete = false, delete = false
+	let stageView = UIView()
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -29,18 +30,28 @@ class TaskCell: UITableViewCell {
 		if recognizer.state == .Changed {
 			let translation = recognizer.translationInView(self)
 			center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
-			completeOnDragRelease = frame.origin.x > frame.size.width / 2.0
-			deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
+			
+			markComplete = frame.origin.x > frame.size.width / 3.0 && frame.origin.x < (frame.size.width / 3.0) * 2
+			if markComplete {
+				stageView.backgroundColor = UIColor.greenColor()
+			}
+			delete = frame.origin.x > (frame.size.width / 3.0) * 2
+			if delete {
+				stageView.backgroundColor = UIColor.redColor()
+			}
+//			if frame.origin.x > frame.size.width / 4.0 {
+//				stageView.backgroundColor = UIColor.grayColor()
+//			}
 		}
 		if recognizer.state == .Ended {
+			
 			let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
-			if completeOnDragRelease {
-				print("Complete")
-				UIView.animateWithDuration(0.2, animations: { self.frame = originalFrame })
-			} else if !deleteOnDragRelease {
-				print("Delete")
-				UIView.animateWithDuration(0.2, animations: { self.frame = originalFrame })
-			}
+			UIView.animateWithDuration(0.2, animations: { () -> Void in
+				self.frame = originalFrame
+				}, completion: { _ in
+					self.stageView.removeFromSuperview()
+					self.stageView.backgroundColor = UIColor.whiteColor()
+			})
 		}
 	}
 	
@@ -48,6 +59,8 @@ class TaskCell: UITableViewCell {
 		if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
 			let translation = panGestureRecognizer.translationInView(superview!)
 			if fabs(translation.x) > fabs(translation.y) {
+				stageView.frame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+				superview!.insertSubview(stageView, belowSubview: self)
 				return true
 			}
 			return false
