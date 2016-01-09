@@ -31,7 +31,6 @@ class TaskCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
-		
 		let recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
 		recognizer.delegate = self
 		addGestureRecognizer(recognizer)
@@ -50,13 +49,10 @@ class TaskCell: UITableViewCell {
 			if markComplete {
 				stageView.backgroundColor = UIColor.greenColor()
 			}
-			delete = frame.origin.x > (frame.size.width / 3.0) * 2
+			delete = frame.origin.x > (frame.size.width / 4.0) * 3
 			if delete {
 				stageView.backgroundColor = UIColor.redColor()
 			}
-//			if frame.origin.x > frame.size.width / 4.0 {
-//				stageView.backgroundColor = UIColor.grayColor()
-//			}
 		}
 		if recognizer.state == .Ended {
 			if markComplete {
@@ -67,11 +63,7 @@ class TaskCell: UITableViewCell {
 			} else if delete {
 				if let delegate = delegate {
 					delegate.deleteTask(task)
-					UIView.animateWithDuration(0.2, animations: { () -> Void in
-						self.stageView.removeFromSuperview()
-						}, completion: { _ in
-//							self.stageView
-					})
+					UIView.animateWithDuration(0.2, animations: { self.stageView.removeFromSuperview() })
 				}
 			} else {
 				resetFrame()

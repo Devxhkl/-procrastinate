@@ -17,9 +17,12 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView.estimatedRowHeight = 44.0
 		tasks = [
 			Task(title: "Figure out how to add items"),
-			Task(title: "What to use for Backend?!")
+			Task(title: "What to use for Backend?!"),
+			Task(title: "What happens if I put in a bit longer title for the task? Will it go to the next line? 🤔")
 		]
 	}
 
