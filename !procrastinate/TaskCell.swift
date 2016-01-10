@@ -65,7 +65,11 @@ class TaskCell: UITableViewCell {
 			} else if delete {
 				if let delegate = delegate {
 					delegate.deleteTask(task)
-					UIView.animateWithDuration(0.2, animations: { self.stageView.removeFromSuperview() })
+					UIView.animateWithDuration(0.2, animations: {
+						self.stageView.alpha = 0.0
+						}, completion: { _ in
+							self.stageView.removeFromSuperview()
+					})
 				}
 			} else {
 				resetFrame()
