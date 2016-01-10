@@ -20,7 +20,7 @@ class TaskCell: UITableViewCell {
 	var delegate: TaskCellDelegate?
 	var task: Task! {
 		didSet {
-			titleLabel.text = task.title
+			strikesthroghOrNot()
 		}
 	}
 	
@@ -58,8 +58,8 @@ class TaskCell: UITableViewCell {
 			if markComplete {
 				if let delegate = delegate {
 					delegate.completeTask(task)
-					let attributedString = NSAttributedString(string: titleLabel.text!, attributes: [NSStrikethroughStyleAttributeName: 1])
-					titleLabel.attributedText = attributedString
+					task.completed = !task.completed
+					strikesthroghOrNot()
 				}
 				resetFrame()
 			} else if delete {
@@ -85,6 +85,15 @@ class TaskCell: UITableViewCell {
 				self.stageView.removeFromSuperview()
 				self.stageView.backgroundColor = UIColor.whiteColor()
 		})
+	}
+	
+	func strikesthroghOrNot() {
+		if task.completed {
+			let attributedString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1])
+			titleLabel.attributedText = attributedString
+		} else {
+			titleLabel.text = task.title
+		}
 	}
 	
 	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
