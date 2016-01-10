@@ -13,12 +13,17 @@ class ViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	var tasks: [Task] = []
+	var placeholderCell: TaskCell!
+	var pullDownInProgress = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
+		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
+		placeholderCell.backgroundColor = UIColor.blackColor()
+		placeholderCell.titleLabel.textColor = UIColor.whiteColor()
 		tasks = [
 			Task(title: "Figure out how to add items"),
 			Task(title: "What to use for Backend?!"),
@@ -32,8 +37,34 @@ class ViewController: UIViewController {
 	}
 }
 
+extension ViewController {
+	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+		pullDownInProgress = scrollView.contentOffset.y <= 0.0
+		if pullDownInProgress {
+			tableView.insertSubview(placeholderCell, atIndex: 0)
+		}
+	}
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		let scrollViewContentOffsetY = scrollView.contentOffset.y
+		
+		if pullDownInProgress && scrollView.contentOffset.y <= 0.0 {
+			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
+			placeholderCell.titleLabel.text = -scrollViewContentOffsetY > 44.0 ? "Release to add item" : "Pull to add task"
+			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
+		} else {
+			pullDownInProgress = false
+		}
+	}
+	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
+			// Add a new item
+		}
+		pullDownInProgress = false
+		placeholderCell.removeFromSuperview()
+	}
+}
+
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-	
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
