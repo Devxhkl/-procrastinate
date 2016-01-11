@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	var tasks: [Task] = []
-	var placeholderCell: AddTaskCell!
+	var placeholderCell: TaskCell!
 	var pullDownInProgress = false
 
 	override func viewDidLoad() {
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
-		placeholderCell = tableView.dequeueReusableCellWithIdentifier("AddTaskCell") as! AddTaskCell
+		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
 		tasks = [
 			Task(title: "Figure out how to add items"),
 			Task(title: "What to use for Backend?!"),
@@ -39,6 +39,7 @@ class ViewController: UIViewController {
 		for cell in visibleCells {
 			if cell.task === task {
 				editCell = cell
+				placeholderCell.titleTextView.becomeFirstResponder()
 				break
 			}
 		}
@@ -59,7 +60,7 @@ extension ViewController {
 			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
 			placeholderCell.titleTextView.text = -scrollViewContentOffsetY > 44.0 ? "Release to add item" : "Pull to add task"
 			placeholderCell.titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
-			placeholderCell.titleTextView.textColor = UIColor.whiteColor()
+//			placeholderCell.titleTextView.textColor = UIColor.whiteColor()
 			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
 		} else {
 			pullDownInProgress = false

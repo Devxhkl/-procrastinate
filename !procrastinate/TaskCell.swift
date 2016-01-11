@@ -15,7 +15,7 @@ protocol TaskCellDelegate {
 
 class TaskCell: UITableViewCell {
 	
-	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var titleTextView: UITextView!
 	
 	var delegate: TaskCellDelegate?
 	var task: Task! {
@@ -31,6 +31,8 @@ class TaskCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 
+		titleTextView.textContainerInset = UIEdgeInsetsZero
+		titleTextView.textContainer.lineFragmentPadding = 0.0
 		let recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
 		recognizer.delegate = self
 		addGestureRecognizer(recognizer)
@@ -90,10 +92,11 @@ class TaskCell: UITableViewCell {
 	func strikesthroghOrNot() {
 		if task.completed {
 			let attributedString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1])
-			titleLabel.attributedText = attributedString
+			titleTextView.attributedText = attributedString
 		} else {
-			titleLabel.text = task.title
+			titleTextView.text = task.title
 		}
+		titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
 	}
 	
 	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
