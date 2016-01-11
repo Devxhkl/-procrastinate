@@ -27,6 +27,8 @@ class ViewController: UIViewController {
 			Task(title: "What to use for Backend?!"),
 			Task(title: "What happens if I put in a bit longer title for the task? Will it go to the next line? 🤔")
 		]
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+		view.addGestureRecognizer(tap)
 	}
 
 	func taskAdded() {
@@ -43,6 +45,10 @@ class ViewController: UIViewController {
 				break
 			}
 		}
+	}
+	
+	func dismissKeyboard() {
+		view.endEditing(true)
 	}
 }
 
@@ -96,6 +102,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController: UITextViewDelegate {
+	
+	func textViewDidEndEditing(textView: UITextView) {
+		print("Ended editing")
+	}
 
 	func textViewDidChange(textView: UITextView) {
 		
