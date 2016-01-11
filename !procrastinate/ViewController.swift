@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	var tasks: [Task] = []
-	var placeholderCell: TaskCell!
+	var placeholderCell: AddTaskCell!
 	var pullDownInProgress = false
 
 	override func viewDidLoad() {
@@ -21,9 +21,7 @@ class ViewController: UIViewController {
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
-		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
-		placeholderCell.backgroundColor = UIColor.blackColor()
-		placeholderCell.titleLabel.textColor = UIColor.whiteColor()
+		placeholderCell = tableView.dequeueReusableCellWithIdentifier("AddTaskCell") as! AddTaskCell
 		tasks = [
 			Task(title: "Figure out how to add items"),
 			Task(title: "What to use for Backend?!"),
@@ -41,7 +39,6 @@ class ViewController: UIViewController {
 		for cell in visibleCells {
 			if cell.task === task {
 				editCell = cell
-				editCell.titleLabel.becomeFirstResponder()
 				break
 			}
 		}
@@ -60,7 +57,9 @@ extension ViewController {
 		
 		if pullDownInProgress && scrollView.contentOffset.y <= 0.0 {
 			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
-			placeholderCell.titleLabel.text = -scrollViewContentOffsetY > 44.0 ? "Release to add item" : "Pull to add task"
+			placeholderCell.titleTextView.text = -scrollViewContentOffsetY > 44.0 ? "Release to add item" : "Pull to add task"
+			placeholderCell.titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
+			placeholderCell.titleTextView.textColor = UIColor.whiteColor()
 			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
 		} else {
 			pullDownInProgress = false
