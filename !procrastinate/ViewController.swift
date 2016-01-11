@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 		for cell in visibleCells {
 			if cell.task === task {
 				editCell = cell
-				placeholderCell.titleTextView.becomeFirstResponder()
+				editCell.titleTextView.becomeFirstResponder()
 				break
 			}
 		}
