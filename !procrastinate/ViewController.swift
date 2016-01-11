@@ -31,9 +31,20 @@ class ViewController: UIViewController {
 		]
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	func taskAdded() {
+		let task = Task(title: "")
+		tasks.insert(task, atIndex: 0)
+		tableView.reloadData()
+		
+		var editCell: TaskCell
+		let visibleCells = tableView.visibleCells as! [TaskCell]
+		for cell in visibleCells {
+			if cell.task === task {
+				editCell = cell
+				editCell.titleLabel.becomeFirstResponder()
+				break
+			}
+		}
 	}
 }
 
@@ -57,7 +68,7 @@ extension ViewController {
 	}
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
-			// Add a new item
+			taskAdded()
 		}
 		pullDownInProgress = false
 		placeholderCell.removeFromSuperview()
