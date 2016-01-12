@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
+	let cloudHandler = CloudHandler()
 	var tasks: [Task] = []
 	var placeholderCell: TaskCell!
 	var pullDownInProgress = false
@@ -22,11 +23,12 @@ class ViewController: UIViewController {
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
-		tasks = [
-			Task(title: "Figure out how to add items"),
-			Task(title: "What to use for Backend?!"),
-			Task(title: "What happens if I put in a bit longer title for the task? Will it go to the next line? 🤔")
-		]
+		cloudHandler.getTasks() { tasks in
+			self.tasks = tasks
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				self.tableView.reloadData()
+			})
+		}
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
 		view.addGestureRecognizer(tap)
 	}
@@ -112,7 +114,6 @@ extension ViewController: UITextViewDelegate {
 					break
 				} else {
 					cell.task.title = textView.text
-					let cloudHandler = CloudHandler()
 					if cell.task.ID == "" {
 						cloudHandler.addTask(cell.task) { recordID in
 							cell.task.ID = recordID

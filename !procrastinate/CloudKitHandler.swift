@@ -25,4 +25,22 @@ class CloudHandler {
 			}
 		})
 	}
+	
+	func getTasks(completion: [Task] -> ()) {
+		let query = CKQuery(recordType: "Task", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+		privateDatabase.performQuery(query, inZoneWithID: nil) { records, error in
+			if let error = error {
+				print(error.localizedDescription)
+			} else {
+				if let records = records {
+					var tasks = [Task]()
+					for record in records {
+						let task = Task(ID: record.recordID.recordName, title: record["Title"] as! String, completed: record["Completed"] as! Bool)
+						tasks.append(task)
+					}
+					completion(tasks)
+				}
+			}
+		}
+	}
 }
