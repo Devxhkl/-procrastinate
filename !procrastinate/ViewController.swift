@@ -104,7 +104,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UITextViewDelegate {
 	
 	func textViewDidEndEditing(textView: UITextView) {
-		print("Ended editing")
+		let visibleCells = tableView.visibleCells as! [TaskCell]
+		for cell in visibleCells {
+			if cell.titleTextView === textView {
+				cell.task.title = textView.text
+				break
+			}
+		}
 	}
 
 	func textViewDidChange(textView: UITextView) {
