@@ -107,8 +107,13 @@ extension ViewController: UITextViewDelegate {
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		for cell in visibleCells {
 			if cell.titleTextView === textView {
-				cell.task.title = textView.text
-				break
+				if textView.text == "" {
+					deleteTask(cell.task)
+					break
+				} else {
+					cell.task.title = textView.text
+					break					
+				}
 			}
 		}
 	}
