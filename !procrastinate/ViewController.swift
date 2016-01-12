@@ -114,7 +114,9 @@ extension ViewController: UITextViewDelegate {
 					cell.task.title = textView.text
 					let cloudHandler = CloudHandler()
 					if cell.task.ID == "" {
-						cloudHandler.addTask(cell.task)
+						cloudHandler.addTask(cell.task) { recordID in
+							cell.task.ID = recordID
+						}
 					}
 					break					
 				}

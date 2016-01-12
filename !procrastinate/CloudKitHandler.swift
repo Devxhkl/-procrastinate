@@ -12,7 +12,7 @@ import CloudKit
 class CloudHandler {
 	let privateDatabase = CKContainer.defaultContainer().privateCloudDatabase
 	
-	func addTask(task: Task) {
+	func addTask(task: Task, completion: String -> ()) {
 		let newTask = CKRecord(recordType: "Task")
 		newTask.setValue(task.title, forKey: "Title")
 		newTask.setValue(task.completed, forKey: "Completed")
@@ -20,7 +20,8 @@ class CloudHandler {
 			if let error = error {
 				print(error.localizedDescription)
 			} else {
-				print("Saved \(record!)")
+				completion(record!.recordID.recordName)
+				print("Saved \(record!.recordID.recordName)")
 			}
 		})
 	}
