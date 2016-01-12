@@ -112,6 +112,10 @@ extension ViewController: UITextViewDelegate {
 					break
 				} else {
 					cell.task.title = textView.text
+					let cloudHandler = CloudHandler()
+					if cell.task.ID == "" {
+						cloudHandler.addTask(cell.task)
+					}
 					break					
 				}
 			}

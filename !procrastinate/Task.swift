@@ -9,11 +9,12 @@
 import Foundation
 
 class Task {
-	
+	var ID: String
 	var title: String
 	var completed: Bool
 	
-	init(title: String, completed: Bool = false) {
+	init(ID: String = "", title: String, completed: Bool = false) {
+		self.ID = ID
 		self.title = title
 		self.completed = completed
 	}

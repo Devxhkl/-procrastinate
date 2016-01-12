@@ -13,6 +13,7 @@
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
 		FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
+		FA1F03FE1C449F4300593F01 /* CloudKitHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F03FD1C449F4300593F01 /* CloudKitHandler.swift */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 		FAF26B8C1C41A0FC006487AE /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B8B1C41A0FC006487AE /* Task.swift */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,7 @@
 		FA15C29A1C40864500333D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate.entitlements"; sourceTree = "<group>"; };
 		FA1F03FB1C449E1300593F01 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		FA1F03FD1C449F4300593F01 /* CloudKitHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitHandler.swift; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		FAF26B8B1C41A0FC006487AE /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +70,7 @@
 				FA15C2901C40864500333D3E /* ViewController.swift */,
 				FAF26B891C414879006487AE /* TaskCell.swift */,
 				FAF26B8B1C41A0FC006487AE /* Task.swift */,
+				FA1F03FD1C449F4300593F01 /* CloudKitHandler.swift */,
 				FA15C2921C40864500333D3E /* Main.storyboard */,
 				FA15C2951C40864500333D3E /* Assets.xcassets */,
 				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
@@ -155,6 +158,7 @@
 			files = (
 				FAF26B8C1C41A0FC006487AE /* Task.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
+				FA1F03FE1C449F4300593F01 /* CloudKitHandler.swift in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
 			);
