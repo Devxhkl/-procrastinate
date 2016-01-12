@@ -155,6 +155,9 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
+		if !task.ID.isEmpty {
+			cloudHandler.deleteTask(task)
+		}
 	}
 }
 

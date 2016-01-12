@@ -81,5 +81,14 @@ class CloudHandler {
 			}
 		}
 	}
-
+	
+	func deleteTask(task: Task) {
+		privateDatabase.deleteRecordWithID(CKRecordID(recordName: task.ID)) { record, error in
+			if let error = error {
+				print(error.localizedDescription)
+			} else {
+				print("\(record!) Deleted")
+			}
+		}
+	}
 }
