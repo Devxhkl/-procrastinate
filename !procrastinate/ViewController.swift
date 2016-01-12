@@ -118,6 +118,8 @@ extension ViewController: UITextViewDelegate {
 						cloudHandler.addTask(cell.task) { recordID in
 							cell.task.ID = recordID
 						}
+					} else {
+						cloudHandler.changeTaskTitle(cell.task)
 					}
 					break					
 				}
@@ -143,6 +145,7 @@ extension ViewController: UITextViewDelegate {
 extension ViewController: TaskCellDelegate {
 	
 	func completeTask(task: Task) {
+		cloudHandler.changeTaskStatus(task)
 		print("Complete \(task.title)")
 	}
 	func deleteTask(task: Task) {

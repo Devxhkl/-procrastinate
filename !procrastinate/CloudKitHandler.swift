@@ -43,4 +43,43 @@ class CloudHandler {
 			}
 		}
 	}
+	
+	func changeTaskStatus(task: Task) {
+		privateDatabase.fetchRecordWithID(CKRecordID(recordName: task.ID)) { record, error in
+			if let error = error {
+				print(error.localizedDescription)
+			} else {
+				if let record = record {
+					record.setValue(task.completed, forKey: "Completed")
+					self.privateDatabase.saveRecord(record) { savedRecord, error in
+						if let error = error {
+							print(error.localizedDescription)
+						} else {
+							print("Saved record")
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	func changeTaskTitle(task: Task) {
+		privateDatabase.fetchRecordWithID(CKRecordID(recordName: task.ID)) { record, error in
+			if let error = error {
+				print(error.localizedDescription)
+			} else {
+				if let record = record {
+					record.setValue(task.title, forKey: "Title")
+					self.privateDatabase.saveRecord(record) { savedRecord, error in
+						if let error = error {
+							print(error.localizedDescription)
+						} else {
+							print("Saved record")
+						}
+					}
+				}
+			}
+		}
+	}
+
 }
