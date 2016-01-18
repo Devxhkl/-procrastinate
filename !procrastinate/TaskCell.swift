@@ -30,7 +30,8 @@ class TaskCell: UITableViewCell {
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
-
+		
+		titleTextView.text = ""
 		titleTextView.textContainerInset = UIEdgeInsetsZero
 		titleTextView.textContainer.lineFragmentPadding = 0.0
 		let recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
@@ -64,6 +65,7 @@ class TaskCell: UITableViewCell {
 					strikesthroghOrNot()
 				}
 				resetFrame()
+				markComplete = false
 			} else if delete {
 				if let delegate = delegate {
 					delegate.deleteTask(task)

@@ -39,12 +39,17 @@ class ViewController: UIViewController {
 		
 		tableView.reloadData()
 		
-		var editCell: TaskCell
+
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		for cell in visibleCells {
 			if cell.task === task {
-				editCell = cell
-				editCell.titleTextView.becomeFirstResponder()
+				cell.titleTextView.text = "Hepan"
+				if cell.titleTextView.attributedText == nil {
+					print("EMpty atributed text")
+				} else {
+					print("Not")
+				}
+				cell.titleTextView.becomeFirstResponder()
 				break
 			}
 		}
@@ -70,10 +75,7 @@ extension ViewController {
 			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
 			placeholderCell.titleTextView.text = -scrollViewContentOffsetY > 44.0 ? "Release to add item" : "Pull to add task"
 			placeholderCell.titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
-//			placeholderCell.titleTextView.textColor = UIColor.whiteColor()
 			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
-		} else {
-//			pullDownInProgress = false
 		}
 	}
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
