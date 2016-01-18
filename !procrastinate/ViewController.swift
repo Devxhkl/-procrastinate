@@ -76,7 +76,6 @@ extension ViewController {
 		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
 			taskAdded()
 		}
-		pullDownInProgress = false
 		placeholderCell.removeFromSuperview()
 	}
 }
@@ -92,8 +91,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
-		
+		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
+
 		cell.delegate = self
 		cell.task = tasks[indexPath.row]
 		
@@ -143,11 +142,11 @@ extension ViewController: UITextViewDelegate {
 extension ViewController: TaskCellDelegate {
 	
 	func completeTask(task: Task) {
+		tasks.sortInPlace { !$0.completed && $1.completed }
+		tableView.reloadData()
 		cloudHandler.changeTaskStatus(task)
-		print("Complete \(task.title)")
 	}
 	func deleteTask(task: Task) {
-		print("Delete \(task.title)")
 		let index = tasks.indexOf { $0.title == task.title }
 		tasks.removeAtIndex(index!)
 		tableView.beginUpdates()

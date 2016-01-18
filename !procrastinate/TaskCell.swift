@@ -30,7 +30,6 @@ class TaskCell: UITableViewCell {
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		print("Cell awekeFromNib")
 		titleTextView.textContainerInset = UIEdgeInsetsZero
 		titleTextView.textContainer.lineFragmentPadding = 0.0
 		let recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
@@ -59,8 +58,8 @@ class TaskCell: UITableViewCell {
 		if recognizer.state == .Ended {
 			if markComplete {
 				if let delegate = delegate {
-					delegate.completeTask(task)
 					task.completed = !task.completed
+					delegate.completeTask(task)
 					strikesthroghOrNot()
 				}
 				resetFrame()
@@ -91,7 +90,6 @@ class TaskCell: UITableViewCell {
 	}
 	
 	func strikesthroghOrNot() {
-		print("striketrhought don't")
 		if task.completed {
 			let strikethroughString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1])
 			titleTextView.attributedText = strikethroughString
