@@ -36,6 +36,7 @@ class ViewController: UIViewController {
 	func taskAdded() {
 		let task = Task(title: "")
 		tasks.insert(task, atIndex: 0)
+		
 		tableView.reloadData()
 		
 		var editCell: TaskCell
@@ -59,6 +60,7 @@ extension ViewController {
 		pullDownInProgress = scrollView.contentOffset.y <= 0.0
 		if pullDownInProgress {
 			tableView.insertSubview(placeholderCell, atIndex: 0)
+			print("Inserted placeholderCell")
 		}
 	}
 	func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -71,7 +73,7 @@ extension ViewController {
 //			placeholderCell.titleTextView.textColor = UIColor.whiteColor()
 			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
 		} else {
-			pullDownInProgress = false
+//			pullDownInProgress = false
 		}
 	}
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -129,7 +131,7 @@ extension ViewController: UITextViewDelegate {
 
 	func textViewDidChange(textView: UITextView) {
 		
-		print(textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)))
+//		print(textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)))
 //		let fixedWidth = textView.frame.size.width
 //		textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
 //		let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))

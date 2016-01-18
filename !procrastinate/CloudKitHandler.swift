@@ -21,7 +21,7 @@ class CloudHandler {
 				print(error.localizedDescription)
 			} else {
 				completion(record!.recordID.recordName)
-				print("Saved \(record!.recordID.recordName)")
+				print("Saved \(record!["Title"] as! String)")
 			}
 		})
 	}
@@ -55,7 +55,7 @@ class CloudHandler {
 						if let error = error {
 							print(error.localizedDescription)
 						} else {
-							print("Saved record")
+							print("Saved \(savedRecord!["Title"] as! String)'s completed to \(savedRecord!["Completed"] as! Bool)")
 						}
 					}
 				}
@@ -74,7 +74,7 @@ class CloudHandler {
 						if let error = error {
 							print(error.localizedDescription)
 						} else {
-							print("Saved record")
+							print("Saved \(savedRecord!["Title"] as! String)")
 						}
 					}
 				}
