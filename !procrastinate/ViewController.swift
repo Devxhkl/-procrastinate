@@ -39,16 +39,11 @@ class ViewController: UIViewController {
 		
 		tableView.reloadData()
 		
-
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		for cell in visibleCells {
 			if cell.task === task {
-				cell.titleTextView.text = "Hepan"
-				if cell.titleTextView.attributedText == nil {
-					print("EMpty atributed text")
-				} else {
-					print("Not")
-				}
+				let regularString = NSAttributedString(string: task.title)
+				cell.titleTextView.attributedText = regularString
 				cell.titleTextView.becomeFirstResponder()
 				break
 			}
@@ -65,7 +60,6 @@ extension ViewController {
 		pullDownInProgress = scrollView.contentOffset.y <= 0.0
 		if pullDownInProgress {
 			tableView.insertSubview(placeholderCell, atIndex: 0)
-			print("Inserted placeholderCell")
 		}
 	}
 	func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -98,7 +92,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
 		
 		cell.delegate = self
 		cell.task = tasks[indexPath.row]
