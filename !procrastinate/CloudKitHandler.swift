@@ -38,6 +38,7 @@ class CloudHandler {
 						let task = Task(ID: record.recordID.recordName, title: record["Title"] as! String, completed: record["Completed"] as! Bool)
 						tasks.append(task)
 					}
+					tasks.sortInPlace { !$0.completed && $1.completed }
 					completion(tasks)
 				}
 			}

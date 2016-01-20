@@ -39,12 +39,12 @@ class ViewController: UIViewController {
 		
 		tableView.reloadData()
 		
-		var editCell: TaskCell
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		for cell in visibleCells {
 			if cell.task === task {
-				editCell = cell
-				editCell.titleTextView.becomeFirstResponder()
+				let regularString = NSAttributedString(string: task.title)
+				cell.titleTextView.attributedText = regularString
+				cell.titleTextView.becomeFirstResponder()
 				break
 			}
 		}
@@ -60,7 +60,6 @@ extension ViewController {
 		pullDownInProgress = scrollView.contentOffset.y <= 0.0
 		if pullDownInProgress {
 			tableView.insertSubview(placeholderCell, atIndex: 0)
-			print("Inserted placeholderCell")
 		}
 	}
 	func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -70,17 +69,13 @@ extension ViewController {
 			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
 			placeholderCell.titleTextView.text = -scrollViewContentOffsetY > 44.0 ? "Release to add item" : "Pull to add task"
 			placeholderCell.titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
-//			placeholderCell.titleTextView.textColor = UIColor.whiteColor()
 			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
-		} else {
-//			pullDownInProgress = false
 		}
 	}
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
 			taskAdded()
 		}
-		pullDownInProgress = false
 		placeholderCell.removeFromSuperview()
 	}
 }
@@ -97,7 +92,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
-		
+
 		cell.delegate = self
 		cell.task = tasks[indexPath.row]
 		
@@ -147,11 +142,11 @@ extension ViewController: UITextViewDelegate {
 extension ViewController: TaskCellDelegate {
 	
 	func completeTask(task: Task) {
+		tasks.sortInPlace { !$0.completed && $1.completed }
+		tableView.reloadData()
 		cloudHandler.changeTaskStatus(task)
-		print("Complete \(task.title)")
 	}
 	func deleteTask(task: Task) {
-		print("Delete \(task.title)")
 		let index = tasks.indexOf { $0.title == task.title }
 		tasks.removeAtIndex(index!)
 		tableView.beginUpdates()
