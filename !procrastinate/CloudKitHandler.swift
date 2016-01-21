@@ -28,7 +28,11 @@ class CloudHandler {
 	
 	func getTasks(completion: [Task] -> ()) {
 		let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-		let query = CKQuery(recordType: "Task", predicate: NSPredicate(format: "creationDate > %@", calendar.dateByAddingUnit(.Hour, value: 5, toDate: calendar.startOfDayForDate(NSDate()), options: [])!))
+//		print(calendar.dateByAddingUnit(.Hour, value: -5, toDate: NSDate(), options: [])!)
+//		print(calendar.dateByAddingUnit(.Hour, value: 5, toDate: calendar.startOfDayForDate(calendar.dateByAddingUnit(.Hour, value: -5, toDate: NSDate(), options: [])!), options: [])!)
+//		print(calendar.startOfDayForDate(NSDate()))
+//		print(NSDate())
+		let query = CKQuery(recordType: "Task", predicate: NSPredicate(format: "creationDate > %@", calendar.dateByAddingUnit(.Hour, value: 5, toDate: calendar.startOfDayForDate(calendar.dateByAddingUnit(.Hour, value: -5, toDate: NSDate(), options: [])!), options: [])!))
 		privateDatabase.performQuery(query, inZoneWithID: nil) { records, error in
 			if let error = error {
 				print(error.localizedDescription)
