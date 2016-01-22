@@ -57,6 +57,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
 	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+		dismissKeyboard()
 		pullDownInProgress = scrollView.contentOffset.y <= 0.0
 		if pullDownInProgress {
 			tableView.insertSubview(placeholderCell, atIndex: 0)
