@@ -23,14 +23,19 @@ class ViewController: UIViewController {
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
-		cloudHandler.getTasks() { tasks in
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+		view.addGestureRecognizer(tap)
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		cloudHandler.getTasks()
+			{ tasks in
 			self.tasks = tasks
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				self.tableView.reloadData()
 			})
 		}
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-		view.addGestureRecognizer(tap)
 	}
 
 	func taskAdded() {
