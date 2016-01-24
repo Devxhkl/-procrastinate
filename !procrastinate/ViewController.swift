@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var successRateLabel: UILabel!
 	
 	let cloudHandler = CloudHandler()
 	var tasks: [Task] = []
@@ -20,10 +21,6 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		cloudHandler.getTaskCountWithSuccessRate { (text) -> () in
-			print(text)
-		}
-		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
@@ -37,10 +34,16 @@ class ViewController: UIViewController {
 		cloudHandler.getTasks()
 			{ tasks in
 			self.tasks = tasks
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				self.tableView.reloadData()
-				self.activityIndicator.stopAnimating()
-			})
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					self.tableView.reloadData()
+				})
+				// Needs fixing with NSOperation
+				self.cloudHandler.getTaskCountWithSuccessRate() { result in
+					dispatch_async(dispatch_get_main_queue(), { () -> Void in
+						self.successRateLabel.text = result
+						self.activityIndicator.stopAnimating()
+					})
+				}
 		}
 	}
 

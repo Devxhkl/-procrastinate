@@ -88,11 +88,11 @@
                             </view>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="SAG-wT-C81">
-                            <rect key="frame" x="51" y="6" width="219" height="33"/>
+                            <rect key="frame" x="110" y="5.5" width="100" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="!prrtt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-7E-77b">
-                                    <rect key="frame" x="49" y="3" width="120" height="28"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="!prrtt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-7E-77b">
+                                    <rect key="frame" x="27" y="2" width="47" height="30"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="22"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -104,9 +104,29 @@
                                 <constraint firstItem="5tL-7E-77b" firstAttribute="centerX" secondItem="SAG-wT-C81" secondAttribute="centerX" id="8F9-yT-8Wf"/>
                             </constraints>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="EI7-ED-HFU">
+                            <view key="customView" contentMode="scaleToFill" id="jiS-aX-130">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1y6-HD-fEt">
+                                        <rect key="frame" x="38" y="2" width="33" height="30"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="22"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="1y6-HD-fEt" secondAttribute="trailing" id="TQD-18-KcK"/>
+                                    <constraint firstItem="1y6-HD-fEt" firstAttribute="centerY" secondItem="jiS-aX-130" secondAttribute="centerY" id="rhP-KM-eZu"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="ktK-qX-hwD" id="70f-Kn-sfZ"/>
+                        <outlet property="successRateLabel" destination="1y6-HD-fEt" id="1Sx-ID-05b"/>
                         <outlet property="tableView" destination="ywV-gD-QBF" id="fpO-kw-KxR"/>
                     </connections>
                 </viewController>
