@@ -69,8 +69,26 @@
                             <constraint firstAttribute="trailing" secondItem="ywV-gD-QBF" secondAttribute="trailing" id="o7Q-Z0-sHL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="!procrastinate" id="WBN-by-L8X"/>
+                    <navigationItem key="navigationItem" title="!procrastinate" id="WBN-by-L8X">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="LZ7-Ih-O9n">
+                            <view key="customView" contentMode="scaleToFill" id="9NS-yx-0kK">
+                                <rect key="frame" x="16" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ktK-qX-hwD">
+                                        <rect key="frame" x="0.0" y="7" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ktK-qX-hwD" firstAttribute="leading" secondItem="9NS-yx-0kK" secondAttribute="leading" id="WRf-d1-kbU"/>
+                                    <constraint firstItem="ktK-qX-hwD" firstAttribute="centerY" secondItem="9NS-yx-0kK" secondAttribute="centerY" id="ori-qw-fHg"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="ktK-qX-hwD" id="70f-Kn-sfZ"/>
                         <outlet property="tableView" destination="ywV-gD-QBF" id="fpO-kw-KxR"/>
                     </connections>
                 </viewController>

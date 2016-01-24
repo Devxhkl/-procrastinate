@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	
 	let cloudHandler = CloudHandler()
 	var tasks: [Task] = []
@@ -29,11 +30,13 @@ class ViewController: UIViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		activityIndicator.startAnimating()
 		cloudHandler.getTasks()
 			{ tasks in
 			self.tasks = tasks
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				self.tableView.reloadData()
+				self.activityIndicator.stopAnimating()
 			})
 		}
 	}
