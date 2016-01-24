@@ -20,6 +20,9 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		cloudHandler.getTaskCountWithSuccessRate { (text) -> () in
+			print(text)
+		}
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
