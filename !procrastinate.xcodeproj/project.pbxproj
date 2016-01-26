@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA033AF81C57C21500AC49F0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA033AF61C57C21500AC49F0 /* Test.storyboard */; };
 		FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C28E1C40864500333D3E /* AppDelegate.swift */; };
 		FA15C2911C40864500333D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C2901C40864500333D3E /* ViewController.swift */; };
 		FA15C2941C40864500333D3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2921C40864500333D3E /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA033AF71C57C21500AC49F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Test.storyboard; sourceTree = "<group>"; };
 		FA15C28B1C40864500333D3E /* !procrastinate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "!procrastinate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA15C28E1C40864500333D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA15C2901C40864500333D3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				FAF26B8B1C41A0FC006487AE /* Task.swift */,
 				FA1F03FD1C449F4300593F01 /* CloudKitHandler.swift */,
 				FA15C2921C40864500333D3E /* Main.storyboard */,
+				FA033AF61C57C21500AC49F0 /* Test.storyboard */,
 				FA15C2951C40864500333D3E /* Assets.xcassets */,
 				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
 				FA15C29A1C40864500333D3E /* Info.plist */,
@@ -231,6 +234,7 @@
 			files = (
 				FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */,
 				FA15C2961C40864500333D3E /* Assets.xcassets in Resources */,
+				FA033AF81C57C21500AC49F0 /* Test.storyboard in Resources */,
 				FA15C2941C40864500333D3E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +281,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		FA033AF61C57C21500AC49F0 /* Test.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA033AF71C57C21500AC49F0 /* Base */,
+			);
+			name = Test.storyboard;
+			sourceTree = "<group>";
+		};
 		FA15C2921C40864500333D3E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -473,6 +485,7 @@
 				FAAD6F591C50509D005F552C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
