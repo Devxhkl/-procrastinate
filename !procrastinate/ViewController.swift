@@ -40,7 +40,7 @@ class ViewController: UIViewController {
 				// Needs fixing with NSOperation
 				self.cloudHandler.getTaskCountWithSuccessRate() { result in
 					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						self.successRateLabel.text = result
+						self.title = result
 						self.activityIndicator.stopAnimating()
 					})
 				}
