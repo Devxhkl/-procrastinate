@@ -21,30 +21,21 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		didBecomeActive()
+		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
 		view.addGestureRecognizer(tap)
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		activityIndicator.startAnimating()
-		cloudHandler.getTasks()
-			{ tasks in
-			self.tasks = tasks
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					self.tableView.reloadData()
-				})
-				// Needs fixing with NSOperation
-				self.cloudHandler.getTaskCountWithSuccessRate() { result in
-					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						self.successRateLabel.text = result
-						self.activityIndicator.stopAnimating()
-					})
-				}
-		}
 	}
 
 	func taskAdded() {
@@ -66,6 +57,42 @@ class ViewController: UIViewController {
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
+	}
+	
+	func didBecomeActive() {
+		activityIndicator.startAnimating()
+		let operationQueue = NSOperationQueue()
+		let tasksOperation = NSBlockOperation(block: {
+			self.getTasks()
+		})
+		operationQueue.addOperation(tasksOperation)
+		let statsOperation = NSBlockOperation(block: {
+			self.getStats()
+		})
+		statsOperation.addDependency(tasksOperation)
+		statsOperation.completionBlock = {
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				self.activityIndicator.stopAnimating()
+			})
+		}
+		operationQueue.addOperation(statsOperation)
+	}
+	
+	func getTasks() {
+		cloudHandler.getTasks() { tasks in
+			self.tasks = tasks
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				self.tableView.reloadData()
+			})
+		}
+	}
+	
+	func getStats() {
+		cloudHandler.getTaskCountWithSuccessRate() { result in
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				self.successRateLabel.text = result
+			})
+		}
 	}
 }
 
