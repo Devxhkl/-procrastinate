@@ -99,26 +99,10 @@ class CloudHandler {
 	}
 	
 	func getTaskCountWithSuccessRate(completion: String -> ()) {
-		var taskCount = 0
-		var completedTaskCount = 0
-		let query = CKQuery(recordType: "Task", predicate: NSPredicate(value: true))
-		let queryOperation = CKQueryOperation(query: query)
-		queryOperation.desiredKeys = ["Completed"]
-		queryOperation.recordFetchedBlock = { record in
-			print(record)
-			if record["Completed"] as! Bool == true {
-				completedTaskCount++
-			}
-			taskCount++
-		}
-		queryOperation.queryCompletionBlock = { cursor, error in
-			if error == nil {
-				print("Completed")
-				completion("\(taskCount)/\(completedTaskCount)")
-			} else {
-				print(error!.localizedDescription)
+		privateDatabase.fetchRecordWithID(CKRecordID(recordName: "Stats")) { (record, error) -> Void in
+			if let record = record {
+				print(record)
 			}
 		}
-		privateDatabase.addOperation(queryOperation)
 	}
 }
