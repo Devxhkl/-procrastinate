@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		didBecomeActive()
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
@@ -31,11 +31,6 @@ class ViewController: UIViewController {
 		view.addGestureRecognizer(tap)
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		activityIndicator.startAnimating()
 	}
 
 	func taskAdded() {
@@ -60,11 +55,14 @@ class ViewController: UIViewController {
 	}
 	
 	func didBecomeActive() {
-		activityIndicator.startAnimating()
 		let operationQueue = NSOperationQueue()
-		
+
 		let statsOperation = NSBlockOperation(block: {
-			self.getStats()
+			self.cloudHandler.getTaskCountWithSuccessRate() { result in
+				NSOperationQueue.mainQueue().addOperationWithBlock({
+					self.successRateLabel.text = result
+				})
+			}
 		})
 		statsOperation.completionBlock = {
 			NSOperationQueue.mainQueue().addOperationWithBlock({
@@ -73,29 +71,18 @@ class ViewController: UIViewController {
 		}
 		
 		let tasksOperation = NSBlockOperation(block: {
-			self.getTasks()
+			self.cloudHandler.getTasks() { tasks in
+				self.tasks = tasks
+				NSOperationQueue.mainQueue().addOperationWithBlock({
+					self.tableView.reloadData()
+				})
+			}
 		})
 		tasksOperation.completionBlock = {
-			operationQueue.addOperation(statsOperation)
+//			operationQueue.addOperation(statsOperation)
 		}
-		operationQueue.addOperation(tasksOperation)
-	}
-	
-	func getTasks() {
-		cloudHandler.getTasks() { tasks in
-			self.tasks = tasks
-			NSOperationQueue.mainQueue().addOperationWithBlock({
-				self.tableView.reloadData()
-			})
-		}
-	}
-	
-	func getStats() {
-		cloudHandler.getTaskCountWithSuccessRate() { result in
-			NSOperationQueue.mainQueue().addOperationWithBlock({
-				self.successRateLabel.text = result
-			})
-		}
+//		operationQueue.addOperation(tasksOperation)
+		operationQueue.addOperations([tasksOperation, statsOperation], waitUntilFinished: false)
 	}
 }
 
