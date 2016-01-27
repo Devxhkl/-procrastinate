@@ -100,8 +100,12 @@ class CloudHandler {
 	
 	func getTaskCountWithSuccessRate(completion: String -> ()) {
 		privateDatabase.fetchRecordWithID(CKRecordID(recordName: "Stats")) { (record, error) -> Void in
-			if let record = record {
-				print(record)
+			if let error = error {
+				print(error.localizedDescription)
+			} else if let record = record {
+				let taskCount = record["TaskCount"] as! Int
+				let completedCount = record["CompletedCount"] as! Int
+				completion("\(completedCount)/\(taskCount)")
 			}
 		}
 	}
