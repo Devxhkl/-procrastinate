@@ -62,20 +62,23 @@ class ViewController: UIViewController {
 	func didBecomeActive() {
 		activityIndicator.startAnimating()
 		let operationQueue = NSOperationQueue()
-		let tasksOperation = NSBlockOperation(block: {
-			self.getTasks()
-		})
-		operationQueue.addOperation(tasksOperation)
+		
 		let statsOperation = NSBlockOperation(block: {
 			self.getStats()
 		})
-		statsOperation.addDependency(tasksOperation)
 		statsOperation.completionBlock = {
 			NSOperationQueue.mainQueue().addOperationWithBlock({
 				self.activityIndicator.stopAnimating()
 			})
 		}
-		operationQueue.addOperation(statsOperation)
+		
+		let tasksOperation = NSBlockOperation(block: {
+			self.getTasks()
+		})
+		tasksOperation.completionBlock = {
+			operationQueue.addOperation(statsOperation)
+		}
+		operationQueue.addOperation(tasksOperation)
 	}
 	
 	func getTasks() {
