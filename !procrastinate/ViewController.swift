@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		didBecomeActive()
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
@@ -31,11 +31,6 @@ class ViewController: UIViewController {
 		view.addGestureRecognizer(tap)
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		activityIndicator.startAnimating()
 	}
 
 	func taskAdded() {
@@ -60,40 +55,26 @@ class ViewController: UIViewController {
 	}
 	
 	func didBecomeActive() {
-		activityIndicator.startAnimating()
-		let operationQueue = NSOperationQueue()
-		
-		let statsOperation = NSBlockOperation(block: {
-			self.getStats()
-		})
-		statsOperation.completionBlock = {
-			NSOperationQueue.mainQueue().addOperationWithBlock({
-				self.activityIndicator.stopAnimating()
-			})
-		}
-		
-		let tasksOperation = NSBlockOperation(block: {
-			self.getTasks()
-		})
-		tasksOperation.completionBlock = {
-			operationQueue.addOperation(statsOperation)
-		}
-		operationQueue.addOperation(tasksOperation)
-	}
-	
-	func getTasks() {
-		cloudHandler.getTasks() { tasks in
+		var isOneFinnished = false
+		self.cloudHandler.getTasks() { tasks in
 			self.tasks = tasks
 			NSOperationQueue.mainQueue().addOperationWithBlock({
 				self.tableView.reloadData()
+				if isOneFinnished {
+					self.activityIndicator.stopAnimating()
+				} else {
+					isOneFinnished = true
+				}
 			})
 		}
-	}
-	
-	func getStats() {
-		cloudHandler.getTaskCountWithSuccessRate() { result in
+		self.cloudHandler.getTaskCountWithSuccessRate() { result in
 			NSOperationQueue.mainQueue().addOperationWithBlock({
 				self.successRateLabel.text = result
+				if isOneFinnished {
+					self.activityIndicator.stopAnimating()
+				} else {
+					isOneFinnished = true
+				}
 			})
 		}
 	}
