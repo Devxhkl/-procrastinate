@@ -109,4 +109,30 @@ class CloudHandler {
 			}
 		}
 	}
+	
+	func updateTaskCountWithSuccessRate(taskCount: Bool? = nil, completedCount: Bool? = nil, completion: String? -> ()) {
+		privateDatabase.fetchRecordWithID(CKRecordID(recordName: "Stats")) { (record, error) -> Void in
+			if let error = error {
+				print(error.localizedDescription)
+				completion(nil)
+			} else if let record = record {
+				if let taskCount = taskCount {
+					var recordTaskCount = record["TaskCount"] as! Int
+					record.setValue(taskCount ? ++recordTaskCount : --recordTaskCount, forKey: "TaskCount")
+				}
+				if let completedCount = completedCount {
+					var recordCompletedCount = record["CompletedCount"] as! Int
+					record.setValue(completedCount ? ++recordCompletedCount : --recordCompletedCount, forKey: "CompletedCount")
+				}
+				self.privateDatabase.saveRecord(record, completionHandler: { (updatedRecord, _error) -> Void in
+					if let _error = _error {
+						print(_error.localizedDescription)
+						completion(nil)
+					} else if let updatedRecord = updatedRecord {
+						completion("\(updatedRecord["CompletedCount"] as! Int)/\(updatedRecord["TaskCount"] as! Int)")
+					}
+				})
+			}
+		}
+	}
 }

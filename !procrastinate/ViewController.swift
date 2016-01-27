@@ -141,6 +141,13 @@ extension ViewController: UITextViewDelegate {
 						cloudHandler.addTask(cell.task) { recordID in
 							cell.task.ID = recordID
 						}
+						cloudHandler.updateTaskCountWithSuccessRate(true, completedCount: nil) { stringResult in
+							if let stringResult = stringResult {
+								dispatch_async(dispatch_get_main_queue(), { () -> Void in
+									self.successRateLabel.text = stringResult
+								})
+							}
+						}
 					} else {
 						cloudHandler.changeTaskTitle(cell.task)
 					}
@@ -177,8 +184,17 @@ extension ViewController: TaskCellDelegate {
 	
 	func completeTask(task: Task) {
 		tasks.sortInPlace { !$0.completed && $1.completed }
+		tableView.beginUpdates()
 		tableView.reloadData()
+		tableView.endUpdates()
 		cloudHandler.changeTaskStatus(task)
+		cloudHandler.updateTaskCountWithSuccessRate(nil, completedCount: task.completed) { stringResult in
+			if let stringResult = stringResult {
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					self.successRateLabel.text = stringResult
+				})
+			}
+		}
 	}
 	func deleteTask(task: Task) {
 		let index = tasks.indexOf { $0.title == task.title }
@@ -188,6 +204,13 @@ extension ViewController: TaskCellDelegate {
 		tableView.endUpdates()
 		if !task.ID.isEmpty {
 			cloudHandler.deleteTask(task)
+			cloudHandler.updateTaskCountWithSuccessRate(false, completedCount: nil) { stringResult in
+				if let stringResult = stringResult {
+					dispatch_async(dispatch_get_main_queue(), { () -> Void in
+						self.successRateLabel.text = stringResult
+					})
+				}
+			}
 		}
 	}
 }
