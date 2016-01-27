@@ -55,34 +55,28 @@ class ViewController: UIViewController {
 	}
 	
 	func didBecomeActive() {
-		let operationQueue = NSOperationQueue()
-
-		let statsOperation = NSBlockOperation(block: {
-			self.cloudHandler.getTaskCountWithSuccessRate() { result in
-				NSOperationQueue.mainQueue().addOperationWithBlock({
-					self.successRateLabel.text = result
-				})
-			}
-		})
-		statsOperation.completionBlock = {
+		var isOneFinnished = false
+		self.cloudHandler.getTasks() { tasks in
+			self.tasks = tasks
 			NSOperationQueue.mainQueue().addOperationWithBlock({
-				self.activityIndicator.stopAnimating()
+				self.tableView.reloadData()
+				if isOneFinnished {
+					self.activityIndicator.stopAnimating()
+				} else {
+					isOneFinnished = true
+				}
 			})
 		}
-		
-		let tasksOperation = NSBlockOperation(block: {
-			self.cloudHandler.getTasks() { tasks in
-				self.tasks = tasks
-				NSOperationQueue.mainQueue().addOperationWithBlock({
-					self.tableView.reloadData()
-				})
-			}
-		})
-		tasksOperation.completionBlock = {
-//			operationQueue.addOperation(statsOperation)
+		self.cloudHandler.getTaskCountWithSuccessRate() { result in
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				self.successRateLabel.text = result
+				if isOneFinnished {
+					self.activityIndicator.stopAnimating()
+				} else {
+					isOneFinnished = true
+				}
+			})
 		}
-//		operationQueue.addOperation(tasksOperation)
-		operationQueue.addOperations([tasksOperation, statsOperation], waitUntilFinished: false)
 	}
 }
 
