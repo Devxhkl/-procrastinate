@@ -141,7 +141,7 @@ extension ViewController: UITextViewDelegate {
 						cloudHandler.addTask(cell.task) { recordID in
 							cell.task.ID = recordID
 						}
-						cloudHandler.updateTaskCountWithSuccessRate(true, completedCount: nil) { stringResult in
+						cloudHandler.updateTaskCountWithSuccessRate(true, completeCount: nil) { stringResult in
 							if let stringResult = stringResult {
 								dispatch_async(dispatch_get_main_queue(), { () -> Void in
 									self.successRateLabel.text = stringResult
@@ -188,7 +188,7 @@ extension ViewController: TaskCellDelegate {
 		tableView.reloadData()
 		tableView.endUpdates()
 		cloudHandler.changeTaskStatus(task)
-		cloudHandler.updateTaskCountWithSuccessRate(nil, completedCount: task.completed) { stringResult in
+		cloudHandler.updateTaskCountWithSuccessRate(nil, completeCount: task.completed) { stringResult in
 			if let stringResult = stringResult {
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
 					self.successRateLabel.text = stringResult
@@ -204,7 +204,7 @@ extension ViewController: TaskCellDelegate {
 		tableView.endUpdates()
 		if !task.ID.isEmpty {
 			cloudHandler.deleteTask(task)
-			cloudHandler.updateTaskCountWithSuccessRate(false, completedCount: nil) { stringResult in
+			cloudHandler.updateTaskCountWithSuccessRate(false, completeCount: nil) { stringResult in
 				if let stringResult = stringResult {
 					dispatch_async(dispatch_get_main_queue(), { () -> Void in
 						self.successRateLabel.text = stringResult

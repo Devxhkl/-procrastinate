@@ -98,19 +98,33 @@ class CloudHandler {
 		}
 	}
 	
-	func getTaskCountWithSuccessRate(completion: String -> ()) {
+	func getTaskCountWithSuccessRate(completion: String? -> ()) {
 		privateDatabase.fetchRecordWithID(CKRecordID(recordName: "Stats")) { (record, error) -> Void in
 			if let error = error {
-				print(error.localizedDescription)
+				if error.userInfo["ServerErrorDescription"] as! String == "Record not found" {
+					let statsRecord = CKRecord(recordType: "Statistics", recordID: CKRecordID(recordName: "Stats"))
+					statsRecord.setValue(0, forKey: "TaskCount")
+					statsRecord.setValue(0, forKey: "CompleteCount")
+					self.privateDatabase.saveRecord(statsRecord, completionHandler: { (savedRecord, _error) -> Void in
+						if let _error = _error {
+							print(_error.localizedDescription)
+							completion(nil)
+						} else if let savedRecord = savedRecord {
+							let taskCount = savedRecord["TaskCount"] as! Int
+							let completedCount = savedRecord["CompleteCount"] as! Int
+							completion("\(completedCount)/\(taskCount)")
+						}
+					})
+				}
 			} else if let record = record {
 				let taskCount = record["TaskCount"] as! Int
-				let completedCount = record["CompletedCount"] as! Int
+				let completedCount = record["CompleteCount"] as! Int
 				completion("\(completedCount)/\(taskCount)")
 			}
 		}
 	}
 	
-	func updateTaskCountWithSuccessRate(taskCount: Bool? = nil, completedCount: Bool? = nil, completion: String? -> ()) {
+	func updateTaskCountWithSuccessRate(taskCount: Bool? = nil, completeCount: Bool? = nil, completion: String? -> ()) {
 		privateDatabase.fetchRecordWithID(CKRecordID(recordName: "Stats")) { (record, error) -> Void in
 			if let error = error {
 				print(error.localizedDescription)
@@ -120,16 +134,16 @@ class CloudHandler {
 					var recordTaskCount = record["TaskCount"] as! Int
 					record.setValue(taskCount ? ++recordTaskCount : --recordTaskCount, forKey: "TaskCount")
 				}
-				if let completedCount = completedCount {
-					var recordCompletedCount = record["CompletedCount"] as! Int
-					record.setValue(completedCount ? ++recordCompletedCount : --recordCompletedCount, forKey: "CompletedCount")
+				if let completeCount = completeCount {
+					var recordCompleteCount = record["CompleteCount"] as! Int
+					record.setValue(completeCount ? ++recordCompleteCount : --recordCompleteCount, forKey: "CompleteCount")
 				}
 				self.privateDatabase.saveRecord(record, completionHandler: { (updatedRecord, _error) -> Void in
 					if let _error = _error {
 						print(_error.localizedDescription)
 						completion(nil)
 					} else if let updatedRecord = updatedRecord {
-						completion("\(updatedRecord["CompletedCount"] as! Int)/\(updatedRecord["TaskCount"] as! Int)")
+						completion("\(updatedRecord["CompleteCount"] as! Int)/\(updatedRecord["TaskCount"] as! Int)")
 					}
 				})
 			}
