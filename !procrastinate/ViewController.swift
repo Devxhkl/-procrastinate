@@ -157,17 +157,11 @@ extension ViewController: UITextViewDelegate {
 	}
 
 	func textViewDidChange(textView: UITextView) {
-		
-//		print(textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)))
-//		let fixedWidth = textView.frame.size.width
-//		textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-//		let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-//		
-//		if newSize.height != descriptionTextViewConstraint.constant && newSize.height < 100 {
-//			descriptionTextViewConstraint.constant = newSize.height
-//			addFieldHeightConstraint.constant = newSize.height + 150
-//			view.layoutIfNeeded()
-//		}
+		if textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)).height != textView.bounds.height {
+			tableView.beginUpdates()
+			textView.sizeToFit()
+			tableView.endUpdates()
+		} 
 	}
 	
 	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
