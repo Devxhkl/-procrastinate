@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 	
 	let cloudHandler = CloudHandler()
 	var tasks: [Task] = []
-	var placeholderCell: TaskCell!
+	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
 
 	override func viewDidLoad() {
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
-		placeholderCell = tableView.dequeueReusableCellWithIdentifier("TaskCell") as! TaskCell
+		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
 		view.addGestureRecognizer(tap)
 		
@@ -93,8 +93,7 @@ extension ViewController {
 		
 		if pullDownInProgress && scrollView.contentOffset.y <= 0.0 {
 			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
-			placeholderCell.titleTextView.text = -scrollViewContentOffsetY > 44.0 ? "Release to add item" : "Pull to add task"
-			placeholderCell.titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
+			placeholderCell.feedbackLabel.text = -scrollViewContentOffsetY > 44.0 ? "release to add task" : "pull to add task"
 			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
 		}
 	}

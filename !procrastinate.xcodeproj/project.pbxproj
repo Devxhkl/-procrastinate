@@ -14,6 +14,7 @@
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
 		FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FA1F03FE1C449F4300593F01 /* CloudKitHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F03FD1C449F4300593F01 /* CloudKitHandler.swift */; };
+		FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */; };
 		FAAD6F4D1C50509D005F552C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAD6F4C1C50509D005F552C /* NotificationCenter.framework */; };
 		FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD6F4F1C50509D005F552C /* TodayViewController.swift */; };
 		FAAD6F531C50509D005F552C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAD6F511C50509D005F552C /* MainInterface.storyboard */; };
@@ -57,6 +58,7 @@
 		FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate.entitlements"; sourceTree = "<group>"; };
 		FA1F03FB1C449E1300593F01 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FA1F03FD1C449F4300593F01 /* CloudKitHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitHandler.swift; sourceTree = "<group>"; };
+		FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderCell.swift; sourceTree = "<group>"; };
 		FAAD6F4A1C50509D005F552C /* !procrastinate Today Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "!procrastinate Today Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD6F4C1C50509D005F552C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		FAAD6F4F1C50509D005F552C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -111,8 +113,7 @@
 			children = (
 				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 				FA15C28E1C40864500333D3E /* AppDelegate.swift */,
-				FA15C2901C40864500333D3E /* ViewController.swift */,
-				FAF26B891C414879006487AE /* TaskCell.swift */,
+				FA3D63BC1C5A4FFE00743CB7 /* ViewController */,
 				FAF26B8B1C41A0FC006487AE /* Task.swift */,
 				FA1F03FD1C449F4300593F01 /* CloudKitHandler.swift */,
 				FA033AF61C57C21500AC49F0 /* Test.storyboard */,
@@ -121,6 +122,16 @@
 				FA15C29A1C40864500333D3E /* Info.plist */,
 			);
 			path = "!procrastinate";
+			sourceTree = "<group>";
+		};
+		FA3D63BC1C5A4FFE00743CB7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FA15C2901C40864500333D3E /* ViewController.swift */,
+				FAF26B891C414879006487AE /* TaskCell.swift */,
+				FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		FAAD6F4B1C50509D005F552C /* Frameworks */ = {
@@ -255,6 +266,7 @@
 				FA1F03FE1C449F4300593F01 /* CloudKitHandler.swift in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
+				FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
