@@ -2,20 +2,16 @@
 //  Task.swift
 //  !procrastinate
 //
-//  Created by Zel Marko on 1/9/16.
+//  Created by Zel Marko on 2/14/16.
 //  Copyright © 2016 Zel Marko. All rights reserved.
 //
 
 import Foundation
+import CoreData
 
-class Task {
-	var ID: String
-	var title: String
-	var completed: Bool
+
+class Task: NSManagedObject {
+
 	
-	init(ID: String = "", title: String, completed: Bool = false) {
-		self.ID = ID
-		self.title = title
-		self.completed = completed
-	}
+
 }

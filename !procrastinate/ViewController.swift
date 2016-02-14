@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var successRateLabel: UILabel!
 	
-	let cloudHandler = CloudHandler()
+//	let cloudHandler = CloudHandler()
 	var tasks: [Task] = []
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 		
 		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightUltraLight)]
 
-		didBecomeActive()
+//		didBecomeActive()
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 	}
 
 	func taskAdded() {
-		let task = Task(title: "")
+		let task = Task()
 		tasks.insert(task, atIndex: 0)
 		
 		tableView.reloadData()
@@ -56,32 +56,32 @@ class ViewController: UIViewController {
 		view.endEditing(true)
 	}
 	
-	func didBecomeActive() {
-		var isOneFinnished = false
-		dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
-			self.cloudHandler.getTasks() { tasks in
-				self.tasks = tasks
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					self.tableView.reloadData()
-					if isOneFinnished {
-						self.activityIndicator.stopAnimating()
-					} else {
-						isOneFinnished = true
-					}
-				})
-			}
-			self.cloudHandler.getTaskCountWithSuccessRate() { result in
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					self.successRateLabel.text = result
-					if isOneFinnished {
-						self.activityIndicator.stopAnimating()
-					} else {
-						isOneFinnished = true
-					}
-				})
-			}
-		}
-	}
+//	func didBecomeActive() {
+//		var isOneFinnished = false
+//		dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
+//			self.cloudHandler.getTasks() { tasks in
+//				self.tasks = tasks
+//				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//					self.tableView.reloadData()
+//					if isOneFinnished {
+//						self.activityIndicator.stopAnimating()
+//					} else {
+//						isOneFinnished = true
+//					}
+//				})
+//			}
+//			self.cloudHandler.getTaskCountWithSuccessRate() { result in
+//				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//					self.successRateLabel.text = result
+//					if isOneFinnished {
+//						self.activityIndicator.stopAnimating()
+//					} else {
+//						isOneFinnished = true
+//					}
+//				})
+//			}
+//		}
+//	}
 }
 
 extension ViewController {
@@ -140,24 +140,24 @@ extension ViewController: UITextViewDelegate {
 					break
 				} else {
 					cell.task.title = textView.text
-					if cell.task.ID == "" {
-						dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-							self.cloudHandler.addTask(cell.task) { recordID in
-								cell.task.ID = recordID
-							}
-							self.cloudHandler.updateTaskCountWithSuccessRate(true, completeCount: nil) { stringResult in
-								if let stringResult = stringResult {
-									dispatch_async(dispatch_get_main_queue(), { () -> Void in
-										self.successRateLabel.text = stringResult
-									})
-								}
-							}
-						})
-					} else {
-						dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-							self.cloudHandler.changeTaskTitle(cell.task)
-						})
-					}
+//					if cell.task.ID == "" {
+//						dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
+//							self.cloudHandler.addTask(cell.task) { recordID in
+//								cell.task.ID = recordID
+//							}
+//							self.cloudHandler.updateTaskCountWithSuccessRate(true, completeCount: nil) { stringResult in
+//								if let stringResult = stringResult {
+//									dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//										self.successRateLabel.text = stringResult
+//									})
+//								}
+//							}
+//						})
+//					} else {
+//						dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
+//							self.cloudHandler.changeTaskTitle(cell.task)
+//						})
+//					}
 					break					
 				}
 			}
@@ -188,16 +188,16 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		tableView.reloadData()
 		tableView.endUpdates()
-		dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
-			self.cloudHandler.changeTaskStatus(task)
-			self.cloudHandler.updateTaskCountWithSuccessRate(nil, completeCount: task.completed) { stringResult in
-				if let stringResult = stringResult {
-					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						self.successRateLabel.text = stringResult
-					})
-				}
-			}
-		}
+//		dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
+//			self.cloudHandler.changeTaskStatus(task)
+//			self.cloudHandler.updateTaskCountWithSuccessRate(nil, completeCount: task.completed) { stringResult in
+//				if let stringResult = stringResult {
+//					dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//						self.successRateLabel.text = stringResult
+//					})
+//				}
+//			}
+//		}
 	}
 	func deleteTask(task: Task) {
 		let index = tasks.indexOf { $0.title == task.title }
@@ -205,18 +205,18 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
-		if !task.ID.isEmpty {
-			dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-				self.cloudHandler.deleteTask(task)
-				self.cloudHandler.updateTaskCountWithSuccessRate(false, completeCount: nil) { stringResult in
-					if let stringResult = stringResult {
-						dispatch_async(dispatch_get_main_queue(), { () -> Void in
-							self.successRateLabel.text = stringResult
-						})
-					}
-				}
-			})
-		}
+//		if !task.ID.isEmpty {
+//			dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
+//				self.cloudHandler.deleteTask(task)
+//				self.cloudHandler.updateTaskCountWithSuccessRate(false, completeCount: nil) { stringResult in
+//					if let stringResult = stringResult {
+//						dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//							self.successRateLabel.text = stringResult
+//						})
+//					}
+//				}
+//			})
+//		}
 	}
 }
 
