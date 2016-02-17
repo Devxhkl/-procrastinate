@@ -91,10 +91,10 @@ class TaskCell: UITableViewCell {
 	
 	func strikesthroghOrNot() {
 		if task.completed {
-			let strikethroughString = NSAttributedString(string: task.title!, attributes: [NSStrikethroughStyleAttributeName: 1])
+			let strikethroughString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1])
 			titleTextView.attributedText = strikethroughString
 		} else {
-			let regularString = NSAttributedString(string: task.title!)
+			let regularString = NSAttributedString(string: task.title)
 			titleTextView.attributedText = regularString
 		}
 		titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)

@@ -7,6 +7,29 @@
 //
 
 import UIKit
+import CoreData
+
+class Task {
+	var id: String
+	var title: String
+	var completed: Bool
+	var createdDate: NSDate
+	var completedDate: NSDate?
+	var tag: String?
+	
+	init(id: String, title: String, completed: Bool, createdDate: NSDate, completedDate: NSDate?, tag: String?) {
+		self.id = id
+		self.title = title
+		self.completed = completed
+		self.createdDate = createdDate
+		if let completedDate = completedDate {
+			self.completedDate = completedDate
+		}
+		if let tag = tag {
+			self.tag = tag
+		}
+	}
+}
 
 class ViewController: UIViewController {
 	
@@ -14,13 +37,37 @@ class ViewController: UIViewController {
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var successRateLabel: UILabel!
 	
-//	let cloudHandler = CloudHandler()
+	let CDMOC = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 	var tasks: [Task] = []
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		let fetchRequest = NSFetchRequest()
+		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
+		fetchRequest.entity = entityDescription
+		
+		do {
+			let result = try CDMOC.executeFetchRequest(fetchRequest)
+			if !result.isEmpty {
+				for cdTask in result as! [NSManagedObject] {
+					let id = cdTask.valueForKey("id") as! String
+					let title = cdTask.valueForKey("title") as! String
+					let completed = cdTask.valueForKey("completed") as! Bool
+					let createdDate = cdTask.valueForKey("createdDate") as! NSDate
+					let completedDate = cdTask.valueForKey("completedDate") as? NSDate
+					let tag = cdTask.valueForKey("tag") as? String
+					
+					let task = Task(id: id, title: title, completed: completed, createdDate: createdDate, completedDate: completedDate, tag: tag)
+					tasks.append(task)
+				}
+				tableView.reloadData()
+			}
+		} catch {
+			print(error)
+		}
 		
 		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightUltraLight)]
 
@@ -36,7 +83,7 @@ class ViewController: UIViewController {
 	}
 
 	func taskAdded() {
-		let task = Task()
+		let task = Task(id: "", title: "", completed: false, createdDate: NSDate(), completedDate: nil, tag: nil)
 		tasks.insert(task, atIndex: 0)
 		
 		tableView.reloadData()
@@ -140,7 +187,21 @@ extension ViewController: UITextViewDelegate {
 					break
 				} else {
 					cell.task.title = textView.text
-//					if cell.task.ID == "" {
+					if cell.task.id == "" {
+						let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
+						let newTask = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: CDMOC)
+						let id = NSUUID().UUIDString
+						newTask.setValue(id, forKey: "id")
+						newTask.setValue(textView.text, forKey: "title")
+						newTask.setValue(false, forKey: "completed")
+						newTask.setValue(cell.task.createdDate, forKey: "createdDate")
+						
+						do {
+							try newTask.managedObjectContext?.save()
+							cell.task.id = id
+						} catch {
+							print(error)
+						}
 //						dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
 //							self.cloudHandler.addTask(cell.task) { recordID in
 //								cell.task.ID = recordID
@@ -153,12 +214,36 @@ extension ViewController: UITextViewDelegate {
 //								}
 //							}
 //						})
-//					} else {
+					} else {
+						let fetctRequest = NSFetchRequest()
+						let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
+						fetctRequest.entity = entityDescription
+						
+						do {
+							let result = try CDMOC.executeFetchRequest(fetctRequest)
+							if !result.isEmpty {
+								for task in result as! [NSManagedObject] {
+									if (task.valueForKey("id") as! String) == cell.task.id {
+										task.setValue(cell.task.title, forKey: "title")
+										
+										do {
+											try task.managedObjectContext?.save()
+										} catch {
+											let saveError = error as NSError
+											print(saveError)
+										}
+									}
+								}
+							}
+						} catch {
+							let fetchError = error as NSError
+							print(fetchError)
+						}
 //						dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
 //							self.cloudHandler.changeTaskTitle(cell.task)
 //						})
-//					}
-					break					
+					}
+					break
 				}
 			}
 		}
@@ -188,6 +273,33 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		tableView.reloadData()
 		tableView.endUpdates()
+		
+		let fetchRequest = NSFetchRequest()
+		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
+		fetchRequest.entity = entityDescription
+		
+		do {
+			let result = try CDMOC.executeFetchRequest(fetchRequest)
+			
+			if !result.isEmpty {
+				for cdTask in result as! [NSManagedObject] {
+					if (cdTask.valueForKey("id") as! String) == task.id {
+						cdTask.setValue(task.completed, forKey: "completed")
+						cdTask.setValue(task.completed ? NSDate() : nil, forKey: "completedDate")
+						
+						do {
+							try cdTask.managedObjectContext?.save()
+						} catch {
+							let saveError = error as NSError
+							print(saveError)
+						}
+					}
+				}
+			}
+		} catch {
+			let fetchError = error as NSError
+			print(fetchError)
+		}
 //		dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
 //			self.cloudHandler.changeTaskStatus(task)
 //			self.cloudHandler.updateTaskCountWithSuccessRate(nil, completeCount: task.completed) { stringResult in
@@ -205,6 +317,32 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
+		
+		let fetchRequest = NSFetchRequest()
+		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
+		fetchRequest.entity = entityDescription
+		
+		do {
+			let result = try CDMOC.executeFetchRequest(fetchRequest)
+			
+			if !result.isEmpty {
+				for cdTask in result as! [NSManagedObject] {
+					if (cdTask.valueForKey("id") as! String) == task.id {
+						CDMOC.deleteObject(cdTask)
+						
+						do {
+							try CDMOC.save()
+						} catch {
+							let saveError = error as NSError
+							print(saveError)
+						}
+					}
+				}
+			}
+		} catch {
+			let fetchError = error as NSError
+			print(fetchError)
+		}
 //		if !task.ID.isEmpty {
 //			dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
 //				self.cloudHandler.deleteTask(task)
