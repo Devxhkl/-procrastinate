@@ -94,7 +94,7 @@ class TaskCell: UITableViewCell {
 			let strikethroughString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1])
 			titleTextView.attributedText = strikethroughString
 		} else {
-			let regularString = NSAttributedString(string: task.title)
+			let regularString = NSAttributedString(string: task.title, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18)])
 			titleTextView.attributedText = regularString
 		}
 		titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
