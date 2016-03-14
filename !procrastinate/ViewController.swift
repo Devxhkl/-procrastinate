@@ -48,6 +48,16 @@ class ViewController: UIViewController {
 		let fetchRequest = NSFetchRequest()
 		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
 		fetchRequest.entity = entityDescription
+		let calendar = NSCalendar.currentCalendar()
+		fetchRequest.predicate = NSPredicate(format: "createdDate > %@",
+			calendar.dateByAddingUnit(.Hour,
+				value: 5,
+				toDate: calendar.startOfDayForDate(calendar.dateByAddingUnit(.Hour,
+					value: -5,
+					toDate: NSDate(),
+					options: [])!),
+				options: [])!)
+		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "completed", ascending: true), NSSortDescriptor(key: "createdDate", ascending: false)]
 		
 		do {
 			let result = try CDMOC.executeFetchRequest(fetchRequest)
@@ -91,8 +101,9 @@ class ViewController: UIViewController {
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		for cell in visibleCells {
 			if cell.task === task {
-				let regularString = NSAttributedString(string: task.title)
+				let regularString = NSAttributedString(string: task.title, attributes: [:])
 				cell.titleTextView.attributedText = regularString
+				cell.titleTextView.font = UIFont.systemFontOfSize(18)
 				cell.titleTextView.becomeFirstResponder()
 				break
 			}
@@ -171,6 +182,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 		cell.delegate = self
 		cell.task = tasks[indexPath.row]
+		
+		if !cell.task.completed {
+			cell.titleTextView.attributedText = NSAttributedString(string: cell.task.title, attributes: [:])
+		}
 		
 		return cell
 	}
@@ -317,7 +332,7 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
-		
+
 		let fetchRequest = NSFetchRequest()
 		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
 		fetchRequest.entity = entityDescription
