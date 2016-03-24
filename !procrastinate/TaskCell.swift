@@ -32,7 +32,7 @@ class TaskCell: UITableViewCell {
 		super.awakeFromNib()
 		titleTextView.textContainerInset = UIEdgeInsetsZero
 		titleTextView.textContainer.lineFragmentPadding = 0.0
-		let recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+		let recognizer = UIPanGestureRecognizer(target: self, action: #selector(TaskCell.handlePan(_:)))
 		recognizer.delegate = self
 		addGestureRecognizer(recognizer)
 	}
