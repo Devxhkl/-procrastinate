@@ -101,9 +101,7 @@ class ViewController: UIViewController {
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		for cell in visibleCells {
 			if cell.task === task {
-				let regularString = NSAttributedString(string: task.title, attributes: [:])
-				cell.titleTextView.attributedText = regularString
-				cell.titleTextView.font = UIFont.systemFontOfSize(18)
+//				cell.titleTextView.font = UIFont.systemFontOfSize(18)
 				cell.titleTextView.becomeFirstResponder()
 				break
 			}
@@ -183,15 +181,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 		cell.delegate = self
 		cell.task = tasks[indexPath.row]
 		
-		if !cell.task.completed {
-			cell.titleTextView.attributedText = NSAttributedString(string: cell.task.title, attributes: [:])
-		}
-		
 		return cell
 	}
 }
 
 extension ViewController: UITextViewDelegate {
+	
+	func textViewDidBeginEditing(textView: UITextView) {
+		if textView.text.isEmpty {
+			textView.typingAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)]
+		}
+	}
 	
 	func textViewDidEndEditing(textView: UITextView) {
 		let visibleCells = tableView.visibleCells as! [TaskCell]

@@ -91,13 +91,12 @@ class TaskCell: UITableViewCell {
 	
 	func strikesthroghOrNot() {
 		if task.completed {
-			let strikethroughString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1])
+			let strikethroughString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
 			titleTextView.attributedText = strikethroughString
 		} else {
-			let regularString = NSAttributedString(string: task.title, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18)])
+			let regularString = NSAttributedString(string: task.title, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
 			titleTextView.attributedText = regularString
 		}
-		titleTextView.font = UIFont(name: "AvenirNext-Regular", size: 18)
 	}
 	
 	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
