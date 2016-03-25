@@ -36,7 +36,7 @@
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" keyboardDismissMode="interactive" text="TextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Wh-cg-heC">
                                                     <rect key="frame" x="15" y="10" width="295" height="25.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                     <connections>
@@ -44,6 +44,7 @@
                                                     </connections>
                                                 </textView>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="9Wh-cg-heC" firstAttribute="leading" secondItem="nqv-HR-3yb" secondAttribute="leading" constant="15" id="79w-c2-y3T"/>
                                                 <constraint firstAttribute="trailing" secondItem="9Wh-cg-heC" secondAttribute="trailing" constant="10" id="Iac-pV-j5N"/>
@@ -51,6 +52,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="9Wh-cg-heC" secondAttribute="bottom" constant="10" id="jkw-p0-kAu"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                         <connections>
@@ -65,13 +67,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zng-fF-ytz">
-                                                    <rect key="frame" x="136" y="14" width="49" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <rect key="frame" x="134.5" y="14" width="52.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="zng-fF-ytz" firstAttribute="centerX" secondItem="mOA-FA-Nz1" secondAttribute="centerX" id="BGX-Dq-U3u"/>
                                                 <constraint firstItem="zng-fF-ytz" firstAttribute="centerY" secondItem="mOA-FA-Nz1" secondAttribute="centerY" constant="3.5" id="O8N-LV-sDh"/>
@@ -115,7 +118,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="IAH-Nm-OJP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
