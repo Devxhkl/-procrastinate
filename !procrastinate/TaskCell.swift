@@ -51,12 +51,17 @@ class TaskCell: UITableViewCell {
 			center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
 			stageView.center = CGPointMake((originalCenter.x - frame.width) + translation.x, stageView.center.y)
 			markComplete = frame.origin.x > 0.0 && frame.origin.x < (frame.size.width / 4.0) * 3
-			if markComplete {
-				stageView.backgroundColor = UIColor.greenColor()
+			if markComplete && !task.completed {
+				stageView.backgroundColor = UIColor(patternImage: UIImage(named: "done")!)
+				slide.imageView.image = UIImage(named: "done_icon")
+			} else {
+				stageView.backgroundColor = UIColor(patternImage: UIImage(named: "undone")!)
+				slide.imageView.image = UIImage(named: "undone_icon")
 			}
 			delete = frame.origin.x > (frame.size.width / 4.0) * 3
 			if delete {
-				stageView.backgroundColor = UIColor.redColor()
+				stageView.backgroundColor = UIColor(patternImage: UIImage(named: "delete")!)
+				slide.imageView.image = UIImage(named: "delete_icon")
 			}
 		}
 		if recognizer.state == .Ended {
@@ -74,7 +79,7 @@ class TaskCell: UITableViewCell {
 					UIView.animateWithDuration(0.2, animations: {
 						self.stageView.alpha = 0.0
 						}, completion: { _ in
-							self.stageView.removeFromSuperview()
+//							self.stageView.removeFromSuperview()
 					})
 				}
 			} else {
@@ -85,11 +90,13 @@ class TaskCell: UITableViewCell {
 	
 	func resetFrame() {
 		let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
-		UIView.animateWithDuration(0.2, animations: { () -> Void in
-			self.frame = originalFrame
+		let slideViewOriginalFrame = CGRect(x: frame.origin.x - frame.width, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+		UIView.animateWithDuration(0.1, animations: { () -> Void in
+			self.stageView.frame = slideViewOriginalFrame
+//			self.frame = originalFrame
 			}, completion: { _ in
-				self.stageView.removeFromSuperview()
-				self.stageView.backgroundColor = UIColor.whiteColor()
+//				self.stageView.removeFromSuperview()
+//				self.stageView.backgroundColor = UIColor.whiteColor()
 		})
 	}
 	
@@ -107,7 +114,7 @@ class TaskCell: UITableViewCell {
 		if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
 			let translation = panGestureRecognizer.translationInView(superview!)
 			if fabs(translation.x) > fabs(translation.y) {
-				stageView.frame = CGRect(x: -frame.origin.x, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+				stageView.frame = CGRect(x: frame.origin.x - frame.size.width, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 				superview!.insertSubview(stageView, belowSubview: self)
 				return true
 			}
