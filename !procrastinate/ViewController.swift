@@ -50,6 +50,8 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		fetchTasks()
+		
 		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightRegular)]
 		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "noise_high")!)
 		
