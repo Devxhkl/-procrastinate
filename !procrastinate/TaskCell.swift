@@ -26,19 +26,23 @@ class TaskCell: UITableViewCell {
 	
 	var originalCenter = CGPoint()
 	var markComplete = false, delete = false
-	let stageView = UIView()
+	let slide = SlideView()
+	var stageView: UIView!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
+		
+		stageView = slide.view
+		
 		titleTextView.textContainerInset = UIEdgeInsetsZero
 		titleTextView.textContainer.lineFragmentPadding = 0.0
+		
 		let recognizer = UIPanGestureRecognizer(target: self, action: #selector(TaskCell.handlePan(_:)))
-		recognizer.delegate = self
 		addGestureRecognizer(recognizer)
+		recognizer.delegate = self
 	}
 	
 	func handlePan(recognizer: UIPanGestureRecognizer) {
-		
 		if recognizer.state == .Began {
 			originalCenter = center
 		}
