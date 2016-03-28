@@ -18,6 +18,8 @@
 		FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD6F4F1C50509D005F552C /* TodayViewController.swift */; };
 		FAAD6F531C50509D005F552C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAD6F511C50509D005F552C /* MainInterface.storyboard */; };
 		FAAD6F571C50509D005F552C /* !procrastinate Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAAD6F4A1C50509D005F552C /* !procrastinate Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACDCAB31CA994AA002AAE4D /* SlideView.xib */; };
+		FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAB71CA995BB002AAE4D /* SlideView.swift */; };
 		FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +64,8 @@
 		FAAD6F4F1C50509D005F552C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		FAAD6F521C50509D005F552C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		FAAD6F541C50509D005F552C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FACDCAB31CA994AA002AAE4D /* SlideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideView.xib; sourceTree = "<group>"; };
+		FACDCAB71CA995BB002AAE4D /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
 		FAD16CB11C6EF00400912222 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +155,8 @@
 				FA0886E21C5BF59100683A0D /* Main.storyboard */,
 				FAF26B891C414879006487AE /* TaskCell.swift */,
 				FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */,
+				FACDCAB31CA994AA002AAE4D /* SlideView.xib */,
+				FACDCAB71CA995BB002AAE4D /* SlideView.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			files = (
 				FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */,
 				FA15C2961C40864500333D3E /* Assets.xcassets in Resources */,
+				FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */,
 				FA0886E31C5BF59100683A0D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
 				FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
