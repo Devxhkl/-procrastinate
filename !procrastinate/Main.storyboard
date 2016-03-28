@@ -37,7 +37,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" keyboardDismissMode="interactive" text="TextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Wh-cg-heC">
                                                     <rect key="frame" x="15" y="10" width="295" height="25.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="BYZ-38-t0r" id="Dl4-5I-EwP"/>
@@ -107,6 +107,23 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="chE-io-U51">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRC-7B-5Cu">
+                            <rect key="frame" x="99" y="12" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="CRC-7B-5Cu" firstAttribute="centerX" secondItem="chE-io-U51" secondAttribute="centerX" id="99Q-6p-sEH"/>
+                        <constraint firstItem="CRC-7B-5Cu" firstAttribute="centerY" secondItem="chE-io-U51" secondAttribute="centerY" id="C9v-59-HFd"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="694" y="366"/>
         </scene>

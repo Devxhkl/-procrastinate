@@ -84,6 +84,7 @@ class ViewController: UIViewController {
 		do {
 			let result = try CDMOC.executeFetchRequest(fetchRequest)
 			if !result.isEmpty {
+				tasks = [Task]()
 				for cdTask in result as! [NSManagedObject] {
 					let id = cdTask.valueForKey("id") as! String
 					let title = cdTask.valueForKey("title") as! String

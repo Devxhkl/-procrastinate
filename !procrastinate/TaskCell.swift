@@ -45,7 +45,7 @@ class TaskCell: UITableViewCell {
 		if recognizer.state == .Changed {
 			let translation = recognizer.translationInView(self)
 			center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
-			
+			stageView.center = CGPointMake((originalCenter.x - frame.width) + translation.x, stageView.center.y)
 			markComplete = frame.origin.x > 0.0 && frame.origin.x < (frame.size.width / 4.0) * 3
 			if markComplete {
 				stageView.backgroundColor = UIColor.greenColor()
@@ -103,7 +103,7 @@ class TaskCell: UITableViewCell {
 		if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
 			let translation = panGestureRecognizer.translationInView(superview!)
 			if fabs(translation.x) > fabs(translation.y) {
-				stageView.frame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+				stageView.frame = CGRect(x: -frame.origin.x, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 				superview!.insertSubview(stageView, belowSubview: self)
 				return true
 			}
