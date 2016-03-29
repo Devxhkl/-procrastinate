@@ -89,7 +89,7 @@ class TaskCell: UITableViewCell {
 	}
 	
 	func resetFrame() {
-		let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+//		let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 		let slideViewOriginalFrame = CGRect(x: frame.origin.x - frame.width, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 		UIView.animateWithDuration(0.1, animations: { () -> Void in
 			self.stageView.frame = slideViewOriginalFrame

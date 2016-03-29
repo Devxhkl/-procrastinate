@@ -20,6 +20,7 @@
 		FAAD6F571C50509D005F552C /* !procrastinate Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAAD6F4A1C50509D005F552C /* !procrastinate Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACDCAB31CA994AA002AAE4D /* SlideView.xib */; };
 		FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAB71CA995BB002AAE4D /* SlideView.swift */; };
+		FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */; };
 		FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		FAAD6F541C50509D005F552C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FACDCAB31CA994AA002AAE4D /* SlideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideView.xib; sourceTree = "<group>"; };
 		FACDCAB71CA995BB002AAE4D /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
+		FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedCode.swift; sourceTree = "<group>"; };
 		FAD16CB11C6EF00400912222 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,12 +109,13 @@
 		FA0886E61C5BF5D600683A0D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 				FA15C28E1C40864500333D3E /* AppDelegate.swift */,
-				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
-				FA15C2951C40864500333D3E /* Assets.xcassets */,
-				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
+				FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */,
 				FA15C29A1C40864500333D3E /* Info.plist */,
+				FA15C2951C40864500333D3E /* Assets.xcassets */,
+				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
+				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
+				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
+				FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */,
 				FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

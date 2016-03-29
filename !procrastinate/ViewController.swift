@@ -40,13 +40,6 @@ class ViewController: UIViewController {
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
 	
-	override func viewWillAppear(animated: Bool) {
-		let hour = NSCalendar.currentCalendar().component([.Hour], fromDate: NSDate())
-		if hour >= 5 {
-			fetchTasks()
-		}
-	}
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -64,6 +57,8 @@ class ViewController: UIViewController {
 		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
 		view.addGestureRecognizer(tap)
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
 	
 	func fetchTasks() {
@@ -120,6 +115,15 @@ class ViewController: UIViewController {
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
+	}
+	
+	func didBecomeActive() {
+		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
+			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
+				fetchTasks()
+				newCheckDate()
+			}
+		}
 	}
 }
 
