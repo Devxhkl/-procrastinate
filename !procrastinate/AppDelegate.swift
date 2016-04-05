@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate == nil {
+		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
 			newCheckDate()
 		}
 		

@@ -120,6 +120,17 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
+		FA0F85441CB414480036B048 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FAF26B891C414879006487AE /* TaskCell.swift */,
+				FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */,
+				FACDCAB31CA994AA002AAE4D /* SlideView.xib */,
+				FACDCAB71CA995BB002AAE4D /* SlideView.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		FA15C2821C40864500333D3E = {
 			isa = PBXGroup;
 			children = (
@@ -156,10 +167,7 @@
 			children = (
 				FA15C2901C40864500333D3E /* ViewController.swift */,
 				FA0886E21C5BF59100683A0D /* Main.storyboard */,
-				FAF26B891C414879006487AE /* TaskCell.swift */,
-				FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */,
-				FACDCAB31CA994AA002AAE4D /* SlideView.xib */,
-				FACDCAB71CA995BB002AAE4D /* SlideView.swift */,
+				FA0F85441CB414480036B048 /* Cell */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
