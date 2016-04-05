@@ -27,13 +27,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "nopro_icon.png",
+      "filename" : "nopro_icon_120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "nopro_icon@2.png",
+      "filename" : "nopro_icon_180.png",
       "scale" : "3x"
     },
     {
