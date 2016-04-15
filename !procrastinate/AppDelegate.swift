@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		}
 		
-		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate == nil {
+		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
 			newCheckDate()
 		}
 		
