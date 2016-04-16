@@ -1,39 +1,35 @@
 {
   "images" : [
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "nopro_icon_settings@2x.png",
+      "size" : "29x29",
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "nopro_icon_settings@3x.png",
+      "size" : "29x29",
       "scale" : "3x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "nopro_icon_spotlight@2x.png",
+      "size" : "40x40",
       "scale" : "2x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "nopro_icon_spotlight@3x.png",
+      "size" : "40x40",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "nopro_icon.png",
+      "filename" : "icon 120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "nopro_icon@2.png",
+      "filename" : "icon 160.png",
       "scale" : "3x"
     },
     {

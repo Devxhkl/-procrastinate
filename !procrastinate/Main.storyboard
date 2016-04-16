@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Nopro-->
+        <!--To-day-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="_procrastinate" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,8 +67,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zng-fF-ytz">
-                                                    <rect key="frame" x="134.5" y="14" width="52.5" height="24"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <rect key="frame" x="137.5" y="15.5" width="45" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -101,7 +101,7 @@
                             <constraint firstAttribute="trailing" secondItem="ywV-gD-QBF" secondAttribute="trailing" id="o7Q-Z0-sHL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Nopro" id="WBN-by-L8X"/>
+                    <navigationItem key="navigationItem" title="To-day" id="WBN-by-L8X"/>
                     <connections>
                         <outlet property="tableView" destination="ywV-gD-QBF" id="fpO-kw-KxR"/>
                     </connections>
