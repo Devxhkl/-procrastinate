@@ -47,14 +47,14 @@ class ViewController: UIViewController {
 		fetchTasks()
 		
 		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightRegular)]
-		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "noise_high")!)
+		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "stripes")!)
 		
-		tableView.backgroundColor = UIColor(patternImage: UIImage(named: "noise")!)
+//		tableView.backgroundColor = UIColor(patternImage: UIImage(named: "stripes_light")!)
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
-		placeholderCell.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "noise_high")!)
+//		placeholderCell.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "stripes_light")!)
 		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
 		view.addGestureRecognizer(tap)
