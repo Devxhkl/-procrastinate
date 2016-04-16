@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EC4854C4D0A9071A38373EF /* Pods__procrastinate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD7C399B8983E2BD27EE7F /* Pods__procrastinate.framework */; };
 		FA0886E31C5BF59100683A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0886E21C5BF59100683A0D /* Main.storyboard */; };
+		FA0F853E1CAD7C7C0036B048 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0F853D1CAD7C7C0036B048 /* OnboardingPageViewController.swift */; };
+		FA0F85411CAD7CA60036B048 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0F85401CAD7CA60036B048 /* Onboarding.storyboard */; };
+		FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0F85421CAD7E6D0036B048 /* OnboardingViewController.swift */; };
 		FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C28E1C40864500333D3E /* AppDelegate.swift */; };
 		FA15C2911C40864500333D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C2901C40864500333D3E /* ViewController.swift */; };
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
@@ -20,6 +24,7 @@
 		FAAD6F571C50509D005F552C /* !procrastinate Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAAD6F4A1C50509D005F552C /* !procrastinate Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACDCAB31CA994AA002AAE4D /* SlideView.xib */; };
 		FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAB71CA995BB002AAE4D /* SlideView.swift */; };
+		FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */; };
 		FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +54,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		23884D4DC5342E3D6D68A643 /* Pods-!procrastinate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate.release.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate.release.xcconfig"; sourceTree = "<group>"; };
+		6A696D1934EDDFCD7A36242E /* Pods-!procrastinate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate.debug.xcconfig"; sourceTree = "<group>"; };
+		80DD7C399B8983E2BD27EE7F /* Pods__procrastinate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__procrastinate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0886E21C5BF59100683A0D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FA0F853D1CAD7C7C0036B048 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		FA0F85401CAD7CA60036B048 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		FA0F85421CAD7E6D0036B048 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		FA15C28B1C40864500333D3E /* !procrastinate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "!procrastinate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA15C28E1C40864500333D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA15C2901C40864500333D3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +77,7 @@
 		FAAD6F541C50509D005F552C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FACDCAB31CA994AA002AAE4D /* SlideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideView.xib; sourceTree = "<group>"; };
 		FACDCAB71CA995BB002AAE4D /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
+		FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedCode.swift; sourceTree = "<group>"; };
 		FAD16CB11C6EF00400912222 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */,
+				8EC4854C4D0A9071A38373EF /* Pods__procrastinate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8CDB621D31EC97470CF8C4FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A696D1934EDDFCD7A36242E /* Pods-!procrastinate.debug.xcconfig */,
+				23884D4DC5342E3D6D68A643 /* Pods-!procrastinate.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FA0886E41C5BF5B300683A0D /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,14 +129,25 @@
 		FA0886E61C5BF5D600683A0D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 				FA15C28E1C40864500333D3E /* AppDelegate.swift */,
-				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
-				FA15C2951C40864500333D3E /* Assets.xcassets */,
-				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
+				FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */,
 				FA15C29A1C40864500333D3E /* Info.plist */,
+				FA15C2951C40864500333D3E /* Assets.xcassets */,
+				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
+				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
+				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		FA0F853F1CAD7C830036B048 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				FA0F85401CAD7CA60036B048 /* Onboarding.storyboard */,
+				FA0F853D1CAD7C7C0036B048 /* OnboardingPageViewController.swift */,
+				FA0F85421CAD7E6D0036B048 /* OnboardingViewController.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		FA15C2821C40864500333D3E = {
@@ -125,6 +158,7 @@
 				FAAD6F4E1C50509D005F552C /* !procrastinate Today Extension */,
 				FAAD6F4B1C50509D005F552C /* Frameworks */,
 				FA15C28C1C40864500333D3E /* Products */,
+				8CDB621D31EC97470CF8C4FF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +191,7 @@
 				FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */,
 				FACDCAB31CA994AA002AAE4D /* SlideView.xib */,
 				FACDCAB71CA995BB002AAE4D /* SlideView.swift */,
+				FA0F853F1CAD7C830036B048 /* Onboarding */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -165,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				FAAD6F4C1C50509D005F552C /* NotificationCenter.framework */,
+				80DD7C399B8983E2BD27EE7F /* Pods__procrastinate.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -186,10 +222,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA15C29D1C40864500333D3E /* Build configuration list for PBXNativeTarget "!procrastinate" */;
 			buildPhases = (
+				E9750DDF3198F36C6A6AEA12 /* Check Pods Manifest.lock */,
 				FA15C2871C40864500333D3E /* Sources */,
 				FA15C2881C40864500333D3E /* Frameworks */,
 				FA15C2891C40864500333D3E /* Resources */,
 				FAAD6F5B1C50509D005F552C /* Embed App Extensions */,
+				883F2C26841E562AA96534F4 /* Embed Pods Frameworks */,
+				17B661EBB748A3507AF2303B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */,
+				FA0F85411CAD7CA60036B048 /* Onboarding.storyboard in Resources */,
 				FA15C2961C40864500333D3E /* Assets.xcassets in Resources */,
 				FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */,
 				FA0886E31C5BF59100683A0D /* Main.storyboard in Resources */,
@@ -284,6 +324,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		17B661EBB748A3507AF2303B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		883F2C26841E562AA96534F4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9750DDF3198F36C6A6AEA12 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FA15C2871C40864500333D3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -293,7 +381,10 @@
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
 				FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
+				FA0F853E1CAD7C7C0036B048 /* OnboardingPageViewController.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
+				FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */,
+				FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */,
 				FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +512,7 @@
 		};
 		FA15C29E1C40864500333D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A696D1934EDDFCD7A36242E /* Pods-!procrastinate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";
@@ -438,6 +530,7 @@
 		};
 		FA15C29F1C40864500333D3E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23884D4DC5342E3D6D68A643 /* Pods-!procrastinate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";

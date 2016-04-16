@@ -40,30 +40,24 @@ class ViewController: UIViewController {
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
 	
-	override func viewWillAppear(animated: Bool) {
-		let hour = NSCalendar.currentCalendar().component([.Hour], fromDate: NSDate())
-		if hour >= 5 {
-			fetchTasks()
-		}
-	}
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		didBecomeActive()
 		fetchTasks()
 		
 		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightRegular)]
-		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "noise_high")!)
+		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "stripes")!)
 		
-		tableView.backgroundColor = UIColor(patternImage: UIImage(named: "noise")!)
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
-		placeholderCell.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "noise_high")!)
 		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
 		view.addGestureRecognizer(tap)
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
 	
 	func fetchTasks() {
@@ -120,6 +114,15 @@ class ViewController: UIViewController {
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
+	}
+	
+	func didBecomeActive() {
+		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
+			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
+				fetchTasks()
+				newCheckDate()
+			}
+		}
 	}
 }
 

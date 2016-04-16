@@ -45,6 +45,7 @@ class TaskCell: UITableViewCell {
 	func handlePan(recognizer: UIPanGestureRecognizer) {
 		if recognizer.state == .Began {
 			originalCenter = center
+			stageView.alpha = 1.0
 		}
 		if recognizer.state == .Changed {
 			let translation = recognizer.translationInView(self)
@@ -79,7 +80,7 @@ class TaskCell: UITableViewCell {
 					UIView.animateWithDuration(0.2, animations: {
 						self.stageView.alpha = 0.0
 						}, completion: { _ in
-//							self.stageView.removeFromSuperview()
+							self.stageView.removeFromSuperview()
 					})
 				}
 			} else {
@@ -89,7 +90,7 @@ class TaskCell: UITableViewCell {
 	}
 	
 	func resetFrame() {
-		let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+//		let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 		let slideViewOriginalFrame = CGRect(x: frame.origin.x - frame.width, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 		UIView.animateWithDuration(0.1, animations: { () -> Void in
 			self.stageView.frame = slideViewOriginalFrame

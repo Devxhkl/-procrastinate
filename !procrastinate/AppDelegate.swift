@@ -14,9 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// Override point for customization after application launch.
+		if NSUserDefaults.standardUserDefaults().boolForKey("oldUser") == false {
+			let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+			if let onboardingPageViewController = onboardingStoryboard.instantiateViewControllerWithIdentifier("OnboardingPageViewController") as? OnboardingPageViewController {
+				window?.rootViewController = onboardingPageViewController
+				window?.makeKeyAndVisible()
+				
+				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "oldUser")
+			}
+		}
+		
+		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
+			newCheckDate()
+		}
+		
 		return true
 	}
 
