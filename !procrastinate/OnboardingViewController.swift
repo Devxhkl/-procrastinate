@@ -23,11 +23,11 @@ class OnboardingViewController: UIViewController {
 		super.viewDidLoad()
 		
 		if index >= 0 {
-			let numberOfImages = [6, 7, 3]
+			let numberOfImages = [6, 6, 4]
 			
 			var images = [UIImage]()
 			for i in 0...numberOfImages[index] {
-				images.append(UIImage(named: "slide " + index.description + "." + i.description)!)
+				images.append(UIImage(named: "slice " + index.description + "." + i.description)!)
 			}
 			
 			screensImageView.animationImages = images

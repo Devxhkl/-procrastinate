@@ -90,7 +90,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slide fresh" translatesAutoresizingMaskIntoConstraints="NO" id="QkJ-WT-Ezb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slice_empty" translatesAutoresizingMaskIntoConstraints="NO" id="QkJ-WT-Ezb">
                                 <rect key="frame" x="51" y="232" width="220" height="293"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QkJ-WT-Ezb" secondAttribute="height" multiplier="220:293" id="EkJ-Nq-WYZ"/>
@@ -121,6 +121,6 @@
     </scenes>
     <resources>
         <image name="iphone_slice" width="548" height="750"/>
-        <image name="slide fresh" width="462" height="617"/>
+        <image name="slice_empty" width="462" height="617"/>
     </resources>
 </document>
