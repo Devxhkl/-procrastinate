@@ -134,7 +134,6 @@
 				FA15C29A1C40864500333D3E /* Info.plist */,
 				FA15C2951C40864500333D3E /* Assets.xcassets */,
 				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
-				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
 				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 			);
 			name = Other;
@@ -175,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				FA3D63BC1C5A4FFE00743CB7 /* ViewController */,
+				FA0F853F1CAD7C830036B048 /* Onboarding */,
+				FADD5CD11CC478F200B4C2EB /* Launch Screen */,
 				FA0886E41C5BF5B300683A0D /* Data Models */,
 				FA0886E51C5BF5CA00683A0D /* Handlers */,
 				FA0886E61C5BF5D600683A0D /* Other */,
@@ -187,11 +188,8 @@
 			children = (
 				FA15C2901C40864500333D3E /* ViewController.swift */,
 				FA0886E21C5BF59100683A0D /* Main.storyboard */,
-				FAF26B891C414879006487AE /* TaskCell.swift */,
 				FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */,
-				FACDCAB31CA994AA002AAE4D /* SlideView.xib */,
-				FACDCAB71CA995BB002AAE4D /* SlideView.swift */,
-				FA0F853F1CAD7C830036B048 /* Onboarding */,
+				FADD5CD01CC478DF00B4C2EB /* TaskCell */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -213,6 +211,24 @@
 				FAAD6F541C50509D005F552C /* Info.plist */,
 			);
 			path = "!procrastinate Today Extension";
+			sourceTree = "<group>";
+		};
+		FADD5CD01CC478DF00B4C2EB /* TaskCell */ = {
+			isa = PBXGroup;
+			children = (
+				FAF26B891C414879006487AE /* TaskCell.swift */,
+				FACDCAB31CA994AA002AAE4D /* SlideView.xib */,
+				FACDCAB71CA995BB002AAE4D /* SlideView.swift */,
+			);
+			name = TaskCell;
+			sourceTree = "<group>";
+		};
+		FADD5CD11CC478F200B4C2EB /* Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
+			);
+			name = "Launch Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
