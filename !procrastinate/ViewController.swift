@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	let CDMOC = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-	var tasks: [Task] = []
+	var tasks = [Task]()
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
 	
@@ -90,6 +90,9 @@ class ViewController: UIViewController {
 					let task = Task(id: id, title: title, completed: completed, createdDate: createdDate, completedDate: completedDate, tag: tag)
 					tasks.append(task)
 				}
+				tableView.reloadData()
+			} else {
+				tasks = [Task]()
 				tableView.reloadData()
 			}
 		} catch {
