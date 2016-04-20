@@ -12,6 +12,8 @@ class OnboardingPageViewController: UIViewController {
 	
 	@IBOutlet weak var pageControl: UIPageControl!
 	@IBOutlet weak var skipTutorialButton: UIButton!
+	@IBOutlet weak var iPhoneSliceImageView: UIImageView!
+	@IBOutlet weak var iPhoneSliceImageViewWidthConstraint: NSLayoutConstraint!
 	
 	var pageContainer: UIPageViewController!
 	var pages = [OnboardingViewController]()
@@ -36,6 +38,9 @@ class OnboardingPageViewController: UIViewController {
 		view.addSubview(pageContainer.view)
 		view.bringSubviewToFront(pageControl)
 		view.bringSubviewToFront(skipTutorialButton)
+		view.bringSubviewToFront(iPhoneSliceImageView)
+		
+		iPhoneSliceImageViewWidthConstraint.constant = widthForScreenSize(true)
 	}
 }
 

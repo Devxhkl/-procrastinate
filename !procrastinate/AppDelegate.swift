@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		if NSUserDefaults.standardUserDefaults().boolForKey("oldUser") == false {
+//		if NSUserDefaults.standardUserDefaults().boolForKey("oldUser") == false {
 			let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
 			if let onboardingPageViewController = onboardingStoryboard.instantiateViewControllerWithIdentifier("OnboardingPageViewController") as? OnboardingPageViewController {
 				window?.rootViewController = onboardingPageViewController
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				
 				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "oldUser")
 			}
-		}
+//		}
 		
 		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
 			newCheckDate()
