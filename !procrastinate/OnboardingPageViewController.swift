@@ -2,111 +2,83 @@
 //  OnboardingPageViewController.swift
 //  !procrastinate
 //
-//  Created by Zel Marko on 3/31/16.
+//  Created by Zel Marko on 4/20/16.
 //  Copyright © 2016 Zel Marko. All rights reserved.
 //
 
 import UIKit
 
-class OnboardingPageViewController: UIPageViewController {
+class OnboardingPageViewController: UIViewController {
 	
-	@IBOutlet var backgroundView: UIView!
-	@IBOutlet weak var iPhoneOutlineImageView: UIImageView!
-	@IBOutlet weak var iPhoneOutlineImageViewWidthConstraint: NSLayoutConstraint!
+	@IBOutlet weak var pageControl: UIPageControl!
 	@IBOutlet weak var skipTutorialButton: UIButton!
 	
-	var onboardingViewControllers = [OnboardingViewController]()
+	var pageContainer: UIPageViewController!
+	var pages = [OnboardingViewController]()
+	
+	var currentIndex: Int?
+	private var pendingIndex: Int?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		for i in 0...3 {
-			let onboardingViewController = storyboard!.instantiateViewControllerWithIdentifier("OnboardingViewController") as! OnboardingViewController
-			onboardingViewController.index = i - 1
-			onboardingViewControllers.append(onboardingViewController)
-			if i == 0 {
-				setViewControllers([onboardingViewController], direction: .Forward, animated: true, completion: nil)
-			}
+		for i in -1...2 {
+			let page = storyboard!.instantiateViewControllerWithIdentifier("OnboardingViewController") as! OnboardingViewController
+			page.index = i
+			pages.append(page)
 		}
 		
-		dataSource = self
-		delegate = self
+		pageContainer = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+		pageContainer.dataSource = self
+		pageContainer.delegate = self
+		pageContainer.setViewControllers([pages[0]], direction: .Forward, animated: false, completion: nil)
 		
-		makeup()
-	}
-	
-	func makeup() {
-		backgroundView.frame = view.frame
-		view.insertSubview(backgroundView, belowSubview: view.subviews[0])
-		view.backgroundColor = UIColor.whiteColor()
-		
-		let pageControllerAppearance = UIPageControl.appearance()
-		pageControllerAppearance.backgroundColor = UIColor.whiteColor()
-		pageControllerAppearance.pageIndicatorTintColor = UIColor.lightGrayColor()
-		pageControllerAppearance.currentPageIndicatorTintColor = UIColor.blackColor()
-		
-		view.addSubview(skipTutorialButton)
-		skipTutorialButton.translatesAutoresizingMaskIntoConstraints = false
-		
-		let views = ["skipButton": skipTutorialButton, "iPhoneImageView": iPhoneOutlineImageView]
-		
-		let skipButtonBottomConstraint = NSLayoutConstraint.constraintsWithVisualFormat(
-			"V:[iPhoneImageView]-[skipButton]-40-|",
-			options: [.AlignAllCenterX],
-			metrics: nil,
-			views: views)
-		NSLayoutConstraint.activateConstraints(skipButtonBottomConstraint)
-		
-		iPhoneOutlineImageViewWidthConstraint.constant = widthForScreenSize(true)
+		view.addSubview(pageContainer.view)
+		view.bringSubviewToFront(pageControl)
+		view.bringSubviewToFront(skipTutorialButton)
 	}
 }
 
 extension OnboardingPageViewController: UIPageViewControllerDataSource {
+	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+		
+		let currentIndex = pages.indexOf(viewController as! OnboardingViewController)!
+		if currentIndex == 0 {
+			return nil
+		}
+		let previousIndex = abs((currentIndex - 1) % pages.count)
+		return pages[previousIndex]
+	}
 	
 	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 		
-		switch viewController {
-		case onboardingViewControllers[0]:
-			return onboardingViewControllers[1]
-		case onboardingViewControllers[1]:
-			return onboardingViewControllers[2]
-		case onboardingViewControllers[2]:
-			return onboardingViewControllers[3]
-		default:
+		let currentIndex = pages.indexOf(viewController as! OnboardingViewController)!
+		if currentIndex == pages.count - 1 {
 			return nil
 		}
-	}
-	
-	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-		
-		switch viewController {
-		case onboardingViewControllers[3]:
-			return onboardingViewControllers[2]
-		case onboardingViewControllers[2]:
-			return onboardingViewControllers[1]
-		case onboardingViewControllers[1]:
-			return onboardingViewControllers[0]
-		default:
-			return nil
-		}
-	}
-	
-	func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-		return 0
-	}
-	
-	func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-		return onboardingViewControllers.count
+		let nextIndex = abs((currentIndex + 1) % pages.count)
+		return pages[nextIndex]
 	}
 }
 
 extension OnboardingPageViewController: UIPageViewControllerDelegate {
+	func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+		
+		pendingIndex = pages.indexOf(pendingViewControllers.first! as! OnboardingViewController)
+	}
+	
 	func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
 		
-		if (viewControllers!.last! as! OnboardingViewController).index == 2 {
-			skipTutorialButton.setTitle("   Done   ", forState: .Normal)
-		} else if skipTutorialButton.titleLabel?.text == "   Done   " {
-			skipTutorialButton.setTitle("   Skip   ", forState: .Normal)
+		if completed {
+			currentIndex = pendingIndex
+			if let index = currentIndex {
+				pageControl.currentPage = index
+				if index == 3 {
+					skipTutorialButton.setTitle("Done", forState: .Normal)
+				} else if index == 2 {
+					skipTutorialButton.setTitle("Skip", forState: .Normal)
+				}
+			}
 		}
 	}
 }

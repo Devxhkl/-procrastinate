@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="h3F-YW-2X8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6A8-yc-m4a">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,59 +7,60 @@
     </dependencies>
     <scenes>
         <!--Onboarding Page View Controller-->
-        <scene sceneID="Rnf-xo-K9z">
+        <scene sceneID="CK5-He-3xI">
             <objects>
-                <pageViewController storyboardIdentifier="OnboardingPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="h3F-YW-2X8" customClass="OnboardingPageViewController" customModule="_procrastinate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingPageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6A8-yc-m4a" customClass="OnboardingPageViewController" customModule="_procrastinate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="acO-PS-yz6"/>
+                        <viewControllerLayoutGuide type="bottom" id="OyF-xr-Jju"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pdO-mP-r8U">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="8pf-ZH-Dni">
+                                <rect key="frame" x="133" y="523" width="55" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vku-tM-hTp">
+                                <rect key="frame" x="250" y="527" width="50" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6Jc-q4-Tjm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="VVi-gi-3iE" kind="modal" id="81s-HJ-kbH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Vku-tM-hTp" secondAttribute="trailing" constant="20" id="7mH-Mm-74w"/>
+                            <constraint firstItem="OyF-xr-Jju" firstAttribute="top" secondItem="8pf-ZH-Dni" secondAttribute="bottom" constant="8" id="KuY-cp-d5U"/>
+                            <constraint firstItem="Vku-tM-hTp" firstAttribute="centerY" secondItem="8pf-ZH-Dni" secondAttribute="centerY" id="Och-eY-bwv"/>
+                            <constraint firstItem="8pf-ZH-Dni" firstAttribute="centerX" secondItem="pdO-mP-r8U" secondAttribute="centerX" id="hrZ-QM-kRs"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="backgroundView" destination="IUY-oy-SwZ" id="DiO-ft-TCS"/>
-                        <outlet property="iPhoneOutlineImageView" destination="kiG-dy-fez" id="dZF-ZC-6Rd"/>
-                        <outlet property="iPhoneOutlineImageViewWidthConstraint" destination="xNY-Kb-Apg" id="8zl-6b-kDa"/>
-                        <outlet property="skipTutorialButton" destination="Vku-tM-hTp" id="efU-En-Uxm"/>
+                        <outlet property="pageControl" destination="8pf-ZH-Dni" id="fe4-5S-QM6"/>
+                        <outlet property="skipTutorialButton" destination="Vku-tM-hTp" id="Lpq-eG-iX1"/>
                     </connections>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DuW-Dq-hEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="IUY-oy-SwZ">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-eQ-ybC">
-                            <rect key="frame" x="51" y="195" width="220" height="293"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone_slice" translatesAutoresizingMaskIntoConstraints="NO" id="kiG-dy-fez">
-                            <rect key="frame" x="30" y="131" width="260" height="357"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="kiG-dy-fez" secondAttribute="height" multiplier="260:357" id="rbG-D2-lnD"/>
-                                <constraint firstAttribute="width" constant="260" id="xNY-Kb-Apg"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="kiG-dy-fez" secondAttribute="bottom" constant="80" id="OHv-SR-K9o"/>
-                        <constraint firstItem="kiG-dy-fez" firstAttribute="centerX" secondItem="IUY-oy-SwZ" secondAttribute="centerX" id="qqk-Ua-fBl"/>
-                    </constraints>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vku-tM-hTp">
-                    <rect key="frame" x="0.0" y="0.0" width="91" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="   Skip   ">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="VVi-gi-3iE" kind="modal" id="81s-HJ-kbH"/>
-                    </connections>
-                </button>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mr3-SK-6Sm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5" y="382"/>
+            <point key="canvasLocation" x="66" y="382"/>
         </scene>
         <!--Main-->
         <scene sceneID="6Xb-aQ-uPV">
@@ -67,7 +68,7 @@
                 <viewControllerPlaceholder storyboardName="Main" id="VVi-gi-3iE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfL-mE-7il" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="382"/>
+            <point key="canvasLocation" x="338" y="382"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="MaE-fC-z9r">
@@ -82,7 +83,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start every day with a fresh list..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xb-Br-58l">
-                                <rect key="frame" x="31" y="32" width="258" height="60"/>
+                                <rect key="frame" x="31" y="15" width="258" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="258" id="4Os-WF-6yH"/>
                                 </constraints>
@@ -90,8 +91,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone_slice" translatesAutoresizingMaskIntoConstraints="NO" id="kiG-dy-fez">
+                                <rect key="frame" x="30" y="151" width="260" height="357"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kiG-dy-fez" secondAttribute="height" multiplier="260:357" id="rbG-D2-lnD"/>
+                                    <constraint firstAttribute="width" constant="260" id="xNY-Kb-Apg"/>
+                                </constraints>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slice_empty" translatesAutoresizingMaskIntoConstraints="NO" id="QkJ-WT-Ezb">
-                                <rect key="frame" x="51" y="232" width="220" height="293"/>
+                                <rect key="frame" x="51" y="215" width="220" height="293"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QkJ-WT-Ezb" secondAttribute="height" multiplier="220:293" id="EkJ-Nq-WYZ"/>
                                     <constraint firstAttribute="width" constant="220" id="IaJ-nK-DNC"/>
@@ -100,13 +108,16 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Zol-9o-1jd" firstAttribute="top" secondItem="QkJ-WT-Ezb" secondAttribute="bottom" constant="43" id="Wjn-Df-kkc"/>
+                            <constraint firstItem="Zol-9o-1jd" firstAttribute="top" secondItem="QkJ-WT-Ezb" secondAttribute="bottom" constant="60" id="Wjn-Df-kkc"/>
                             <constraint firstItem="QkJ-WT-Ezb" firstAttribute="centerX" secondItem="tQH-W4-9wF" secondAttribute="centerX" constant="1" id="mYg-wd-3ok"/>
                             <constraint firstItem="3Xb-Br-58l" firstAttribute="centerX" secondItem="tQH-W4-9wF" secondAttribute="centerX" id="rzs-YK-VNO"/>
+                            <constraint firstItem="kiG-dy-fez" firstAttribute="centerX" secondItem="tQH-W4-9wF" secondAttribute="centerX" id="tUF-jK-R5U"/>
+                            <constraint firstItem="Zol-9o-1jd" firstAttribute="top" secondItem="kiG-dy-fez" secondAttribute="bottom" constant="60" id="tvt-mh-h71"/>
                             <constraint firstItem="QkJ-WT-Ezb" firstAttribute="top" secondItem="3Xb-Br-58l" secondAttribute="bottom" constant="140" id="z6c-AT-tuO"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="iPhoneSliceImageViewWidthConstraint" destination="xNY-Kb-Apg" id="5Es-F0-AHt"/>
                         <outlet property="screensImageView" destination="QkJ-WT-Ezb" id="x7j-Ii-yws"/>
                         <outlet property="screensImageViewWidthConstraint" destination="IaJ-nK-DNC" id="CLH-8t-Hm2"/>
                         <outlet property="textLabel" destination="3Xb-Br-58l" id="uAs-hM-KTL"/>

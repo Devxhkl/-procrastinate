@@ -15,6 +15,7 @@ class OnboardingViewController: UIViewController {
 	@IBOutlet weak var textLabelBottomConstraint: NSLayoutConstraint!
 	@IBOutlet weak var screensImageView: UIImageView!
 	@IBOutlet weak var screensImageViewWidthConstraint: NSLayoutConstraint!
+	@IBOutlet weak var iPhoneSliceImageViewWidthConstraint: NSLayoutConstraint!
 	
 	var index: Int!
 	let texts = ["simply add new tasks...", "mark as done/undone...", "or delete."]
@@ -41,6 +42,7 @@ class OnboardingViewController: UIViewController {
 		textLabelWidthConstraint.constant = widthForScreenSize(true)
 		screensImageViewWidthConstraint.constant = widthForScreenSize(false)
 		textLabelBottomConstraint.constant = textLabelBottomDistance()
+		iPhoneSliceImageViewWidthConstraint.constant = widthForScreenSize(true)
 	}
 	
 	override func viewDidAppear(animated: Bool) {
