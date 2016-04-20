@@ -49,23 +49,31 @@ class TaskCell: UITableViewCell {
 		}
 		if recognizer.state == .Changed {
 			let translation = recognizer.translationInView(self)
-			center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
-			stageView.center = CGPointMake((originalCenter.x - frame.width) + translation.x, stageView.center.y)
-			markComplete = frame.origin.x > 0.0 && frame.origin.x < (frame.size.width / 4.0) * 3
-			if markComplete && !task.completed {
-				stageView.backgroundColor = UIColor(patternImage: UIImage(named: "done")!)
-				slide.imageView.image = UIImage(named: "done_icon")
+			if frame.origin.x < 0 {
+				resetFrame()
+				recognizer.enabled = false
 			} else {
-				stageView.backgroundColor = UIColor(patternImage: UIImage(named: "undone")!)
-				slide.imageView.image = UIImage(named: "undone_icon")
-			}
-			delete = frame.origin.x > (frame.size.width / 4.0) * 3
-			if delete {
-				stageView.backgroundColor = UIColor(patternImage: UIImage(named: "delete")!)
-				slide.imageView.image = UIImage(named: "delete_icon")
+				center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
+				stageView.center = CGPointMake((originalCenter.x - frame.width) + translation.x, stageView.center.y)
+				
+				markComplete = frame.origin.x > 0.0 && frame.origin.x < (frame.size.width / 4.0) * 3
+				if markComplete && !task.completed {
+					stageView.backgroundColor = UIColor(patternImage: UIImage(named: "done")!)
+					slide.imageView.image = UIImage(named: "done_icon")
+				} else {
+					stageView.backgroundColor = UIColor(patternImage: UIImage(named: "undone")!)
+					slide.imageView.image = UIImage(named: "undone_icon")
+				}
+				
+				delete = frame.origin.x > (frame.size.width / 4.0) * 3
+				if delete {
+					stageView.backgroundColor = UIColor(patternImage: UIImage(named: "delete")!)
+					slide.imageView.image = UIImage(named: "delete_icon")
+				}
 			}
 		}
 		if recognizer.state == .Ended {
+			recognizer.enabled = true
 			if markComplete {
 				if let delegate = delegate {
 					task.completed = !task.completed
@@ -87,14 +95,16 @@ class TaskCell: UITableViewCell {
 				resetFrame()
 			}
 		}
+		if recognizer.state == .Cancelled {
+			recognizer.enabled = true
+		}
 	}
 	
 	func resetFrame() {
-//		let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 		let slideViewOriginalFrame = CGRect(x: frame.origin.x - frame.width, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 		UIView.animateWithDuration(0.1, animations: { () -> Void in
 			self.stageView.frame = slideViewOriginalFrame
-//			self.frame = originalFrame
+			self.frame = CGRect(x: 0.0, y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
 			}, completion: { _ in
 //				self.stageView.removeFromSuperview()
 //				self.stageView.backgroundColor = UIColor.whiteColor()
