@@ -54,8 +54,7 @@ class ViewController: UIViewController {
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-		view.addGestureRecognizer(tap)
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
@@ -117,6 +116,9 @@ class ViewController: UIViewController {
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
+		if tasks.isEmpty {
+			taskAdded()
+		}
 	}
 	
 	func didBecomeActive() {
