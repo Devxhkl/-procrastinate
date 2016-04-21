@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	let CDMOC = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-	var tasks: [Task] = []
+	var tasks = [Task]()
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
 	
@@ -54,8 +54,7 @@ class ViewController: UIViewController {
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-		view.addGestureRecognizer(tap)
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
@@ -91,6 +90,9 @@ class ViewController: UIViewController {
 					tasks.append(task)
 				}
 				tableView.reloadData()
+			} else {
+				tasks = [Task]()
+				tableView.reloadData()
 			}
 		} catch {
 			print(error)
@@ -114,6 +116,9 @@ class ViewController: UIViewController {
 	
 	func dismissKeyboard() {
 		view.endEditing(true)
+		if tasks.isEmpty {
+			taskAdded()
+		}
 	}
 	
 	func didBecomeActive() {
