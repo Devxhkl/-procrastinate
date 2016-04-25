@@ -129,7 +129,7 @@
 			name = "Data Models";
 			sourceTree = "<group>";
 		};
-		FA0886E61C5BF5D600683A0D /* Core */ = {
+		FA0886E61C5BF5D600683A0D /* Backbone */ = {
 			isa = PBXGroup;
 			children = (
 				FA15C28E1C40864500333D3E /* AppDelegate.swift */,
@@ -138,7 +138,7 @@
 				FA15C2951C40864500333D3E /* Assets.xcassets */,
 				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 			);
-			name = Core;
+			name = Backbone;
 			sourceTree = "<group>";
 		};
 		FA0F853F1CAD7C830036B048 /* Onboarding */ = {
@@ -180,7 +180,7 @@
 				FADD5CD11CC478F200B4C2EB /* Launch Screen */,
 				FA0886E41C5BF5B300683A0D /* Data Models */,
 				FA1E85ED1CCB78C800001E5E /* Core Data */,
-				FA0886E61C5BF5D600683A0D /* Core */,
+				FA0886E61C5BF5D600683A0D /* Backbone */,
 			);
 			path = "!procrastinate";
 			sourceTree = "<group>";

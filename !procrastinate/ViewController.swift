@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 	let taskHandler = TaskHandler.sharedInstance
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
+	var tapToAddInProgress = false
 	var lastActiveTextView: UITextView?
 	
 	override func viewDidLoad() {
@@ -34,14 +35,22 @@ class ViewController: UIViewController {
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		
-		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selfTapped)))
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
 	
-	func dismissKeyboard() {
+	func selfTapped() {
 		if let lastActiveTextView = lastActiveTextView {
 			lastActiveTextView.resignFirstResponder()
+		}
+		
+		if tapToAddInProgress {
+			tapToAddInProgress = false
+			return
+		} else if taskHandler.tasks.isEmpty && !pullDownInProgress {
+			tapToAddInProgress = true
+			taskHandler.newTask()
 		}
 	}
 	
@@ -58,10 +67,12 @@ class ViewController: UIViewController {
 extension ViewController {
 	
 	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-		dismissKeyboard()
-		pullDownInProgress = scrollView.contentOffset.y <= 0.0
-		if pullDownInProgress {
-			tableView.insertSubview(placeholderCell, atIndex: 0)
+		selfTapped()
+		if !tapToAddInProgress {
+			pullDownInProgress = scrollView.contentOffset.y <= 0.0
+			if pullDownInProgress {
+				tableView.insertSubview(placeholderCell, atIndex: 0)
+			}
 		}
 	}
 	
@@ -79,6 +90,7 @@ extension ViewController {
 		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
 			taskHandler.newTask()
 		}
+		pullDownInProgress = false
 		placeholderCell.removeFromSuperview()
 	}
 }
@@ -132,6 +144,7 @@ extension ViewController: UITextViewDelegate {
 			deleteTask(task)
 		} else {
 			task.title = textView.text
+			taskHandler.saveContext()
 		}
 		textView.resignFirstResponder()
 	}
