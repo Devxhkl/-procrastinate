@@ -39,6 +39,7 @@ class TaskHandler {
 			let result = try managedObjectContext.executeFetchRequest(fetchRequest)
 			if let result = result as? [Task] {
 				tasks = result
+				
 				if let delegate = delegate {
 					delegate.reloadData()
 				}
@@ -62,7 +63,18 @@ class TaskHandler {
 	}
 	
 	func deleteTask(task: Task) {
-//		let index = tasks.indexOf { $0.title == task.title }
-//		tasks.removeAtIndex(index!)
+		managedObjectContext.deleteObject(task)
+		saveContext()
+	}
+	
+	func saveContext() {
+		if managedObjectContext.hasChanges {
+			do {
+				try managedObjectContext.save()
+			}
+			catch {
+				print(error)
+			}
+		}
 	}
 }

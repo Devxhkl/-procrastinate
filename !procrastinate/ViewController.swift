@@ -132,8 +132,6 @@ extension ViewController: UITextViewDelegate {
 			deleteTask(task)
 		} else {
 			task.title = textView.text
-			
-			// - TODO: Save Task
 		}
 		textView.resignFirstResponder()
 	}
@@ -147,66 +145,18 @@ extension ViewController: TaskCellDelegate {
 		reloadData()
 		tableView.endUpdates()
 		
-//		let fetchRequest = NSFetchRequest()
-//		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
-//		fetchRequest.entity = entityDescription
-//		
-//		do {
-//			let result = try CDMOC.executeFetchRequest(fetchRequest)
-//			
-//			if !result.isEmpty {
-//				for cdTask in result as! [NSManagedObject] {
-//					if (cdTask.valueForKey("id") as! String) == task.id {
-//						cdTask.setValue(task.completed, forKey: "completed")
-//						cdTask.setValue(task.completed ? NSDate() : nil, forKey: "completedDate")
-//						
-//						do {
-//							try cdTask.managedObjectContext?.save()
-//						} catch {
-//							let saveError = error as NSError
-//							print(saveError)
-//						}
-//					}
-//				}
-//			}
-//		} catch {
-//			let fetchError = error as NSError
-//			print(fetchError)
-//		}
+		taskHandler.saveContext()
 	}
 	
 	func deleteTask(task: Task) {
 		let index = taskHandler.tasks.indexOf { $0.id	== task.id }
 		taskHandler.tasks.removeAtIndex(index!)
+		
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
 
-//		let fetchRequest = NSFetchRequest()
-//		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
-//		fetchRequest.entity = entityDescription
-//		
-//		do {
-//			let result = try CDMOC.executeFetchRequest(fetchRequest)
-//			
-//			if !result.isEmpty {
-//				for cdTask in result as! [NSManagedObject] {
-//					if (cdTask.valueForKey("id") as! String) == task.id {
-//						CDMOC.deleteObject(cdTask)
-//						
-//						do {
-//							try CDMOC.save()
-//						} catch {
-//							let saveError = error as NSError
-//							print(saveError)
-//						}
-//					}
-//				}
-//			}
-//		} catch {
-//			let fetchError = error as NSError
-//			print(fetchError)
-//		}
+		taskHandler.deleteTask(task)
 	}
 }
 
@@ -218,6 +168,7 @@ extension ViewController: TaskHandlerDelegate {
 	
 	func taskAdded(task: Task) {
 		reloadData()
+		
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		visibleCells[0].titleTextView.becomeFirstResponder()
 	}
