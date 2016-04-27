@@ -9,42 +9,23 @@
 import UIKit
 import CoreData
 
-class Task {
-	var id: String
-	var title: String
-	var completed: Bool
-	var createdDate: NSDate
-	var completedDate: NSDate?
-	var tag: String?
-	
-	init(id: String, title: String, completed: Bool, createdDate: NSDate, completedDate: NSDate?, tag: String?) {
-		self.id = id
-		self.title = title
-		self.completed = completed
-		self.createdDate = createdDate
-		if let completedDate = completedDate {
-			self.completedDate = completedDate
-		}
-		if let tag = tag {
-			self.tag = tag
-		}
-	}
-}
-
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
-	let CDMOC = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-	var tasks = [Task]()
+	let taskHandler = TaskHandler.sharedInstance
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
+	var tapToAddInProgress = false
+	var lastActiveTextView: UITextView?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		taskHandler.delegate = self
+		taskHandler.fetchTasks()
+
 		didBecomeActive()
-		fetchTasks()
 		
 		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightRegular)]
 		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "stripes")!)
@@ -54,77 +35,29 @@ class ViewController: UIViewController {
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		
-		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selfTapped)))
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
 	}
 	
-	func fetchTasks() {
-		let fetchRequest = NSFetchRequest()
-		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
-		fetchRequest.entity = entityDescription
-		let calendar = NSCalendar.currentCalendar()
-		fetchRequest.predicate = NSPredicate(format: "createdDate > %@",
-		                                     calendar.dateByAddingUnit(.Hour,
-																					value: 5,
-																					toDate: calendar.startOfDayForDate(calendar.dateByAddingUnit(.Hour,
-																						value: -5,
-																						toDate: NSDate(),
-																						options: [])!),
-																					options: [])!)
-		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "completed", ascending: true), NSSortDescriptor(key: "createdDate", ascending: false)]
-		
-		do {
-			let result = try CDMOC.executeFetchRequest(fetchRequest)
-			if !result.isEmpty {
-				tasks = [Task]()
-				for cdTask in result as! [NSManagedObject] {
-					let id = cdTask.valueForKey("id") as! String
-					let title = cdTask.valueForKey("title") as! String
-					let completed = cdTask.valueForKey("completed") as! Bool
-					let createdDate = cdTask.valueForKey("createdDate") as! NSDate
-					let completedDate = cdTask.valueForKey("completedDate") as? NSDate
-					let tag = cdTask.valueForKey("tag") as? String
-					
-					let task = Task(id: id, title: title, completed: completed, createdDate: createdDate, completedDate: completedDate, tag: tag)
-					tasks.append(task)
-				}
-				tableView.reloadData()
-			} else {
-				tasks = [Task]()
-				tableView.reloadData()
-			}
-		} catch {
-			print(error)
+	func selfTapped() {
+		if let lastActiveTextView = lastActiveTextView {
+			lastActiveTextView.resignFirstResponder()
 		}
-	}
-
-	func taskAdded() {
-		let task = Task(id: "", title: "", completed: false, createdDate: NSDate(), completedDate: nil, tag: nil)
-		tasks.insert(task, atIndex: 0)
 		
-		tableView.reloadData()
-		
-		let visibleCells = tableView.visibleCells as! [TaskCell]
-		for cell in visibleCells {
-			if cell.task === task {
-				cell.titleTextView.becomeFirstResponder()
-				break
-			}
-		}
-	}
-	
-	func dismissKeyboard() {
-		view.endEditing(true)
-		if tasks.isEmpty {
-			taskAdded()
+		if tapToAddInProgress {
+			tapToAddInProgress = false
+			return
+		} else if taskHandler.tasks.isEmpty && !pullDownInProgress {
+			tapToAddInProgress = true
+			taskHandler.newTask()
 		}
 	}
 	
 	func didBecomeActive() {
 		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
 			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
-				fetchTasks()
+				taskHandler.fetchTasks()
 				newCheckDate()
 			}
 		}
@@ -132,13 +65,17 @@ class ViewController: UIViewController {
 }
 
 extension ViewController {
+	
 	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-		dismissKeyboard()
-		pullDownInProgress = scrollView.contentOffset.y <= 0.0
-		if pullDownInProgress {
-			tableView.insertSubview(placeholderCell, atIndex: 0)
+		selfTapped()
+		if !tapToAddInProgress {
+			pullDownInProgress = scrollView.contentOffset.y <= 0.0
+			if pullDownInProgress {
+				tableView.insertSubview(placeholderCell, atIndex: 0)
+			}
 		}
 	}
+	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		let scrollViewContentOffsetY = scrollView.contentOffset.y
 		
@@ -148,29 +85,27 @@ extension ViewController {
 			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
 		}
 	}
+	
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
-			taskAdded()
+			taskHandler.newTask()
 		}
+		pullDownInProgress = false
 		placeholderCell.removeFromSuperview()
 	}
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 1
-	}
-	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return tasks.count
+		return taskHandler.tasks.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
 
 		cell.delegate = self
-		cell.task = tasks[indexPath.row]
+		cell.task = taskHandler.tasks[indexPath.row]
 		
 		return cell
 	}
@@ -182,70 +117,16 @@ extension ViewController: UITextViewDelegate {
 		if textView.text.isEmpty {
 			textView.typingAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)]
 		}
+		
+		lastActiveTextView = textView
 	}
 	
-	func textViewDidEndEditing(textView: UITextView) {
-		let visibleCells = tableView.visibleCells as! [TaskCell]
-		for cell in visibleCells {
-			if cell.titleTextView === textView {
-				if textView.text == "" {
-					deleteTask(cell.task)
-					break
-				} else {
-					cell.task.title = textView.text
-					if cell.task.id == "" {
-						let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
-						let newTask = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: CDMOC)
-						let id = NSUUID().UUIDString
-						newTask.setValue(id, forKey: "id")
-						newTask.setValue(textView.text, forKey: "title")
-						newTask.setValue(false, forKey: "completed")
-						newTask.setValue(cell.task.createdDate, forKey: "createdDate")
-						
-						do {
-							try newTask.managedObjectContext?.save()
-							cell.task.id = id
-						} catch {
-							print(error)
-						}
-					} else {
-						let fetctRequest = NSFetchRequest()
-						let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
-						fetctRequest.entity = entityDescription
-						
-						do {
-							let result = try CDMOC.executeFetchRequest(fetctRequest)
-							if !result.isEmpty {
-								for task in result as! [NSManagedObject] {
-									if (task.valueForKey("id") as! String) == cell.task.id {
-										task.setValue(cell.task.title, forKey: "title")
-										
-										do {
-											try task.managedObjectContext?.save()
-										} catch {
-											let saveError = error as NSError
-											print(saveError)
-										}
-									}
-								}
-							}
-						} catch {
-							let fetchError = error as NSError
-							print(fetchError)
-						}
-					}
-					break
-				}
-			}
-		}
-	}
-
 	func textViewDidChange(textView: UITextView) {
 		if textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)).height != textView.bounds.height {
 			tableView.beginUpdates()
 			textView.sizeToFit()
 			tableView.endUpdates()
-		} 
+		}
 	}
 	
 	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -255,76 +136,54 @@ extension ViewController: UITextViewDelegate {
 		}
 		return true
 	}
+	
+	func textViewDidEndEditing(textView: UITextView) {
+		let task = (textView.superview!.superview as! TaskCell).task
+		
+		if textView.text == "" {
+			deleteTask(task)
+		} else {
+			task.title = textView.text
+			taskHandler.saveContext()
+		}
+		textView.resignFirstResponder()
+	}
 }
 
 extension ViewController: TaskCellDelegate {
 	
 	func completeTask(task: Task) {
-		tasks.sortInPlace { !$0.completed && $1.completed }
+		taskHandler.tasks.sortInPlace { !$0.completed && $1.completed }
 		tableView.beginUpdates()
-		tableView.reloadData()
+		reloadData()
 		tableView.endUpdates()
 		
-		let fetchRequest = NSFetchRequest()
-		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
-		fetchRequest.entity = entityDescription
-		
-		do {
-			let result = try CDMOC.executeFetchRequest(fetchRequest)
-			
-			if !result.isEmpty {
-				for cdTask in result as! [NSManagedObject] {
-					if (cdTask.valueForKey("id") as! String) == task.id {
-						cdTask.setValue(task.completed, forKey: "completed")
-						cdTask.setValue(task.completed ? NSDate() : nil, forKey: "completedDate")
-						
-						do {
-							try cdTask.managedObjectContext?.save()
-						} catch {
-							let saveError = error as NSError
-							print(saveError)
-						}
-					}
-				}
-			}
-		} catch {
-			let fetchError = error as NSError
-			print(fetchError)
-		}
+		taskHandler.saveContext()
 	}
 	
 	func deleteTask(task: Task) {
-		let index = tasks.indexOf { $0.title == task.title }
-		tasks.removeAtIndex(index!)
+		let index = taskHandler.tasks.indexOf { $0.id	== task.id }
+		taskHandler.tasks.removeAtIndex(index!)
+		
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
 
-		let fetchRequest = NSFetchRequest()
-		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: CDMOC)
-		fetchRequest.entity = entityDescription
+		taskHandler.deleteTask(task)
+	}
+}
+
+extension ViewController: TaskHandlerDelegate {
+	
+	func reloadData() {
+		tableView.reloadData()
+	}
+	
+	func taskAdded(task: Task) {
+		reloadData()
 		
-		do {
-			let result = try CDMOC.executeFetchRequest(fetchRequest)
-			
-			if !result.isEmpty {
-				for cdTask in result as! [NSManagedObject] {
-					if (cdTask.valueForKey("id") as! String) == task.id {
-						CDMOC.deleteObject(cdTask)
-						
-						do {
-							try CDMOC.save()
-						} catch {
-							let saveError = error as NSError
-							print(saveError)
-						}
-					}
-				}
-			}
-		} catch {
-			let fetchError = error as NSError
-			print(fetchError)
-		}
+		let visibleCells = tableView.visibleCells as! [TaskCell]
+		visibleCells[0].titleTextView.becomeFirstResponder()
 	}
 }
 

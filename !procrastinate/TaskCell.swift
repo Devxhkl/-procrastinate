@@ -37,7 +37,7 @@ class TaskCell: UITableViewCell {
 		titleTextView.textContainerInset = UIEdgeInsetsZero
 		titleTextView.textContainer.lineFragmentPadding = 0.0
 		
-		let recognizer = UIPanGestureRecognizer(target: self, action: #selector(TaskCell.handlePan(_:)))
+		let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
 		addGestureRecognizer(recognizer)
 		recognizer.delegate = self
 	}
@@ -112,13 +112,19 @@ class TaskCell: UITableViewCell {
 	}
 	
 	func strikesthroghOrNot() {
+		var attributedString: NSAttributedString!
+		
 		if task.completed {
-			let strikethroughString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
-			titleTextView.attributedText = strikethroughString
+			attributedString = NSAttributedString(string: task.title!, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
 		} else {
-			let regularString = NSAttributedString(string: task.title, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
-			titleTextView.attributedText = regularString
+			var taskTitle = ""
+			if let title = task.title {
+				taskTitle = title
+			}
+			attributedString = NSAttributedString(string: taskTitle, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
 		}
+		
+		titleTextView.attributedText = attributedString
 	}
 	
 	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {

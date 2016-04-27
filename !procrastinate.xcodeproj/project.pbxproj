@@ -15,6 +15,11 @@
 		FA15C2911C40864500333D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C2901C40864500333D3E /* ViewController.swift */; };
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
+		FA1E85E91CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */; };
+		FA1E85EA1CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */; };
+		FA1E85EB1CCB77EA00001E5E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E81CCB77EA00001E5E /* Task.swift */; };
+		FA1E85EC1CCB77EA00001E5E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E81CCB77EA00001E5E /* Task.swift */; };
+		FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85EE1CCB790200001E5E /* TaskHandler.swift */; };
 		FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */; };
 		FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */; };
@@ -66,6 +71,9 @@
 		FA15C2951C40864500333D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA15C2981C40864500333D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA15C29A1C40864500333D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA1E85E81CCB77EA00001E5E /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		FA1E85EE1CCB790200001E5E /* TaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHandler.swift; sourceTree = "<group>"; };
 		FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate.entitlements"; sourceTree = "<group>"; };
 		FA1F03FB1C449E1300593F01 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
@@ -115,28 +123,22 @@
 		FA0886E41C5BF5B300683A0D /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */,
+				FA1E85E81CCB77EA00001E5E /* Task.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
 		};
-		FA0886E51C5BF5CA00683A0D /* Handlers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Handlers;
-			sourceTree = "<group>";
-		};
-		FA0886E61C5BF5D600683A0D /* Other */ = {
+		FA0886E61C5BF5D600683A0D /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
 				FA15C28E1C40864500333D3E /* AppDelegate.swift */,
 				FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */,
 				FA15C29A1C40864500333D3E /* Info.plist */,
 				FA15C2951C40864500333D3E /* Assets.xcassets */,
-				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
 				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 			);
-			name = Other;
+			name = Infrastructure;
 			sourceTree = "<group>";
 		};
 		FA0F853F1CAD7C830036B048 /* Onboarding */ = {
@@ -177,10 +179,19 @@
 				FA0F853F1CAD7C830036B048 /* Onboarding */,
 				FADD5CD11CC478F200B4C2EB /* Launch Screen */,
 				FA0886E41C5BF5B300683A0D /* Data Models */,
-				FA0886E51C5BF5CA00683A0D /* Handlers */,
-				FA0886E61C5BF5D600683A0D /* Other */,
+				FA1E85ED1CCB78C800001E5E /* Core Data */,
+				FA0886E61C5BF5D600683A0D /* Infrastructure */,
 			);
 			path = "!procrastinate";
+			sourceTree = "<group>";
+		};
+		FA1E85ED1CCB78C800001E5E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				FA1E85EE1CCB790200001E5E /* TaskHandler.swift */,
+				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		FA3D63BC1C5A4FFE00743CB7 /* ViewController */ = {
@@ -394,13 +405,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */,
+				FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
 				FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
+				FA1E85EB1CCB77EA00001E5E /* Task.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
 				FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */,
 				FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */,
 				FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */,
+				FA1E85E91CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
 				FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +423,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1E85EA1CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
+				FA1E85EC1CCB77EA00001E5E /* Task.swift in Sources */,
 				FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,7 +548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Marko Zel (96HG6E2WJ6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "!procrastinate/Info.plist";
@@ -550,7 +566,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Marko Zel (96HG6E2WJ6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "!procrastinate/Info.plist";
