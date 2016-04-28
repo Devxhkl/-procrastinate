@@ -53,7 +53,7 @@ class TaskHandler {
 		let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)
 		let task = Task(entity: taskEntity!, insertIntoManagedObjectContext: managedObjectContext)
 		task.id = NSUUID().UUIDString
-		task.createdDate = NSDate().timeIntervalSince1970
+		task.createdDate = NSDate().timeIntervalSinceReferenceDate
 		
 		tasks.insert(task, atIndex: 0)
 

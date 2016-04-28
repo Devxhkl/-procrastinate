@@ -77,6 +77,11 @@ class TaskCell: UITableViewCell {
 			if markComplete {
 				if let delegate = delegate {
 					task.completed = !task.completed
+					if task.completed {
+						task.completedDate = NSDate().timeIntervalSinceReferenceDate
+					} else {
+						task.completedDate = 0.0
+					}
 					delegate.completeTask(task)
 					strikesthroghOrNot()
 				}
