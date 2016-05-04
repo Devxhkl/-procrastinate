@@ -63,6 +63,23 @@ class TaskHandler {
 		}
 	}
 	
+	func preloadTasks() {
+		let texts = ["Delete this one", "This one needs to be done", "Edit this task by tapping on it", "This one is alredy done"]
+		for i in 0...3 {
+			let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)!
+			
+			let task = Task(entity: taskEntity, insertIntoManagedObjectContext: managedObjectContext)
+			task.id = NSUUID().UUIDString
+			task.title = texts[i]
+			task.createdDate = NSDate().timeIntervalSinceReferenceDate
+			if i == 3 {
+				task.completed = true
+				task.completedDate = NSDate().timeIntervalSinceReferenceDate
+			}
+			tasks.append(task)
+		}
+	}
+	
 	func deleteTask(task: Task) {
 		managedObjectContext.deleteObject(task)
 		saveContext()

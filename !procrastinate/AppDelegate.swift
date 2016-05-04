@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				window?.makeKeyAndVisible()
 				
 				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "oldUser")
+				
+				TaskHandler.sharedInstance.preloadTasks()
 			}
 		}
 		
