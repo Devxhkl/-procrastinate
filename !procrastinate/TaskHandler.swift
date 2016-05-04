@@ -51,6 +51,7 @@ class TaskHandler {
 	
 	func newTask() {
 		let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)
+		
 		let task = Task(entity: taskEntity!, insertIntoManagedObjectContext: managedObjectContext)
 		task.id = NSUUID().UUIDString
 		task.createdDate = NSDate().timeIntervalSinceReferenceDate
