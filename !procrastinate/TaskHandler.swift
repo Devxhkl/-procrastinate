@@ -64,7 +64,7 @@ class TaskHandler {
 	}
 	
 	func preloadTasks() {
-		let texts = ["Delete this one", "This one needs to be done", "Edit this task by tapping on it", "This one is alredy done"]
+		let texts = ["Delete this one", "This one needs to be done", "Edit this task by tapping on it", "This one is already done"]
 		for i in 0...3 {
 			let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)!
 			

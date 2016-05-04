@@ -23,7 +23,7 @@ class OnboardingViewController: UIViewController {
 		super.viewDidLoad()
 		
 		if index >= 0 {
-			let numberOfImages = [6, 6, 4]
+			let numberOfImages = [6, 6, 3]
 			
 			var images = [UIImage]()
 			for i in 0...numberOfImages[index] {
