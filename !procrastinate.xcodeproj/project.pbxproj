@@ -30,7 +30,8 @@
 		FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACDCAB31CA994AA002AAE4D /* SlideView.xib */; };
 		FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAB71CA995BB002AAE4D /* SlideView.swift */; };
 		FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */; };
-		FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */; };
+		FACF0EF31CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
+		FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +87,8 @@
 		FACDCAB31CA994AA002AAE4D /* SlideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideView.xib; sourceTree = "<group>"; };
 		FACDCAB71CA995BB002AAE4D /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
 		FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedCode.swift; sourceTree = "<group>"; };
-		FAD16CB11C6EF00400912222 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		FACF0EF21CDB82550087C19C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				FA1E85EE1CCB790200001E5E /* TaskHandler.swift */,
-				FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */,
+				FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -407,13 +409,13 @@
 				FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */,
 				FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
-				FAD16CB21C6EF00400912222 /* DataModel.xcdatamodeld in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
 				FA1E85EB1CCB77EA00001E5E /* Task.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
 				FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */,
 				FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */,
 				FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */,
+				FACF0EF31CDB82550087C19C /* DataModel.xcdatamodeld in Sources */,
 				FA1E85E91CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
 				FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */,
 			);
@@ -424,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA1E85EA1CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
+				FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */,
 				FA1E85EC1CCB77EA00001E5E /* Task.swift in Sources */,
 				FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */,
 			);
@@ -637,12 +640,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FAD16CB01C6EF00400912222 /* DataModel.xcdatamodeld */ = {
+		FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FAD16CB11C6EF00400912222 /* DataModel.xcdatamodel */,
+				FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */,
+				FACF0EF21CDB82550087C19C /* DataModel.xcdatamodel */,
 			);
-			currentVersion = FAD16CB11C6EF00400912222 /* DataModel.xcdatamodel */;
+			currentVersion = FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

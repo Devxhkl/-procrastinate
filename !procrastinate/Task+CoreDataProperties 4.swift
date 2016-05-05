@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  !procrastinate
 //
-//  Created by Zel Marko on 5/5/16.
+//  Created by Zel Marko on 4/23/16.
 //  Copyright © 2016 Zel Marko. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,6 +20,5 @@ extension Task {
     @NSManaged var id: String?
     @NSManaged var tag: Int16
     @NSManaged var title: String?
-    @NSManaged var updatedAt: NSTimeInterval
 
 }

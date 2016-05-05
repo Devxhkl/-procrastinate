@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//		if NSUserDefaults.standardUserDefaults().boolForKey("oldUser") == false {
+		if NSUserDefaults.standardUserDefaults().boolForKey("oldUser") == false {
 			let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
 			if let onboardingPageViewController = onboardingStoryboard.instantiateViewControllerWithIdentifier("OnboardingPageViewController") as? OnboardingPageViewController {
 				window?.rootViewController = onboardingPageViewController
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				
 				TaskHandler.sharedInstance.preloadTasks()
 			}
-//		}
+		}
 		
 		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
 			newCheckDate()
@@ -76,7 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("-procrastinate.sqlite")
 		var failureReason = "There was an error creating or loading the application's saved data."
 		do {
-			try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+			let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+			try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
 		} catch {
 			// Report any error we got.
 			var dict = [String: AnyObject]()
