@@ -20,6 +20,6 @@ extension Task {
     @NSManaged var id: String?
     @NSManaged var tag: Int16
     @NSManaged var title: String?
-    @NSManaged var updatedDate: NSTimeInterval
+    @NSManaged var updatedAt: NSTimeInterval
 
 }

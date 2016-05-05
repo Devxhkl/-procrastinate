@@ -32,6 +32,8 @@
 		FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */; };
 		FACF0EF31CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
 		FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
+		FACF0EF71CDB83B20087C19C /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
+		FACF0EF81CDB83B20087C19C /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,8 @@
 		FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedCode.swift; sourceTree = "<group>"; };
 		FACF0EF21CDB82550087C19C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		FACF0EF61CDB83B20087C19C /* CKHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKHandler.swift; path = CloudKit/CKHandler.swift; sourceTree = "<group>"; };
+		FACF0EFA1CDB848B0087C19C /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +186,7 @@
 				FADD5CD11CC478F200B4C2EB /* Launch Screen */,
 				FA0886E41C5BF5B300683A0D /* Data Models */,
 				FA1E85ED1CCB78C800001E5E /* Core Data */,
+				FACF0EF91CDB83C70087C19C /* CloudKit */,
 				FA0886E61C5BF5D600683A0D /* Infrastructure */,
 			);
 			path = "!procrastinate";
@@ -224,6 +229,14 @@
 				FAAD6F541C50509D005F552C /* Info.plist */,
 			);
 			path = "!procrastinate Today Extension";
+			sourceTree = "<group>";
+		};
+		FACF0EF91CDB83C70087C19C /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				FACF0EF61CDB83B20087C19C /* CKHandler.swift */,
+			);
+			name = CloudKit;
 			sourceTree = "<group>";
 		};
 		FADD5CD01CC478DF00B4C2EB /* TaskCell */ = {
@@ -418,6 +431,7 @@
 				FACF0EF31CDB82550087C19C /* DataModel.xcdatamodeld in Sources */,
 				FA1E85E91CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
 				FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */,
+				FACF0EF71CDB83B20087C19C /* CKHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +441,7 @@
 			files = (
 				FA1E85EA1CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
 				FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */,
+				FACF0EF81CDB83B20087C19C /* CKHandler.swift in Sources */,
 				FA1E85EC1CCB77EA00001E5E /* Task.swift in Sources */,
 				FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */,
 			);
@@ -643,10 +658,11 @@
 		FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				FACF0EFA1CDB848B0087C19C /* DataModel 3.xcdatamodel */,
 				FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */,
 				FACF0EF21CDB82550087C19C /* DataModel.xcdatamodel */,
 			);
-			currentVersion = FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */;
+			currentVersion = FACF0EFA1CDB848B0087C19C /* DataModel 3.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

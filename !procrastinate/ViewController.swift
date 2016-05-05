@@ -155,6 +155,15 @@ extension ViewController: UITextViewDelegate {
 			deleteTask(task)
 		} else {
 			task.title = textView.text
+			task.updatedDate = NSDate.timeIntervalSinceReferenceDate()
+			
+			if let _ = task.id {
+				CKHandler.sharedInstance.updateTask(task)
+			} else {
+				task.id = NSUUID().UUIDString
+				CKHandler.sharedInstance.newTask(task)
+			}
+			
 			taskHandler.saveContext()
 		}
 		textView.resignFirstResponder()
@@ -168,6 +177,8 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		reloadData()
 		tableView.endUpdates()
+		
+		CKHandler.sharedInstance.updateTask(task)
 		
 		taskHandler.saveContext()
 	}

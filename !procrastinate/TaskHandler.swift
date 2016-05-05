@@ -19,8 +19,8 @@ class TaskHandler {
 	static let sharedInstance = TaskHandler()
 	
 	let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-	var tasks = [Task]()
 	var delegate: TaskHandlerDelegate?
+	var tasks = [Task]()
 	
 	func fetchTasks() {
 		let fetchRequest = NSFetchRequest()
@@ -53,8 +53,8 @@ class TaskHandler {
 		let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)
 		
 		let task = Task(entity: taskEntity!, insertIntoManagedObjectContext: managedObjectContext)
-		task.id = NSUUID().UUIDString
 		task.createdDate = NSDate().timeIntervalSinceReferenceDate
+		task.updatedDate = NSDate().timeIntervalSinceReferenceDate
 		
 		tasks.insert(task, atIndex: 0)
 
@@ -82,6 +82,11 @@ class TaskHandler {
 	
 	func deleteTask(task: Task) {
 		managedObjectContext.deleteObject(task)
+		
+		if let _ = task.id {
+			CKHandler.sharedInstance.deleteTask(task)
+		}
+		
 		saveContext()
 	}
 	
