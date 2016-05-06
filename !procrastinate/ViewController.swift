@@ -28,19 +28,30 @@ class ViewController: UIViewController {
 		didBecomeActive()
 		
 		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightRegular)]
-		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "stripes")!)
+		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "pattern_done")!)
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		
-		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selfTapped)))
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resignResponder)))
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self,
+		                                                 selector: #selector(didBecomeActive),
+		                                                 name: UIApplicationDidBecomeActiveNotification,
+		                                                 object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, 
+		                                                 selector: #selector(resignResponder),
+		                                                 name: UIApplicationWillResignActiveNotification,
+		                                                 object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, 
+		                                                 selector: #selector(resignResponder),
+		                                                 name: UIApplicationWillTerminateNotification,
+		                                                 object: nil)
 	}
 	
-	func selfTapped() {
+	func resignResponder() {
 		if let lastActiveTextView = lastActiveTextView {
 			lastActiveTextView.resignFirstResponder()
 		}
@@ -67,7 +78,7 @@ class ViewController: UIViewController {
 extension ViewController {
 	
 	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-		selfTapped()
+		resignResponder()
 		if !tapToAddInProgress {
 			pullDownInProgress = scrollView.contentOffset.y <= 0.0
 			if pullDownInProgress {
@@ -144,6 +155,15 @@ extension ViewController: UITextViewDelegate {
 			deleteTask(task)
 		} else {
 			task.title = textView.text
+			task.updatedDate = NSDate.timeIntervalSinceReferenceDate()
+			
+			if let _ = task.id {
+				CKHandler.sharedInstance.updateTask(task)
+			} else {
+				task.id = NSUUID().UUIDString
+				CKHandler.sharedInstance.newTask(task)
+			}
+			
 			taskHandler.saveContext()
 		}
 		textView.resignFirstResponder()
@@ -157,6 +177,8 @@ extension ViewController: TaskCellDelegate {
 		tableView.beginUpdates()
 		reloadData()
 		tableView.endUpdates()
+		
+		CKHandler.sharedInstance.updateTask(task)
 		
 		taskHandler.saveContext()
 	}

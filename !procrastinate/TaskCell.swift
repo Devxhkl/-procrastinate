@@ -74,10 +74,19 @@ class TaskCell: UITableViewCell {
 		}
 		if recognizer.state == .Ended {
 			recognizer.enabled = true
+			
 			if markComplete {
 				if let delegate = delegate {
 					task.completed = !task.completed
+					if task.completed {
+						task.completedDate = NSDate().timeIntervalSinceReferenceDate
+					} else {
+						task.completedDate = 0.0
+					}
+					task.updatedDate = NSDate().timeIntervalSinceReferenceDate
+					
 					delegate.completeTask(task)
+					
 					strikesthroghOrNot()
 				}
 				resetFrame()
