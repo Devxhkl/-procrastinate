@@ -67,4 +67,20 @@ class CKHandler {
 			}
 		}
 	}
+	
+	func sync() {
+		if Reachability.isConnectedToNetwork() {
+			if let lastSyncDate = NSUserDefaults.standardUserDefaults().valueForKey("lastSyncDate") as? NSDate,
+				unsyncedTasks = TaskHandler.sharedInstance.fetchUnsyncedTasks(lastSyncDate) {
+				
+				for task in unsyncedTasks {
+					updateTask(task)
+				}
+			}
+			NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: "lastSyncDate")
+		} else {
+			print("Unable to sync because the internet connection appears to be offline.")
+		}
+	}
+	
 }

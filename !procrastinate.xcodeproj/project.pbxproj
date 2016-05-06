@@ -16,9 +16,7 @@
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
 		FA1E85E91CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */; };
-		FA1E85EA1CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */; };
 		FA1E85EB1CCB77EA00001E5E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E81CCB77EA00001E5E /* Task.swift */; };
-		FA1E85EC1CCB77EA00001E5E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E81CCB77EA00001E5E /* Task.swift */; };
 		FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85EE1CCB790200001E5E /* TaskHandler.swift */; };
 		FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */; };
@@ -33,7 +31,8 @@
 		FACF0EF31CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
 		FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
 		FACF0EF71CDB83B20087C19C /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
-		FACF0EF81CDB83B20087C19C /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
+		FACF0EFC1CDBF7D50087C19C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EFB1CDBF7D50087C19C /* Reachability.swift */; };
+		FACF0F061CDCDB6D0087C19C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +92,8 @@
 		FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		FACF0EF61CDB83B20087C19C /* CKHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKHandler.swift; path = CloudKit/CKHandler.swift; sourceTree = "<group>"; };
 		FACF0EFA1CDB848B0087C19C /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		FACF0EFB1CDBF7D50087C19C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		FACF0F051CDCDB680087C19C /* !procrastinate Today Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate Today Extension.entitlements"; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAD6F4D1C50509D005F552C /* NotificationCenter.framework in Frameworks */,
+				FACF0F061CDCDB6D0087C19C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +142,7 @@
 			children = (
 				FA15C28E1C40864500333D3E /* AppDelegate.swift */,
 				FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */,
+				FACF0EFB1CDBF7D50087C19C /* Reachability.swift */,
 				FA15C29A1C40864500333D3E /* Info.plist */,
 				FA15C2951C40864500333D3E /* Assets.xcassets */,
 				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
@@ -224,6 +227,7 @@
 		FAAD6F4E1C50509D005F552C /* !procrastinate Today Extension */ = {
 			isa = PBXGroup;
 			children = (
+				FACF0F051CDCDB680087C19C /* !procrastinate Today Extension.entitlements */,
 				FAAD6F4F1C50509D005F552C /* TodayViewController.swift */,
 				FAAD6F511C50509D005F552C /* MainInterface.storyboard */,
 				FAAD6F541C50509D005F552C /* Info.plist */,
@@ -321,6 +325,11 @@
 					FAAD6F491C50509D005F552C = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 96HG6E2WJ6;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -419,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACF0EFC1CDBF7D50087C19C /* Reachability.swift in Sources */,
 				FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */,
 				FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
@@ -439,10 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1E85EA1CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
 				FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */,
-				FACF0EF81CDB83B20087C19C /* CKHandler.swift in Sources */,
-				FA1E85EC1CCB77EA00001E5E /* Task.swift in Sources */,
 				FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,6 +606,7 @@
 		FAAD6F581C50509D005F552C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "!procrastinate Today Extension/!procrastinate Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "!procrastinate Today Extension/Info.plist";
@@ -612,6 +620,7 @@
 		FAAD6F591C50509D005F552C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "!procrastinate Today Extension/!procrastinate Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "!procrastinate Today Extension/Info.plist";

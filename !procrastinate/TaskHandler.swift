@@ -18,13 +18,13 @@ class TaskHandler {
 	
 	static let sharedInstance = TaskHandler()
 	
-	let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+	var managedObjectContext: NSManagedObjectContext!
 	var delegate: TaskHandlerDelegate?
 	var tasks = [Task]()
 	
 	func fetchTasks() {
 		let fetchRequest = NSFetchRequest()
-		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)
+		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)!
 		fetchRequest.entity = entityDescription
 		
 		let calendar = NSCalendar.currentCalendar()
@@ -49,10 +49,29 @@ class TaskHandler {
 		}
 	}
 	
-	func newTask() {
-		let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)
+	func fetchUnsyncedTasks(lastSyncTime: NSDate) -> [Task]? {
+		let fetchRequest = NSFetchRequest()
+		let entityDescription = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)!
+		fetchRequest.entity = entityDescription
 		
-		let task = Task(entity: taskEntity!, insertIntoManagedObjectContext: managedObjectContext)
+		fetchRequest.predicate = NSPredicate(format: "updatedDate > %@", lastSyncTime)
+		
+		do {
+			let result = try managedObjectContext.executeFetchRequest(fetchRequest)
+			if let result = result as? [Task] {
+				return result
+			}
+		} catch {
+			print(error)
+		}
+		
+		return nil
+	}
+	
+	func newTask() {
+		let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: managedObjectContext)!
+		
+		let task = Task(entity: taskEntity, insertIntoManagedObjectContext: managedObjectContext)
 		task.createdDate = NSDate().timeIntervalSinceReferenceDate
 		task.updatedDate = NSDate().timeIntervalSinceReferenceDate
 		
