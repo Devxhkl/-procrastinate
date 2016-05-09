@@ -38,7 +38,7 @@ class OnboardingViewController: UIViewController {
 			textLabel.text = "Start every day with a fresh list..."
 		}
 		
-		textLabelWidthConstraint.constant = widthForScreenSize(true)
+//		textLabelWidthConstraint.constant = widthForScreenSize(true)
 		screensImageViewWidthConstraint.constant = widthForScreenSize(false)
 		textLabelBottomConstraint.constant = textLabelBottomDistance()
 	}

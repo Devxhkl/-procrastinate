@@ -40,6 +40,8 @@ class OnboardingPageViewController: UIViewController {
 		view.bringSubviewToFront(skipTutorialButton)
 		view.bringSubviewToFront(iPhoneSliceImageView)
 		
+		skipTutorialButton.layer.borderColor = UIColor.whiteColor().CGColor
+		
 		iPhoneSliceImageViewWidthConstraint.constant = widthForScreenSize(true)
 	}
 }
