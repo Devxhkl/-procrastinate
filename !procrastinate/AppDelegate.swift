@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				NSUserDefaults.standardUserDefaults().setValue([Task](), forKey: "tasksToDelete")
 				
 				TaskHandler.sharedInstance.preloadTasks()
-			}
+			} 
 		}
 		
 		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
