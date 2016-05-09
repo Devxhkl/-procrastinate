@@ -38,7 +38,7 @@
                                                     <rect key="frame" x="15" y="10" width="295" height="25.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="BYZ-38-t0r" id="Dl4-5I-EwP"/>
                                                     </connections>
