@@ -52,6 +52,10 @@ class CKHandler {
 		privateDatabase.deleteRecordWithID(recordID) { (recordID, error) in
 			if let error = error {
 				print(error)
+				if var tasksToDelete = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [Task] {
+					tasksToDelete.append(task)
+					NSUserDefaults.standardUserDefaults().setValue(tasksToDelete, forKey: "tasksToDelete")
+				}
 			} else if let recordID = recordID {
 				print(recordID.recordName + " Deleted")
 			}
@@ -74,7 +78,20 @@ class CKHandler {
 				unsyncedTasks = TaskHandler.sharedInstance.fetchUnsyncedTasks(lastSyncDate) {
 				
 				for task in unsyncedTasks {
-					updateTask(task)
+					if task.createdDate > lastSyncDate.timeIntervalSinceReferenceDate {
+						newTask(task)
+					} else {
+						updateTask(task)
+					}
+				}
+				
+				if let tasksToDelete = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [Task] {
+					if !tasksToDelete.isEmpty {
+						for task in tasksToDelete {
+							deleteTask(task)
+						}
+						NSUserDefaults.standardUserDefaults().setValue([Task](), forKey: "tasksToDelete")
+					}
 				}
 			}
 			NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: "lastSyncDate")
