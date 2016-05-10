@@ -36,16 +36,6 @@
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		FAAD6F551C50509D005F552C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA15C2831C40864500333D3E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FAAD6F491C50509D005F552C;
-			remoteInfo = "!procrastinate Today Extension";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		FAAD6F5B1C50509D005F552C /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -279,7 +269,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				FAAD6F561C50509D005F552C /* PBXTargetDependency */,
 			);
 			name = "!procrastinate";
 			productName = "!procrastinate";
@@ -455,14 +444,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FAAD6F561C50509D005F552C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FAAD6F491C50509D005F552C /* !procrastinate Today Extension */;
-			targetProxy = FAAD6F551C50509D005F552C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FA15C2971C40864500333D3E /* LaunchScreen.storyboard */ = {

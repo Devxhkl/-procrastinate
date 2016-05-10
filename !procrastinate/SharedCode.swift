@@ -39,11 +39,11 @@ func widthForScreenSize(big: Bool) -> CGFloat {
 func textLabelBottomDistance() -> CGFloat {
 	switch Device() {
 	case .iPhone5, .iPhone5s, .iPhoneSE, .Simulator(.iPhone5), .Simulator(.iPhone5s), .Simulator(.iPhoneSE):
-		return 100.0
+		return 110.0
 	case .iPhone6, .iPhone6s, .Simulator(.iPhone6), .Simulator(.iPhone6s):
-		return 120.0
+		return 130.0
 	case .iPhone6Plus, .iPhone6sPlus, .Simulator(.iPhone6Plus), .Simulator(.iPhone6sPlus):
-		return 140.0
+		return 150.0
 	default:
 		return 80.0
 	}

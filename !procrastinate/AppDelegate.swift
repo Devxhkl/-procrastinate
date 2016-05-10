@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				window?.makeKeyAndVisible()
 				
 				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "oldUser")
+				NSUserDefaults.standardUserDefaults().setValue([Task](), forKey: "tasksToDelete")
 				
 				TaskHandler.sharedInstance.preloadTasks()
 			}
