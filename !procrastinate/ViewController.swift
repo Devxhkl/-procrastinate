@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
 		didBecomeActive()
 		
-		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightRegular), NSForegroundColorAttributeName: UIColor.whiteColor()]
+		navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(20, weight: UIFontWeightRegular), NSForegroundColorAttributeName: UIColor.blackColor()]
 		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "pattern_done")!)
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
