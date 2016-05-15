@@ -16,10 +16,10 @@ class CKHandler {
 	let privateDatabase = CKContainer.defaultContainer().privateCloudDatabase
 	
 	func newTask(task: Task) {
-		let recordID = CKRecordID(recordName: task.id!)
+		let recordID = CKRecordID(recordName: task.id)
 		let record = CKRecord(recordType: "Tasks", recordID: recordID)
 		
-		record["title"] = task.title!
+		record["title"] = task.title
 		record["completed"] = task.completed
 		record["tag"] = Int(task.tag)
 		record["createdDate"] = task.createdDate
@@ -30,12 +30,12 @@ class CKHandler {
 	}
 	
 	func updateTask(task: Task) {
-		let recordID = CKRecordID(recordName: task.id!)
+		let recordID = CKRecordID(recordName: task.id)
 		privateDatabase.fetchRecordWithID(recordID) { (record, error) in
 			if let error = error {
 				print(error)
 			} else if let record = record {
-				record["title"] = task.title!
+				record["title"] = task.title
 				record["completed"] = task.completed
 				record["tag"] = Int(task.tag)
 				record["updatedDate"] = task.updatedDate
@@ -47,7 +47,7 @@ class CKHandler {
 	}
 	
 	func deleteTask(task: Task) {
-		let recordID = CKRecordID(recordName: task.id!)
+		let recordID = CKRecordID(recordName: task.id)
 		
 		privateDatabase.deleteRecordWithID(recordID) { (recordID, error) in
 			if let error = error {
@@ -75,7 +75,7 @@ class CKHandler {
 	func sync() {
 		if Reachability.isConnectedToNetwork() {
 			if let lastSyncDate = NSUserDefaults.standardUserDefaults().valueForKey("lastSyncDate") as? NSDate,
-				unsyncedTasks = TaskHandler.sharedInstance.fetchUnsyncedTasks(lastSyncDate) {
+				unsyncedTasks = RealmHandler.sharedInstance.fetchUnsyncedTasks(lastSyncDate) {
 				
 				for task in unsyncedTasks {
 					if task.createdDate > lastSyncDate.timeIntervalSinceReferenceDate {

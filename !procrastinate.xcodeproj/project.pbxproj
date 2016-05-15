@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8EC4854C4D0A9071A38373EF /* Pods__procrastinate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD7C399B8983E2BD27EE7F /* Pods__procrastinate.framework */; };
+		2A755FB5CD167E62A6254E14 /* Pods__procrastinate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D99C58285450FA80968739CC /* Pods__procrastinate.framework */; };
+		E28115431BEA71BCEFB5940B /* Pods__procrastinate_Today_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BE20BE5F3EEF06B1DB0BE1 /* Pods__procrastinate_Today_Extension.framework */; };
 		FA0886E31C5BF59100683A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0886E21C5BF59100683A0D /* Main.storyboard */; };
 		FA0F85411CAD7CA60036B048 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0F85401CAD7CA60036B048 /* Onboarding.storyboard */; };
 		FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0F85421CAD7E6D0036B048 /* OnboardingViewController.swift */; };
@@ -15,8 +16,6 @@
 		FA15C2911C40864500333D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C2901C40864500333D3E /* ViewController.swift */; };
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
-		FA1E85E91CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */; };
-		FA1E85EB1CCB77EA00001E5E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85E81CCB77EA00001E5E /* Task.swift */; };
 		FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85EE1CCB790200001E5E /* TaskHandler.swift */; };
 		FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */; };
@@ -25,11 +24,11 @@
 		FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD6F4F1C50509D005F552C /* TodayViewController.swift */; };
 		FAAD6F531C50509D005F552C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAD6F511C50509D005F552C /* MainInterface.storyboard */; };
 		FAAD6F571C50509D005F552C /* !procrastinate Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAAD6F4A1C50509D005F552C /* !procrastinate Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FAB170D31CE911C9002BC337 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB170D21CE911C9002BC337 /* Task.swift */; };
+		FAB170D61CE91356002BC337 /* Realm Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB170D51CE91356002BC337 /* Realm Handler.swift */; };
 		FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACDCAB31CA994AA002AAE4D /* SlideView.xib */; };
 		FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAB71CA995BB002AAE4D /* SlideView.swift */; };
 		FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */; };
-		FACF0EF31CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
-		FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */; };
 		FACF0EF71CDB83B20087C19C /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
 		FACF0EFC1CDBF7D50087C19C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EFB1CDBF7D50087C19C /* Reachability.swift */; };
 		FACF0F061CDCDB6D0087C19C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
@@ -51,9 +50,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		23884D4DC5342E3D6D68A643 /* Pods-!procrastinate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate.release.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate.release.xcconfig"; sourceTree = "<group>"; };
-		6A696D1934EDDFCD7A36242E /* Pods-!procrastinate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate.debug.xcconfig"; sourceTree = "<group>"; };
-		80DD7C399B8983E2BD27EE7F /* Pods__procrastinate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__procrastinate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35285AF7DCFA567FE255EB2F /* Pods-!procrastinate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate.debug.xcconfig"; sourceTree = "<group>"; };
+		35F5B90E1B9B7DA77F9DB0F5 /* Pods-!procrastinate Today Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate Today Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate Today Extension/Pods-!procrastinate Today Extension.release.xcconfig"; sourceTree = "<group>"; };
+		43BE20BE5F3EEF06B1DB0BE1 /* Pods__procrastinate_Today_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__procrastinate_Today_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6B6B0EFA55EB1C63B64580E /* Pods-!procrastinate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate.release.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate.release.xcconfig"; sourceTree = "<group>"; };
+		D99C58285450FA80968739CC /* Pods__procrastinate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods__procrastinate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E78FD0D8DD59B87367A9A0CD /* Pods-!procrastinate Today Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-!procrastinate Today Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-!procrastinate Today Extension/Pods-!procrastinate Today Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0886E21C5BF59100683A0D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FA0F85401CAD7CA60036B048 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		FA0F85421CAD7E6D0036B048 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -63,8 +65,6 @@
 		FA15C2951C40864500333D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA15C2981C40864500333D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA15C29A1C40864500333D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FA1E85E81CCB77EA00001E5E /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		FA1E85EE1CCB790200001E5E /* TaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHandler.swift; sourceTree = "<group>"; };
 		FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate.entitlements"; sourceTree = "<group>"; };
 		FA1F03FB1C449E1300593F01 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -75,13 +75,12 @@
 		FAAD6F4F1C50509D005F552C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		FAAD6F521C50509D005F552C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		FAAD6F541C50509D005F552C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB170D21CE911C9002BC337 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		FAB170D51CE91356002BC337 /* Realm Handler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm Handler.swift"; sourceTree = "<group>"; };
 		FACDCAB31CA994AA002AAE4D /* SlideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideView.xib; sourceTree = "<group>"; };
 		FACDCAB71CA995BB002AAE4D /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
 		FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedCode.swift; sourceTree = "<group>"; };
-		FACF0EF21CDB82550087C19C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		FACF0EF61CDB83B20087C19C /* CKHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKHandler.swift; path = CloudKit/CKHandler.swift; sourceTree = "<group>"; };
-		FACF0EFA1CDB848B0087C19C /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		FACF0EFB1CDBF7D50087C19C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		FACF0F051CDCDB680087C19C /* !procrastinate Today Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate Today Extension.entitlements"; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
@@ -93,7 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */,
-				8EC4854C4D0A9071A38373EF /* Pods__procrastinate.framework in Frameworks */,
+				2A755FB5CD167E62A6254E14 /* Pods__procrastinate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,17 +102,20 @@
 			files = (
 				FAAD6F4D1C50509D005F552C /* NotificationCenter.framework in Frameworks */,
 				FACF0F061CDCDB6D0087C19C /* CloudKit.framework in Frameworks */,
+				E28115431BEA71BCEFB5940B /* Pods__procrastinate_Today_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8CDB621D31EC97470CF8C4FF /* Pods */ = {
+		F239509D73F44CBC41A6148E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6A696D1934EDDFCD7A36242E /* Pods-!procrastinate.debug.xcconfig */,
-				23884D4DC5342E3D6D68A643 /* Pods-!procrastinate.release.xcconfig */,
+				35285AF7DCFA567FE255EB2F /* Pods-!procrastinate.debug.xcconfig */,
+				D6B6B0EFA55EB1C63B64580E /* Pods-!procrastinate.release.xcconfig */,
+				E78FD0D8DD59B87367A9A0CD /* Pods-!procrastinate Today Extension.debug.xcconfig */,
+				35F5B90E1B9B7DA77F9DB0F5 /* Pods-!procrastinate Today Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -121,8 +123,7 @@
 		FA0886E41C5BF5B300683A0D /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				FA1E85E71CCB77EA00001E5E /* Task+CoreDataProperties.swift */,
-				FA1E85E81CCB77EA00001E5E /* Task.swift */,
+				FAB170D21CE911C9002BC337 /* Task.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -158,7 +159,7 @@
 				FAAD6F4E1C50509D005F552C /* !procrastinate Today Extension */,
 				FAAD6F4B1C50509D005F552C /* Frameworks */,
 				FA15C28C1C40864500333D3E /* Products */,
-				8CDB621D31EC97470CF8C4FF /* Pods */,
+				F239509D73F44CBC41A6148E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,6 +179,7 @@
 				FA0F853F1CAD7C830036B048 /* Onboarding */,
 				FADD5CD11CC478F200B4C2EB /* Launch Screen */,
 				FA0886E41C5BF5B300683A0D /* Data Models */,
+				FAB170D81CE9157E002BC337 /* Realm */,
 				FA1E85ED1CCB78C800001E5E /* Core Data */,
 				FACF0EF91CDB83C70087C19C /* CloudKit */,
 				FA0886E61C5BF5D600683A0D /* Infrastructure */,
@@ -189,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				FA1E85EE1CCB790200001E5E /* TaskHandler.swift */,
-				FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -209,7 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				FAAD6F4C1C50509D005F552C /* NotificationCenter.framework */,
-				80DD7C399B8983E2BD27EE7F /* Pods__procrastinate.framework */,
+				D99C58285450FA80968739CC /* Pods__procrastinate.framework */,
+				43BE20BE5F3EEF06B1DB0BE1 /* Pods__procrastinate_Today_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,6 +225,14 @@
 				FAAD6F541C50509D005F552C /* Info.plist */,
 			);
 			path = "!procrastinate Today Extension";
+			sourceTree = "<group>";
+		};
+		FAB170D81CE9157E002BC337 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				FAB170D51CE91356002BC337 /* Realm Handler.swift */,
+			);
+			name = Realm;
 			sourceTree = "<group>";
 		};
 		FACF0EF91CDB83C70087C19C /* CloudKit */ = {
@@ -258,13 +268,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA15C29D1C40864500333D3E /* Build configuration list for PBXNativeTarget "!procrastinate" */;
 			buildPhases = (
-				E9750DDF3198F36C6A6AEA12 /* Check Pods Manifest.lock */,
+				F5E97810679028002E0221CC /* 📦 Check Pods Manifest.lock */,
 				FA15C2871C40864500333D3E /* Sources */,
 				FA15C2881C40864500333D3E /* Frameworks */,
 				FA15C2891C40864500333D3E /* Resources */,
 				FAAD6F5B1C50509D005F552C /* Embed App Extensions */,
-				883F2C26841E562AA96534F4 /* Embed Pods Frameworks */,
-				17B661EBB748A3507AF2303B /* Copy Pods Resources */,
+				7B38C07D0036D74AF2179426 /* 📦 Embed Pods Frameworks */,
+				33A000503D545BB10206385B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,9 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAAD6F5A1C50509D005F552C /* Build configuration list for PBXNativeTarget "!procrastinate Today Extension" */;
 			buildPhases = (
+				3A47A5099D71074E4534DA54 /* 📦 Check Pods Manifest.lock */,
 				FAAD6F461C50509D005F552C /* Sources */,
 				FAAD6F471C50509D005F552C /* Frameworks */,
 				FAAD6F481C50509D005F552C /* Resources */,
+				710FBDD4A1BD21B461B63797 /* 📦 Embed Pods Frameworks */,
+				E5FB6C59FB0F2EE1DDD065EF /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -365,14 +378,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		17B661EBB748A3507AF2303B /* Copy Pods Resources */ = {
+		33A000503D545BB10206385B /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,14 +393,44 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		883F2C26841E562AA96534F4 /* Embed Pods Frameworks */ = {
+		3A47A5099D71074E4534DA54 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		710FBDD4A1BD21B461B63797 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-!procrastinate Today Extension/Pods-!procrastinate Today Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B38C07D0036D74AF2179426 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,14 +438,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-!procrastinate/Pods-!procrastinate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E9750DDF3198F36C6A6AEA12 /* Check Pods Manifest.lock */ = {
+		E5FB6C59FB0F2EE1DDD065EF /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-!procrastinate Today Extension/Pods-!procrastinate Today Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5E97810679028002E0221CC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,13 +480,12 @@
 				FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
-				FA1E85EB1CCB77EA00001E5E /* Task.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
 				FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */,
 				FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */,
+				FAB170D31CE911C9002BC337 /* Task.swift in Sources */,
 				FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */,
-				FACF0EF31CDB82550087C19C /* DataModel.xcdatamodeld in Sources */,
-				FA1E85E91CCB77EA00001E5E /* Task+CoreDataProperties.swift in Sources */,
+				FAB170D61CE91356002BC337 /* Realm Handler.swift in Sources */,
 				FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */,
 				FACF0EF71CDB83B20087C19C /* CKHandler.swift in Sources */,
 			);
@@ -438,7 +495,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FACF0EF41CDB82550087C19C /* DataModel.xcdatamodeld in Sources */,
 				FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,7 +606,7 @@
 		};
 		FA15C29E1C40864500333D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A696D1934EDDFCD7A36242E /* Pods-!procrastinate.debug.xcconfig */;
+			baseConfigurationReference = 35285AF7DCFA567FE255EB2F /* Pods-!procrastinate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";
@@ -568,7 +624,7 @@
 		};
 		FA15C29F1C40864500333D3E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23884D4DC5342E3D6D68A643 /* Pods-!procrastinate.release.xcconfig */;
+			baseConfigurationReference = D6B6B0EFA55EB1C63B64580E /* Pods-!procrastinate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";
@@ -586,6 +642,7 @@
 		};
 		FAAD6F581C50509D005F552C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E78FD0D8DD59B87367A9A0CD /* Pods-!procrastinate Today Extension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate Today Extension/!procrastinate Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -600,6 +657,7 @@
 		};
 		FAAD6F591C50509D005F552C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35F5B90E1B9B7DA77F9DB0F5 /* Pods-!procrastinate Today Extension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate Today Extension/!procrastinate Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -643,21 +701,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		FACF0EF11CDB82550087C19C /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FACF0EFA1CDB848B0087C19C /* DataModel 3.xcdatamodel */,
-				FACF0EF51CDB828A0087C19C /* DataModel 2.xcdatamodel */,
-				FACF0EF21CDB82550087C19C /* DataModel.xcdatamodel */,
-			);
-			currentVersion = FACF0EFA1CDB848B0087C19C /* DataModel 3.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FA15C2831C40864500333D3E /* Project object */;
 }

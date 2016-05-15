@@ -77,14 +77,20 @@ class TaskCell: UITableViewCell {
 			
 			if markComplete {
 				if let delegate = delegate {
-					task.completed = !task.completed
+					var taskValues: [String: AnyObject] = ["id": task.id,
+					                                       "completed": task.completed]
+//					task.completed = !task.completed
 					if task.completed {
-						task.completedDate = NSDate().timeIntervalSinceReferenceDate
+						taskValues["completedDate"] = NSDate().timeIntervalSinceReferenceDate
+//						task.completedDate = NSDate().timeIntervalSinceReferenceDate
 					} else {
-						task.completedDate = 0.0
+						taskValues["completedDate"] = 0.0
+//						task.completedDate = 0.0
 					}
-					task.updatedDate = NSDate().timeIntervalSinceReferenceDate
+					taskValues["taskUpdated"] = NSDate()
+//					task.updatedDate = NSDate().timeIntervalSinceReferenceDate
 					
+					RealmHandler.sharedInstance.updateTask(taskValues)
 					delegate.completeTask(task)
 					
 					strikesthroghOrNot()
@@ -124,11 +130,11 @@ class TaskCell: UITableViewCell {
 		var attributedString: NSAttributedString!
 		
 		if task.completed {
-			attributedString = NSAttributedString(string: task.title!, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
+			attributedString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
 		} else {
 			var taskTitle = ""
-			if let title = task.title {
-				taskTitle = title
+			if task.title != "" {
+				taskTitle = task.title
 			}
 			attributedString = NSAttributedString(string: taskTitle, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
 		}

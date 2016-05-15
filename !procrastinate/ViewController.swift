@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
-	let taskHandler = TaskHandler.sharedInstance
 	var placeholderCell: PlaceholderCell!
 	var pullDownInProgress = false
 	var tapToAddInProgress = false
@@ -22,8 +21,8 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		taskHandler.delegate = self
-		taskHandler.fetchTasks()
+		RealmHandler.sharedInstance.delegate = self
+		RealmHandler.sharedInstance.fetchTasks()
 
 		didBecomeActive()
 		
@@ -59,16 +58,16 @@ class ViewController: UIViewController {
 		if tapToAddInProgress {
 			tapToAddInProgress = false
 			return
-		} else if taskHandler.tasks.isEmpty && !pullDownInProgress {
+		} else if RealmHandler.sharedInstance.tasks.isEmpty && !pullDownInProgress {
 			tapToAddInProgress = true
-			taskHandler.newTask()
+			RealmHandler.sharedInstance.newTask()
 		}
 	}
 	
 	func didBecomeActive() {
 		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
 			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
-				taskHandler.fetchTasks()
+				RealmHandler.sharedInstance.fetchTasks()
 				newCheckDate()
 			}
 		}
@@ -99,7 +98,7 @@ extension ViewController {
 	
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
-			taskHandler.newTask()
+			RealmHandler.sharedInstance.newTask()
 		}
 		pullDownInProgress = false
 		placeholderCell.removeFromSuperview()
@@ -109,14 +108,14 @@ extension ViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return taskHandler.tasks.count
+		return RealmHandler.sharedInstance.tasks.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
 
 		cell.delegate = self
-		cell.task = taskHandler.tasks[indexPath.row]
+		cell.task = RealmHandler.sharedInstance.tasks[indexPath.row]
 		
 		return cell
 	}
@@ -154,17 +153,18 @@ extension ViewController: UITextViewDelegate {
 		if textView.text == "" {
 			deleteTask(task)
 		} else {
-			task.title = textView.text
-			task.updatedDate = NSDate.timeIntervalSinceReferenceDate()
 			
-			if let _ = task.id {
+			if task.id != "" {
 				CKHandler.sharedInstance.updateTask(task)
 			} else {
 				task.id = NSUUID().UUIDString
 				CKHandler.sharedInstance.newTask(task)
+				let taskValues: [String: AnyObject] = ["id": NSUUID().UUIDString,
+				                  "title": textView.text!,
+				                  "updatedDate": NSDate().timeIntervalSinceReferenceDate]
+				RealmHandler.sharedInstance.updateTask(taskValues)
 			}
 			
-			taskHandler.saveContext()
 		}
 		textView.resignFirstResponder()
 	}
@@ -173,29 +173,27 @@ extension ViewController: UITextViewDelegate {
 extension ViewController: TaskCellDelegate {
 	
 	func completeTask(task: Task) {
-		taskHandler.tasks.sortInPlace { !$0.completed && $1.completed }
+		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
 		tableView.beginUpdates()
 		reloadData()
 		tableView.endUpdates()
 		
 		CKHandler.sharedInstance.updateTask(task)
-		
-		taskHandler.saveContext()
 	}
 	
 	func deleteTask(task: Task) {
-		let index = taskHandler.tasks.indexOf { $0.id	== task.id }
-		taskHandler.tasks.removeAtIndex(index!)
+		let index = RealmHandler.sharedInstance.tasks.indexOf { $0.id	== task.id }
+		RealmHandler.sharedInstance.tasks.removeAtIndex(index!)
 		
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
-
-		taskHandler.deleteTask(task)
+		
+		RealmHandler.sharedInstance.deleteTask(task)
 	}
 }
 
-extension ViewController: TaskHandlerDelegate {
+extension ViewController: RealmHandlerDelegate {
 	
 	func reloadData() {
 		tableView.reloadData()

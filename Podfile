@@ -7,6 +7,7 @@ use_frameworks!
 target '!procrastinate' do
 
 pod 'DeviceKit'
+pod 'RealmSwift'
 
 end
 
