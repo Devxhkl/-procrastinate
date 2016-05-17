@@ -23,10 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				window?.makeKeyAndVisible()
 				
 				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "oldUser")
-				NSUserDefaults.standardUserDefaults().setValue([Task](), forKey: "tasksToDelete")
+				NSUserDefaults.standardUserDefaults().setValue([String](), forKey: "tasksToDelete")
 				
-				TaskHandler.sharedInstance.preloadTasks()
+				RealmHandler.sharedInstance.preloadTasks()
 			}
+		}
+	
+		if let _ = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [Task] {
+			NSUserDefaults.standardUserDefaults().setValue([String](), forKey: "tasksToDelete")
 		}
 		
 		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {

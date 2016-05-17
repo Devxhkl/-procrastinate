@@ -92,7 +92,7 @@ class CKHandler {
 						for taskID in tasksToDelete {
 							deleteTask(taskID)
 						}
-						NSUserDefaults.standardUserDefaults().setValue([Task](), forKey: "tasksToDelete")
+						NSUserDefaults.standardUserDefaults().setValue([String](), forKey: "tasksToDelete")
 					}
 				}
 			}

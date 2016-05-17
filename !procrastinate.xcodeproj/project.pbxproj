@@ -16,7 +16,6 @@
 		FA15C2911C40864500333D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C2901C40864500333D3E /* ViewController.swift */; };
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
-		FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E85EE1CCB790200001E5E /* TaskHandler.swift */; };
 		FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */; };
 		FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */; };
@@ -65,7 +64,6 @@
 		FA15C2951C40864500333D3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA15C2981C40864500333D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA15C29A1C40864500333D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA1E85EE1CCB790200001E5E /* TaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHandler.swift; sourceTree = "<group>"; };
 		FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate.entitlements"; sourceTree = "<group>"; };
 		FA1F03FB1C449E1300593F01 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
@@ -180,19 +178,10 @@
 				FADD5CD11CC478F200B4C2EB /* Launch Screen */,
 				FA0886E41C5BF5B300683A0D /* Data Models */,
 				FAB170D81CE9157E002BC337 /* Realm */,
-				FA1E85ED1CCB78C800001E5E /* Core Data */,
 				FACF0EF91CDB83C70087C19C /* CloudKit */,
 				FA0886E61C5BF5D600683A0D /* Infrastructure */,
 			);
 			path = "!procrastinate";
-			sourceTree = "<group>";
-		};
-		FA1E85ED1CCB78C800001E5E /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-				FA1E85EE1CCB790200001E5E /* TaskHandler.swift */,
-			);
-			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		FA3D63BC1C5A4FFE00743CB7 /* ViewController */ = {
@@ -477,7 +466,6 @@
 			files = (
 				FACF0EFC1CDBF7D50087C19C /* Reachability.swift in Sources */,
 				FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */,
-				FA1E85EF1CCB790200001E5E /* TaskHandler.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,

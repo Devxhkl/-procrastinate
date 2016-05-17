@@ -81,6 +81,7 @@ class RealmHandler {
 		let today5AM = calendar.dateByAddingUnit(.Hour, value: 5, toDate: todayStartOfDay, options: [])
 		
 		tasks = Array(realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate).sorted("completed"))
+		print(tasks.count)
 		
 		if let delegate = delegate {
 			delegate.reloadData()
@@ -88,6 +89,18 @@ class RealmHandler {
 	}
 	
 	func fetchUnsyncedTasks(lastSyncTime: NSDate) -> [Task]? {
-		return nil
+		return Array(realm.objects(Task).filter("updatedDate > %@", lastSyncTime.timeIntervalSinceReferenceDate))
+	}
+	
+	func preloadTasks() {
+		let texts = ["Delete this one", "This one needs to be done", "Edit this task by tapping on it", "This one is already done"]
+		for i in 0...3 {
+			let task = Task()
+			if i == 3 {
+				task.completed = true
+				task.completedDate = NSDate().timeIntervalSinceReferenceDate
+			}
+			newTask(task, title: texts[i])
+		}
 	}
 }
