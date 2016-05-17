@@ -17,7 +17,7 @@ class OnboardingViewController: UIViewController {
 	@IBOutlet weak var screensImageViewWidthConstraint: NSLayoutConstraint!
 	
 	var index: Int!
-	let texts = ["simply add new tasks...", "mark as done/undone...", "or delete."]
+	let texts = ["Simply add new tasks...", "mark as done/undone...", "or delete."]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

@@ -81,7 +81,6 @@ class RealmHandler {
 		let today5AM = calendar.dateByAddingUnit(.Hour, value: 5, toDate: todayStartOfDay, options: [])
 		
 		tasks = Array(realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate).sorted("completed"))
-		print(tasks.count)
 		
 		if let delegate = delegate {
 			delegate.reloadData()
