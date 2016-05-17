@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class ViewController: UIViewController {
 	
@@ -50,6 +49,22 @@ class ViewController: UIViewController {
 		                                                 object: nil)
 	}
 	
+	func newTask() {
+		let task = Task()
+		
+		RealmHandler.sharedInstance.tasks.insert(task, atIndex: 0)
+		
+		taskAdded()
+	}
+	
+	func taskAdded() {
+		reloadData()
+		
+		let visibleCells = tableView.visibleCells as! [TaskCell]
+		visibleCells[0].titleTextView.becomeFirstResponder()
+	}
+
+	
 	func resignResponder() {
 		if let lastActiveTextView = lastActiveTextView {
 			lastActiveTextView.resignFirstResponder()
@@ -60,7 +75,7 @@ class ViewController: UIViewController {
 			return
 		} else if RealmHandler.sharedInstance.tasks.isEmpty && !pullDownInProgress {
 			tapToAddInProgress = true
-			RealmHandler.sharedInstance.newTask()
+			newTask()
 		}
 	}
 	
@@ -98,7 +113,7 @@ extension ViewController {
 	
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
-			RealmHandler.sharedInstance.newTask()
+			newTask()
 		}
 		pullDownInProgress = false
 		placeholderCell.removeFromSuperview()
@@ -153,19 +168,13 @@ extension ViewController: UITextViewDelegate {
 		if textView.text == "" {
 			deleteTask(task)
 		} else {
-			
-			if task.id != "" {
-				CKHandler.sharedInstance.updateTask(task)
+			if task.createdDate == 0.0 {
+				RealmHandler.sharedInstance.newTask(task, title: textView.text!)
 			} else {
-				task.id = NSUUID().UUIDString
-				CKHandler.sharedInstance.newTask(task)
-				let taskValues: [String: AnyObject] = ["id": NSUUID().UUIDString,
-				                  "title": textView.text!,
-				                  "updatedDate": NSDate().timeIntervalSinceReferenceDate]
-				RealmHandler.sharedInstance.updateTask(taskValues)
+				RealmHandler.sharedInstance.updateTask(task, title: textView.text!)
 			}
-			
 		}
+		
 		textView.resignFirstResponder()
 	}
 }
@@ -174,11 +183,10 @@ extension ViewController: TaskCellDelegate {
 	
 	func completeTask(task: Task) {
 		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
+		
 		tableView.beginUpdates()
 		reloadData()
 		tableView.endUpdates()
-		
-		CKHandler.sharedInstance.updateTask(task)
 	}
 	
 	func deleteTask(task: Task) {
@@ -189,7 +197,9 @@ extension ViewController: TaskCellDelegate {
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
 		
-		RealmHandler.sharedInstance.deleteTask(task)
+		if task.createdDate != 0.0 {
+			RealmHandler.sharedInstance.deleteTask(task)
+		}
 	}
 }
 
@@ -197,13 +207,6 @@ extension ViewController: RealmHandlerDelegate {
 	
 	func reloadData() {
 		tableView.reloadData()
-	}
-	
-	func taskAdded(task: Task) {
-		reloadData()
-		
-		let visibleCells = tableView.visibleCells as! [TaskCell]
-		visibleCells[0].titleTextView.becomeFirstResponder()
 	}
 }
 

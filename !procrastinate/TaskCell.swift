@@ -77,20 +77,20 @@ class TaskCell: UITableViewCell {
 			
 			if markComplete {
 				if let delegate = delegate {
-					var taskValues: [String: AnyObject] = ["id": task.id,
-					                                       "completed": task.completed]
-//					task.completed = !task.completed
-					if task.completed {
-						taskValues["completedDate"] = NSDate().timeIntervalSinceReferenceDate
-//						task.completedDate = NSDate().timeIntervalSinceReferenceDate
-					} else {
-						taskValues["completedDate"] = 0.0
-//						task.completedDate = 0.0
-					}
-					taskValues["taskUpdated"] = NSDate()
-//					task.updatedDate = NSDate().timeIntervalSinceReferenceDate
-					
-					RealmHandler.sharedInstance.updateTask(taskValues)
+//					var taskValues: [String: AnyObject] = ["id": task.id,
+//					                                       "completed": task.completed]
+////					task.completed = !task.completed
+//					if task.completed {
+//						taskValues["completedDate"] = NSDate().timeIntervalSinceReferenceDate
+////						task.completedDate = NSDate().timeIntervalSinceReferenceDate
+//					} else {
+//						taskValues["completedDate"] = 0.0
+////						task.completedDate = 0.0
+//					}
+//					taskValues["taskUpdated"] = NSDate()
+////					task.updatedDate = NSDate().timeIntervalSinceReferenceDate
+//					
+					RealmHandler.sharedInstance.updateTask(task, completed: !task.completed)
 					delegate.completeTask(task)
 					
 					strikesthroghOrNot()

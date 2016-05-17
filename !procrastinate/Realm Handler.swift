@@ -11,7 +11,6 @@ import RealmSwift
 
 protocol RealmHandlerDelegate {
 	func reloadData()
-	func taskAdded(task: Task)
 }
 
 class RealmHandler {
@@ -19,27 +18,42 @@ class RealmHandler {
 	static let sharedInstance = RealmHandler()
 	
 	var delegate: RealmHandlerDelegate?
-	let realm = try! Realm()
+	var realm = try! Realm()
 	
 	var tasks = [Task]()
 	
-	func newTask() {
-		let task = Task()
+	func newTask(task: Task, title: String) {
+		let now = NSDate().timeIntervalSinceReferenceDate
 		
-		tasks.insert(task, atIndex: 0)
+		task.title = title
+		task.createdDate = now
+		task.updatedDate = now
 		
-		print(task.title)
-		print(task.id)
-		if let delegate = delegate {
-			delegate.taskAdded(task)
+		do {
+			try realm.write() {
+				realm.add(task)
+				
+				CKHandler.sharedInstance.newTask(task)
+			}
+		} catch {
+			print(error)
 		}
 	}
 	
-	func updateTask(task: [String: AnyObject]) {
+	func updateTask(task: Task, title: String? = nil, completed: Bool? = nil) {
 		do {
 			try realm.write {
-				realm.create(Task.self, value: task, update: true)
-				print(task)
+				let now = NSDate().timeIntervalSinceReferenceDate
+				
+				if let title = title {
+					task.title = title
+				} else if let completed = completed {
+					task.completed = completed
+					task.completedDate = completed ? now : 0.0
+				}
+				task.updatedDate = now
+				
+				CKHandler.sharedInstance.updateTask(task)
 			}
 		} catch {
 			print(error)
@@ -49,14 +63,14 @@ class RealmHandler {
 	func deleteTask(task: Task) {
 		do {
 			try realm.write {
+				let id = task.id
+				
 				realm.delete(task)
+				
+				CKHandler.sharedInstance.deleteTask(id)
 			}
 		} catch {
 			print(error)
-		}
-		
-		if task.id != "" {
-			CKHandler.sharedInstance.deleteTask(task)
 		}
 	}
 	
@@ -66,8 +80,7 @@ class RealmHandler {
 		let todayStartOfDay = calendar.startOfDayForDate(today!)
 		let today5AM = calendar.dateByAddingUnit(.Hour, value: 5, toDate: todayStartOfDay, options: [])
 		
-		let objects = realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate)
-		tasks = Array(objects)
+		tasks = Array(realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate).sorted("completed"))
 		
 		if let delegate = delegate {
 			delegate.reloadData()

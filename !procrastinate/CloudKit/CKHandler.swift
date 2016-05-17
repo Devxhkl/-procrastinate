@@ -32,28 +32,30 @@ class CKHandler {
 	func updateTask(task: Task) {
 		let recordID = CKRecordID(recordName: task.id)
 		privateDatabase.fetchRecordWithID(recordID) { (record, error) in
-			if let error = error {
-				print(error)
-			} else if let record = record {
-				record["title"] = task.title
-				record["completed"] = task.completed
-				record["tag"] = Int(task.tag)
-				record["updatedDate"] = task.updatedDate
-				record["completedDate"] = task.completedDate
-				
-				self.saveRecord(record)
+			dispatch_async(dispatch_get_main_queue()) {
+				if let error = error {
+					print(error)
+				} else if let record = record {
+					record["title"] = task.title
+					record["completed"] = task.completed
+					record["tag"] = Int(task.tag)
+					record["updatedDate"] = task.updatedDate
+					record["completedDate"] = task.completedDate
+					
+					self.saveRecord(record)
+				}
 			}
 		}
 	}
 	
-	func deleteTask(task: Task) {
-		let recordID = CKRecordID(recordName: task.id)
+	func deleteTask(taskID: String) {
+		let recordID = CKRecordID(recordName: taskID)
 		
 		privateDatabase.deleteRecordWithID(recordID) { (recordID, error) in
 			if let error = error {
 				print(error)
-				if var tasksToDelete = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [Task] {
-					tasksToDelete.append(task)
+				if var tasksToDelete = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [String] {
+					tasksToDelete.append(taskID)
 					NSUserDefaults.standardUserDefaults().setValue(tasksToDelete, forKey: "tasksToDelete")
 				}
 			} else if let recordID = recordID {
@@ -85,10 +87,10 @@ class CKHandler {
 					}
 				}
 				
-				if let tasksToDelete = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [Task] {
+				if let tasksToDelete = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [String] {
 					if !tasksToDelete.isEmpty {
-						for task in tasksToDelete {
-							deleteTask(task)
+						for taskID in tasksToDelete {
+							deleteTask(taskID)
 						}
 						NSUserDefaults.standardUserDefaults().setValue([Task](), forKey: "tasksToDelete")
 					}

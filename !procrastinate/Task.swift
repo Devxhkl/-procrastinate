@@ -10,13 +10,13 @@ import Foundation
 import RealmSwift
 
 class Task: Object {
-	dynamic var id: String = ""
+	dynamic var id: String = NSUUID().UUIDString
 	dynamic var title: String = ""
 	dynamic var completed: Bool = false
 	dynamic var tag: Int = 0
-	dynamic var createdDate: NSTimeInterval = NSDate().timeIntervalSinceReferenceDate
+	dynamic var createdDate: NSTimeInterval = 0.0
 	dynamic var completedDate: NSTimeInterval = 0.0
-	dynamic var updatedDate: NSTimeInterval = NSDate().timeIntervalSinceReferenceDate
+	dynamic var updatedDate: NSTimeInterval = 0.0
 	
 	override static func primaryKey() -> String? {
 		return "id"
