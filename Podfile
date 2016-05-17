@@ -6,12 +6,14 @@ use_frameworks!
 
 target '!procrastinate' do
 
-pod 'DeviceKit'
 pod 'RealmSwift'
+pod 'DeviceKit'
 
 end
 
 target '!procrastinate Today Extension' do
+
+pod 'RealmSwift'
 
 end
 

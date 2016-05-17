@@ -16,12 +16,21 @@
 		FA15C2911C40864500333D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C2901C40864500333D3E /* ViewController.swift */; };
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
-		FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */; };
 		FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */; };
+		FA9D63751CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */; };
+		FA9D63771CEBB6BC00B1ABCF /* Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */; };
+		FA9D63791CEBB6BC00B1ABCF /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D63731CEBB6BC00B1ABCF /* TodayCell.swift */; };
+		FA9D637A1CEBB6BC00B1ABCF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D63741CEBB6BC00B1ABCF /* TodayViewController.swift */; };
+		FA9D637C1CEBB6E700B1ABCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9D637B1CEBB6E700B1ABCF /* CloudKit.framework */; };
+		FA9D63811CEBB8A700B1ABCF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA9D63801CEBB8A700B1ABCF /* MainInterface.storyboard */; };
+		FA9D63841CEBBA9C00B1ABCF /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9D63821CEBBA9C00B1ABCF /* Realm.framework */; };
+		FA9D63851CEBBA9C00B1ABCF /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9D63831CEBBA9C00B1ABCF /* RealmSwift.framework */; };
+		FA9D63861CEBBAB400B1ABCF /* Realm Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB170D51CE91356002BC337 /* Realm Handler.swift */; };
+		FA9D63871CEBBAB400B1ABCF /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
+		FA9D63881CEBBB2A00B1ABCF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB170D21CE911C9002BC337 /* Task.swift */; };
+		FA9D63891CEBBB5D00B1ABCF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EFB1CDBF7D50087C19C /* Reachability.swift */; };
 		FAAD6F4D1C50509D005F552C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAD6F4C1C50509D005F552C /* NotificationCenter.framework */; };
-		FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD6F4F1C50509D005F552C /* TodayViewController.swift */; };
-		FAAD6F531C50509D005F552C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAD6F511C50509D005F552C /* MainInterface.storyboard */; };
 		FAAD6F571C50509D005F552C /* !procrastinate Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAAD6F4A1C50509D005F552C /* !procrastinate Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FAB170D31CE911C9002BC337 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB170D21CE911C9002BC337 /* Task.swift */; };
 		FAB170D61CE91356002BC337 /* Realm Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB170D51CE91356002BC337 /* Realm Handler.swift */; };
@@ -30,9 +39,18 @@
 		FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */; };
 		FACF0EF71CDB83B20087C19C /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
 		FACF0EFC1CDBF7D50087C19C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EFB1CDBF7D50087C19C /* Reachability.swift */; };
-		FACF0F061CDCDB6D0087C19C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F03FB1C449E1300593F01 /* CloudKit.framework */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA9D636D1CEBB4E600B1ABCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA15C2831C40864500333D3E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAAD6F491C50509D005F552C;
+			remoteInfo = "!procrastinate Today Extension";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FAAD6F5B1C50509D005F552C /* Embed App Extensions */ = {
@@ -65,14 +83,20 @@
 		FA15C2981C40864500333D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA15C29A1C40864500333D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate.entitlements"; sourceTree = "<group>"; };
-		FA1F03FB1C449E1300593F01 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderCell.swift; sourceTree = "<group>"; };
+		FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "!procrastinate Today Extension.entitlements"; sourceTree = "<group>"; };
+		FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Extension Assets.xcassets"; sourceTree = "<group>"; };
+		FA9D63721CEBB6BC00B1ABCF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA9D63731CEBB6BC00B1ABCF /* TodayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
+		FA9D63741CEBB6BC00B1ABCF /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		FA9D637B1CEBB6E700B1ABCF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		FA9D63801CEBB8A700B1ABCF /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		FA9D63821CEBBA9C00B1ABCF /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../../Developer/Xcode/DerivedData/!procrastinate-dhawbfqkgqytbsfnujvfydqcetbi/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
+		FA9D63831CEBBA9C00B1ABCF /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../../Developer/Xcode/DerivedData/!procrastinate-dhawbfqkgqytbsfnujvfydqcetbi/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
+		FA9D638B1CEBBB7700B1ABCF /* DeviceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceKit.framework; path = "Pods/../build/Debug-iphoneos/DeviceKit/DeviceKit.framework"; sourceTree = "<group>"; };
 		FAAD6F4A1C50509D005F552C /* !procrastinate Today Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "!procrastinate Today Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD6F4C1C50509D005F552C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		FAAD6F4F1C50509D005F552C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		FAAD6F521C50509D005F552C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		FAAD6F541C50509D005F552C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB170D21CE911C9002BC337 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		FAB170D51CE91356002BC337 /* Realm Handler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm Handler.swift"; sourceTree = "<group>"; };
 		FACDCAB31CA994AA002AAE4D /* SlideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideView.xib; sourceTree = "<group>"; };
@@ -80,7 +104,6 @@
 		FACDCAD71CAB1E8E002AAE4D /* SharedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedCode.swift; sourceTree = "<group>"; };
 		FACF0EF61CDB83B20087C19C /* CKHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKHandler.swift; path = CloudKit/CKHandler.swift; sourceTree = "<group>"; };
 		FACF0EFB1CDBF7D50087C19C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		FACF0F051CDCDB680087C19C /* !procrastinate Today Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate Today Extension.entitlements"; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1F03FC1C449E1300593F01 /* CloudKit.framework in Frameworks */,
 				2A755FB5CD167E62A6254E14 /* Pods__procrastinate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,8 +120,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9D63841CEBBA9C00B1ABCF /* Realm.framework in Frameworks */,
+				FA9D63851CEBBA9C00B1ABCF /* RealmSwift.framework in Frameworks */,
+				FA9D637C1CEBB6E700B1ABCF /* CloudKit.framework in Frameworks */,
 				FAAD6F4D1C50509D005F552C /* NotificationCenter.framework in Frameworks */,
-				FACF0F061CDCDB6D0087C19C /* CloudKit.framework in Frameworks */,
 				E28115431BEA71BCEFB5940B /* Pods__procrastinate_Today_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,7 +176,6 @@
 		FA15C2821C40864500333D3E = {
 			isa = PBXGroup;
 			children = (
-				FA1F03FB1C449E1300593F01 /* CloudKit.framework */,
 				FA15C28D1C40864500333D3E /* !procrastinate */,
 				FAAD6F4E1C50509D005F552C /* !procrastinate Today Extension */,
 				FAAD6F4B1C50509D005F552C /* Frameworks */,
@@ -198,6 +221,10 @@
 		FAAD6F4B1C50509D005F552C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA9D638B1CEBBB7700B1ABCF /* DeviceKit.framework */,
+				FA9D63821CEBBA9C00B1ABCF /* Realm.framework */,
+				FA9D63831CEBBA9C00B1ABCF /* RealmSwift.framework */,
+				FA9D637B1CEBB6E700B1ABCF /* CloudKit.framework */,
 				FAAD6F4C1C50509D005F552C /* NotificationCenter.framework */,
 				D99C58285450FA80968739CC /* Pods__procrastinate.framework */,
 				43BE20BE5F3EEF06B1DB0BE1 /* Pods__procrastinate_Today_Extension.framework */,
@@ -208,10 +235,12 @@
 		FAAD6F4E1C50509D005F552C /* !procrastinate Today Extension */ = {
 			isa = PBXGroup;
 			children = (
-				FACF0F051CDCDB680087C19C /* !procrastinate Today Extension.entitlements */,
-				FAAD6F4F1C50509D005F552C /* TodayViewController.swift */,
-				FAAD6F511C50509D005F552C /* MainInterface.storyboard */,
-				FAAD6F541C50509D005F552C /* Info.plist */,
+				FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */,
+				FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */,
+				FA9D63801CEBB8A700B1ABCF /* MainInterface.storyboard */,
+				FA9D63721CEBB6BC00B1ABCF /* Info.plist */,
+				FA9D63731CEBB6BC00B1ABCF /* TodayCell.swift */,
+				FA9D63741CEBB6BC00B1ABCF /* TodayViewController.swift */,
 			);
 			path = "!procrastinate Today Extension";
 			sourceTree = "<group>";
@@ -268,6 +297,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				FA9D636E1CEBB4E600B1ABCF /* PBXTargetDependency */,
 			);
 			name = "!procrastinate";
 			productName = "!procrastinate";
@@ -300,7 +330,7 @@
 		FA15C2831C40864500333D3E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Zel Marko";
 				TargetAttributes = {
@@ -360,7 +390,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAAD6F531C50509D005F552C /* MainInterface.storyboard in Resources */,
+				FA9D63811CEBB8A700B1ABCF /* MainInterface.storyboard in Resources */,
+				FA9D63771CEBB6BC00B1ABCF /* Extension Assets.xcassets in Resources */,
+				FA9D63751CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,11 +515,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAAD6F501C50509D005F552C /* TodayViewController.swift in Sources */,
+				FA9D63891CEBBB5D00B1ABCF /* Reachability.swift in Sources */,
+				FA9D63881CEBBB2A00B1ABCF /* Task.swift in Sources */,
+				FA9D63861CEBBAB400B1ABCF /* Realm Handler.swift in Sources */,
+				FA9D63871CEBBAB400B1ABCF /* CKHandler.swift in Sources */,
+				FA9D637A1CEBB6BC00B1ABCF /* TodayViewController.swift in Sources */,
+				FA9D63791CEBB6BC00B1ABCF /* TodayCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA9D636E1CEBB4E600B1ABCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAAD6F491C50509D005F552C /* !procrastinate Today Extension */;
+			targetProxy = FA9D636D1CEBB4E600B1ABCF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FA15C2971C40864500333D3E /* LaunchScreen.storyboard */ = {
@@ -496,14 +541,6 @@
 				FA15C2981C40864500333D3E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		FAAD6F511C50509D005F552C /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FAAD6F521C50509D005F552C /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -632,14 +669,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E78FD0D8DD59B87367A9A0CD /* Pods-!procrastinate Today Extension.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate Today Extension/!procrastinate Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "!procrastinate Today Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.-procrastinate.today-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -647,9 +687,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 35F5B90E1B9B7DA77F9DB0F5 /* Pods-!procrastinate Today Extension.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate Today Extension/!procrastinate Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "!procrastinate Today Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.-procrastinate.today-extension";
