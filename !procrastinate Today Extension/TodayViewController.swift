@@ -21,8 +21,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
-		
-		preferredContentSize = CGSize(width: preferredContentSize.width, height: 200.0)
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -37,7 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		// If there's no update required, use NCUpdateResult.NoData
 		// If there's an update, use NCUpdateResult.NewData
 		
-		completionHandler(NCUpdateResult.NewData)
+		completionHandler(NCUpdateResult.NoData)
 	}
 	
 	func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
@@ -62,12 +60,23 @@ extension TodayViewController: UITableViewDataSource {
 }
 
 extension TodayViewController: UITableViewDelegate {
+	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		print("Cell")
+		let task = (tableView.cellForRowAtIndexPath(indexPath) as! TodayCell).task
+		if let extensionContext = extensionContext {
+			extensionContext.openURL(NSURL(string: "test:///" + task.id)!, completionHandler: nil)
+		}
+	}
+	
+	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+		if indexPath.row == tableView.numberOfRowsInSection(0) - 1 {
+			preferredContentSize = CGSize(width: preferredContentSize.width, height: tableView.contentSize.height)
+		}
 	}
 }
 
 extension TodayViewController: TodayCellDelegate {
+	
 	func completedStateChanged() {
 		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
 		
@@ -78,6 +87,7 @@ extension TodayViewController: TodayCellDelegate {
 }
 
 extension TodayViewController: RealmHandlerDelegate {
+	
 	func reloadData() {
 		tableView.reloadData()
 	}

@@ -15,12 +15,13 @@ protocol TodayCellDelegate {
 class TodayCell: UITableViewCell {
 	
 	@IBOutlet weak var taskTitleLabel: UILabel!
+	@IBOutlet weak var tickButton: UIButton!
 	
 	var delegate: TodayCellDelegate?
 	
 	var task: Task! {
 		didSet {
-			strikesthroghOrNot()
+			setAppropriateAttributes()
 		}
 	}
 	
@@ -30,7 +31,13 @@ class TodayCell: UITableViewCell {
 	}
 	
 	@IBAction func tickButtonTapped(sender: UIButton) {
-		sender.setImage(UIImage(named: "done"), forState: .Normal)
+		RealmHandler.sharedInstance.updateTask(task, completed: !task.completed)
+		
+		setAppropriateAttributes()
+		
+		if let delegate = delegate {
+			delegate.completedStateChanged()
+		}
 	}
 	
 	override func setSelected(selected: Bool, animated: Bool) {
@@ -39,17 +46,34 @@ class TodayCell: UITableViewCell {
 		// Configure the view for the selected state
 	}
 	
+	func setAppropriateAttributes() {
+		var attributes: [String: AnyObject]!
+		var imageName: String!
+		
+		if task.completed {
+			attributes = [NSStrikethroughStyleAttributeName: 1,
+			              NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)]
+			imageName = "done"
+		} else {
+			attributes = [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)]
+			imageName = "undone"
+		}
+		
+		taskTitleLabel.attributedText = NSAttributedString(string: task.title, attributes: attributes)
+		tickButton.setImage(UIImage(named: imageName)!, forState: .Normal)
+	}
+	
 	func strikesthroghOrNot() {
 		var attributedString: NSAttributedString!
 		
 		if task.completed {
 			attributedString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
 		} else {
-			var taskTitle = ""
-			if task.title != "" {
-				taskTitle = task.title
-			}
-			attributedString = NSAttributedString(string: taskTitle, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
+//			var taskTitle = ""
+//			if task.title != "" {
+//				taskTitle = task.title
+//			}
+			attributedString = NSAttributedString(string: task.title, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
 		}
 		
 		taskTitleLabel.attributedText = attributedString

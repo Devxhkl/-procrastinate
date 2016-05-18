@@ -19,6 +19,7 @@ class RealmHandler {
 	
 	var delegate: RealmHandlerDelegate?
 	var realm: Realm!
+	var token: NotificationToken!
 	
 	var tasks = [Task]()
 	
@@ -28,6 +29,7 @@ class RealmHandler {
 		var config = Realm.Configuration()
 		config.fileURL = realmURL
 		Realm.Configuration.defaultConfiguration = config
+		
 		realm = try! Realm()
 	}	
 	
@@ -89,10 +91,12 @@ class RealmHandler {
 		let todayStartOfDay = calendar.startOfDayForDate(today!)
 		let today5AM = calendar.dateByAddingUnit(.Hour, value: 5, toDate: todayStartOfDay, options: [])
 		
-		tasks = Array(realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate).sorted("completed"))
-		
-		if let delegate = delegate {
-			delegate.reloadData()
+		let results = realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate).sorted("completed")
+		tasks = Array(results)
+		token = results.addNotificationBlock() { (changes: RealmCollectionChange) in
+			if let delegate = self.delegate {
+				delegate.reloadData()
+			}
 		}
 	}
 	
@@ -110,6 +114,10 @@ class RealmHandler {
 			}
 			newTask(task, title: texts[i])
 		}
+	}
+	
+	deinit {
+		token.stop()
 	}
 	
 }

@@ -223,9 +223,9 @@
 		FA44BDCA1CEC82640005D307 /* Meta & Assets */ = {
 			isa = PBXGroup;
 			children = (
-				FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */,
-				FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */,
 				FA9D63721CEBB6BC00B1ABCF /* Info.plist */,
+				FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */,
+				FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */,
 			);
 			name = "Meta & Assets";
 			sourceTree = "<group>";
@@ -256,9 +256,9 @@
 		FAAD6F4E1C50509D005F552C /* !procrastinate Today Extension */ = {
 			isa = PBXGroup;
 			children = (
-				FA44BDCA1CEC82640005D307 /* Meta & Assets */,
 				FA44BDCB1CEC82A20005D307 /* Today View Controller */,
 				FA9D63731CEBB6BC00B1ABCF /* TodayCell.swift */,
+				FA44BDCA1CEC82640005D307 /* Meta & Assets */,
 			);
 			path = "!procrastinate Today Extension";
 			sourceTree = "<group>";

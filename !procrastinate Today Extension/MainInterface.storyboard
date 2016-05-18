@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -27,6 +27,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-IH-ciF">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="lRs-r2-ma5">
+                                    <rect key="frame" x="0.0" y="72" width="320" height="0.5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TodayCell" id="gsu-16-uXa" customClass="TodayCell" customModule="_procrastinate_Today_Extension" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
@@ -36,12 +41,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOK-jF-G8u">
-                                                    <rect key="frame" x="50" y="8" width="262" height="27.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <rect key="frame" x="50" y="8" width="260" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA8-9x-UYq">
+                                                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA8-9x-UYq">
                                                     <rect key="frame" x="10" y="9" width="30" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="gA8-9x-UYq" secondAttribute="height" multiplier="85:69" id="fh2-jX-73w"/>
@@ -55,7 +60,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="rOK-jF-G8u" secondAttribute="trailing" constant="8" id="AvA-CI-CxW"/>
+                                                <constraint firstAttribute="trailing" secondItem="rOK-jF-G8u" secondAttribute="trailing" constant="10" id="AvA-CI-CxW"/>
                                                 <constraint firstItem="rOK-jF-G8u" firstAttribute="top" secondItem="QyT-kr-w33" secondAttribute="top" constant="8" id="B36-yv-kBn"/>
                                                 <constraint firstItem="gA8-9x-UYq" firstAttribute="centerY" secondItem="QyT-kr-w33" secondAttribute="centerY" id="Z3Q-9b-d85"/>
                                                 <constraint firstItem="rOK-jF-G8u" firstAttribute="leading" secondItem="gA8-9x-UYq" secondAttribute="trailing" constant="10" id="luZ-eP-is1"/>
@@ -64,9 +69,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <inset key="separatorInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
+                                        <inset key="separatorInset" minX="50" minY="0.0" maxX="10" maxY="0.0"/>
                                         <connections>
                                             <outlet property="taskTitleLabel" destination="rOK-jF-G8u" id="Y71-DJ-3g1"/>
+                                            <outlet property="tickButton" destination="gA8-9x-UYq" id="MHW-dn-zF9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
