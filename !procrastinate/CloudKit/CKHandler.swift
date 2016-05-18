@@ -13,7 +13,7 @@ class CKHandler {
 	
 	static let sharedInstance = CKHandler()
 	
-	let privateDatabase = CKContainer.defaultContainer().privateCloudDatabase
+	let privateDatabase = CKContainer(identifier: "iCloud.com.zzzel.-procrastinate").privateCloudDatabase
 	
 	func newTask(task: Task) {
 		let recordID = CKRecordID(recordName: task.id)

@@ -16,6 +16,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		RealmHandler.sharedInstance.delegate = self
+		RealmHandler.sharedInstance.fetchTasks()
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
@@ -46,13 +48,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 extension TodayViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		return RealmHandler.sharedInstance.tasks.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("TodayCell", forIndexPath: indexPath) as! TodayCell
 		
-		cell.taskTitleLabel.text = "Something longer to see if it wraps nicely"
+		cell.delegate = self
+		cell.task = RealmHandler.sharedInstance.tasks[indexPath.row]
 
 		return cell
 	}
@@ -61,6 +64,22 @@ extension TodayViewController: UITableViewDataSource {
 extension TodayViewController: UITableViewDelegate {
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		print("Cell")
+	}
+}
+
+extension TodayViewController: TodayCellDelegate {
+	func completedStateChanged() {
+		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
+		
+		tableView.beginUpdates()
+		reloadData()
+		tableView.endUpdates()
+	}
+}
+
+extension TodayViewController: RealmHandlerDelegate {
+	func reloadData() {
+		tableView.reloadData()
 	}
 }
 

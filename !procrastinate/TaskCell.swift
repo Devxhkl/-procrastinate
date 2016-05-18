@@ -9,8 +9,8 @@
 import UIKit
 
 protocol TaskCellDelegate {
-	func completeTask(task: Task)
-	func deleteTask(task: Task)
+	func completedStateChanged()
+	func deleted(task: Task)
 }
 
 class TaskCell: UITableViewCell {
@@ -77,21 +77,9 @@ class TaskCell: UITableViewCell {
 			
 			if markComplete {
 				if let delegate = delegate {
-//					var taskValues: [String: AnyObject] = ["id": task.id,
-//					                                       "completed": task.completed]
-////					task.completed = !task.completed
-//					if task.completed {
-//						taskValues["completedDate"] = NSDate().timeIntervalSinceReferenceDate
-////						task.completedDate = NSDate().timeIntervalSinceReferenceDate
-//					} else {
-//						taskValues["completedDate"] = 0.0
-////						task.completedDate = 0.0
-//					}
-//					taskValues["taskUpdated"] = NSDate()
-////					task.updatedDate = NSDate().timeIntervalSinceReferenceDate
-//					
 					RealmHandler.sharedInstance.updateTask(task, completed: !task.completed)
-					delegate.completeTask(task)
+					
+					delegate.completedStateChanged()
 					
 					strikesthroghOrNot()
 				}
@@ -99,7 +87,7 @@ class TaskCell: UITableViewCell {
 				markComplete = false
 			} else if delete {
 				if let delegate = delegate {
-					delegate.deleteTask(task)
+					delegate.deleted(task)
 					UIView.animateWithDuration(0.2, animations: {
 						self.stageView.alpha = 0.0
 						}, completion: { _ in

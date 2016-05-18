@@ -8,9 +8,21 @@
 
 import UIKit
 
+protocol TodayCellDelegate {
+	func completedStateChanged()
+}
+
 class TodayCell: UITableViewCell {
 	
 	@IBOutlet weak var taskTitleLabel: UILabel!
+	
+	var delegate: TodayCellDelegate?
+	
+	var task: Task! {
+		didSet {
+			strikesthroghOrNot()
+		}
+	}
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -25,6 +37,22 @@ class TodayCell: UITableViewCell {
 		super.setSelected(selected, animated: animated)
 		
 		// Configure the view for the selected state
+	}
+	
+	func strikesthroghOrNot() {
+		var attributedString: NSAttributedString!
+		
+		if task.completed {
+			attributedString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
+		} else {
+			var taskTitle = ""
+			if task.title != "" {
+				taskTitle = task.title
+			}
+			attributedString = NSAttributedString(string: taskTitle, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
+		}
+		
+		taskTitleLabel.attributedText = attributedString
 	}
 	
 }

@@ -18,6 +18,7 @@
 		FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2971C40864500333D3E /* LaunchScreen.storyboard */; };
 		FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */; };
 		FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */; };
+		FA44BDCC1CEC89990005D307 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9D637B1CEBB6E700B1ABCF /* CloudKit.framework */; };
 		FA9D63751CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */; };
 		FA9D63771CEBB6BC00B1ABCF /* Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */; };
 		FA9D63791CEBB6BC00B1ABCF /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D63731CEBB6BC00B1ABCF /* TodayCell.swift */; };
@@ -43,7 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FA9D636D1CEBB4E600B1ABCF /* PBXContainerItemProxy */ = {
+		FA5EFAB81CECA9C800B807DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA15C2831C40864500333D3E /* Project object */;
 			proxyType = 1;
@@ -113,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A755FB5CD167E62A6254E14 /* Pods__procrastinate.framework in Frameworks */,
+				FA44BDCC1CEC89990005D307 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +152,7 @@
 			name = "Data Models";
 			sourceTree = "<group>";
 		};
-		FA0886E61C5BF5D600683A0D /* Infrastructure */ = {
+		FA0886E61C5BF5D600683A0D /* Underground */ = {
 			isa = PBXGroup;
 			children = (
 				FA15C28E1C40864500333D3E /* AppDelegate.swift */,
@@ -160,7 +162,7 @@
 				FA15C2951C40864500333D3E /* Assets.xcassets */,
 				FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */,
 			);
-			name = Infrastructure;
+			name = Underground;
 			sourceTree = "<group>";
 		};
 		FA0F853F1CAD7C830036B048 /* Onboarding */ = {
@@ -202,7 +204,7 @@
 				FA0886E41C5BF5B300683A0D /* Data Models */,
 				FAB170D81CE9157E002BC337 /* Realm */,
 				FACF0EF91CDB83C70087C19C /* CloudKit */,
-				FA0886E61C5BF5D600683A0D /* Infrastructure */,
+				FA0886E61C5BF5D600683A0D /* Underground */,
 			);
 			path = "!procrastinate";
 			sourceTree = "<group>";
@@ -216,6 +218,25 @@
 				FADD5CD01CC478DF00B4C2EB /* TaskCell */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		FA44BDCA1CEC82640005D307 /* Meta & Assets */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */,
+				FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */,
+				FA9D63721CEBB6BC00B1ABCF /* Info.plist */,
+			);
+			name = "Meta & Assets";
+			sourceTree = "<group>";
+		};
+		FA44BDCB1CEC82A20005D307 /* Today View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D63741CEBB6BC00B1ABCF /* TodayViewController.swift */,
+				FA9D63801CEBB8A700B1ABCF /* MainInterface.storyboard */,
+			);
+			name = "Today View Controller";
 			sourceTree = "<group>";
 		};
 		FAAD6F4B1C50509D005F552C /* Frameworks */ = {
@@ -235,12 +256,9 @@
 		FAAD6F4E1C50509D005F552C /* !procrastinate Today Extension */ = {
 			isa = PBXGroup;
 			children = (
-				FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */,
-				FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */,
-				FA9D63801CEBB8A700B1ABCF /* MainInterface.storyboard */,
-				FA9D63721CEBB6BC00B1ABCF /* Info.plist */,
+				FA44BDCA1CEC82640005D307 /* Meta & Assets */,
+				FA44BDCB1CEC82A20005D307 /* Today View Controller */,
 				FA9D63731CEBB6BC00B1ABCF /* TodayCell.swift */,
-				FA9D63741CEBB6BC00B1ABCF /* TodayViewController.swift */,
 			);
 			path = "!procrastinate Today Extension";
 			sourceTree = "<group>";
@@ -297,7 +315,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				FA9D636E1CEBB4E600B1ABCF /* PBXTargetDependency */,
+				FA5EFAB91CECA9C800B807DE /* PBXTargetDependency */,
 			);
 			name = "!procrastinate";
 			productName = "!procrastinate";
@@ -338,6 +356,9 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 96HG6E2WJ6;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -347,6 +368,9 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 96HG6E2WJ6;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -527,10 +551,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FA9D636E1CEBB4E600B1ABCF /* PBXTargetDependency */ = {
+		FA5EFAB91CECA9C800B807DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FAAD6F491C50509D005F552C /* !procrastinate Today Extension */;
-			targetProxy = FA9D636D1CEBB4E600B1ABCF /* PBXContainerItemProxy */;
+			targetProxy = FA5EFAB81CECA9C800B807DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -635,7 +659,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Marko Zel (96HG6E2WJ6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "!procrastinate/Info.plist";
@@ -653,7 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "!procrastinate/!procrastinate.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Marko Zel (96HG6E2WJ6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "!procrastinate/Info.plist";
