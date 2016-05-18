@@ -92,8 +92,10 @@ class RealmHandler {
 		let today5AM = calendar.dateByAddingUnit(.Hour, value: 5, toDate: todayStartOfDay, options: [])
 		
 		let results = realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate).sorted("completed")
-		tasks = Array(results)
+		
 		token = results.addNotificationBlock() { (changes: RealmCollectionChange) in
+			self.tasks = Array(results)
+			
 			if let delegate = self.delegate {
 				delegate.reloadData()
 			}
