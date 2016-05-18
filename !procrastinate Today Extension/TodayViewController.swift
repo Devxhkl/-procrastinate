@@ -20,7 +20,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		RealmHandler.sharedInstance.fetchTasks()
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
-		tableView.estimatedRowHeight = 44.0
+		tableView.estimatedRowHeight = 38.0
 	}
 	
 	override func didReceiveMemoryWarning() {

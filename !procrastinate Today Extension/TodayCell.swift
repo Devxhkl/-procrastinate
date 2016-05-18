@@ -62,21 +62,4 @@ class TodayCell: UITableViewCell {
 		taskTitleLabel.attributedText = NSAttributedString(string: task.title, attributes: attributes)
 		tickButton.setImage(UIImage(named: imageName)!, forState: .Normal)
 	}
-	
-	func strikesthroghOrNot() {
-		var attributedString: NSAttributedString!
-		
-		if task.completed {
-			attributedString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
-		} else {
-//			var taskTitle = ""
-//			if task.title != "" {
-//				taskTitle = task.title
-//			}
-			attributedString = NSAttributedString(string: task.title, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
-		}
-		
-		taskTitleLabel.attributedText = attributedString
-	}
-	
 }
