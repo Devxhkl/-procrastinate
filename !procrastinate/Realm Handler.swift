@@ -86,29 +86,13 @@ class RealmHandler {
 	}
 	
 	func fetchTasks() {
-		let calendar = NSCalendar.currentCalendar()
-		let today = calendar.dateByAddingUnit(.Hour, value: -5, toDate: NSDate(), options: [])
-		let todayStartOfDay = calendar.startOfDayForDate(today!)
-		let today5AM = calendar.dateByAddingUnit(.Hour, value: 5, toDate: todayStartOfDay, options: [])
-		
-		let results = realm.objects(Task).filter("createdDate > %@", today5AM!.timeIntervalSinceReferenceDate).sorted("completed")
+		let results = realm.objects(Task).filter("createdDate > %@", today5AM()).sorted("completed")
 		self.tasks = Array(results)
 		
 		token = results.addNotificationBlock() { (changes: RealmCollectionChange) in
 			if let delegate = self.delegate {
 				delegate.reloadData()
 			}
-//			switch changes {
-//			case .Initial:
-//				
-//				break
-//			case .Update(_, let deletions, let insertions, let modifications):
-//				
-//				break
-//			case .Error(let error):
-//				fatalError(error.description)
-//				break
-//			}
 		}
 	}
 	
@@ -130,6 +114,17 @@ class RealmHandler {
 	
 	deinit {
 		token.stop()
+	}
+	
+	// Remove in 1.1.1
+	func cdRealmTask(task: Task) {
+		do {
+			try realm.write() {
+				realm.add(task, update: true)
+			}
+		} catch {
+			print(error)
+		}
 	}
 	
 }

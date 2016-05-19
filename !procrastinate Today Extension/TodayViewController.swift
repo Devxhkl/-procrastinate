@@ -23,11 +23,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		tableView.estimatedRowHeight = 38.0
 	}
 	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-	
 	func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
 		// Perform any setup necessary in order to update the view.
 		

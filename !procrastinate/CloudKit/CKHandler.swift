@@ -102,4 +102,32 @@ class CKHandler {
 		}
 	}
 	
+	func cdToRealm() {
+		let predicate = NSPredicate(format: "createdDate > %f", today5AM())
+		let query = CKQuery(recordType: "Tasks", predicate: predicate)
+		
+		privateDatabase.performQuery(query, inZoneWithID: nil) { records, error in
+			if let error = error {
+				print(error)
+			} else if let records = records {
+				dispatch_async(dispatch_get_main_queue()) {
+					for record in records {
+						let task = Task()
+						task.id = record.recordID.recordName
+						task.title = record["title"] as! String
+						task.completed = record["completed"] as! Bool
+						task.tag = record["tag"] as! Int
+						task.createdDate = record["createdDate"] as! Double
+						task.completedDate = record["completedDate"] as! Double
+						task.updatedDate = record["updatedDate"] as! Double
+						
+						RealmHandler.sharedInstance.cdRealmTask(task)
+					}
+					
+					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "cdToRealm")
+				}
+			}
+		}
+	}
+	
 }

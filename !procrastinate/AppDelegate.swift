@@ -27,14 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				
 				RealmHandler.sharedInstance.preloadTasks()
 			}
+			
+			if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
+				newCheckDate()
+			}
 		}
-	
+		
+		// Remove in 1.1.1
 		if let _ = NSUserDefaults.standardUserDefaults().valueForKey("tasksToDelete") as? [Task] {
 			NSUserDefaults.standardUserDefaults().setValue([String](), forKey: "tasksToDelete")
 		}
-		
-		if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
-			newCheckDate()
+		if NSUserDefaults.standardUserDefaults().valueForKey("cdToRealm") == nil {
+			CKHandler.sharedInstance.cdToRealm()
 		}
 		
 		return true
