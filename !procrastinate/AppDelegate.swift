@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if NSUserDefaults.standardUserDefaults().valueForKey("cdToRealm") == nil {
 			CKHandler.sharedInstance.cdToRealm()
 		}
+		if NSUserDefaults.standardUserDefaults().valueForKey("leftovers") == nil {
+			CKHandler.sharedInstance.takeOutTrash()
+		}
 		
 		return true
 	}

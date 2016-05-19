@@ -14,6 +14,7 @@
 		FA150B511CEDD64B00D36513 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA150B501CEDD64B00D36513 /* DateHandler.swift */; };
 		FA150B521CEDD64B00D36513 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA150B501CEDD64B00D36513 /* DateHandler.swift */; };
 		FA150B541CEDF8E300D36513 /* Pods__procrastinate_Today_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA150B531CEDF8E300D36513 /* Pods__procrastinate_Today_Extension.framework */; };
+		FA150B551CEE300B00D36513 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9D637B1CEBB6E700B1ABCF /* CloudKit.framework */; };
 		FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C28E1C40864500333D3E /* AppDelegate.swift */; };
 		FA15C2911C40864500333D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15C2901C40864500333D3E /* ViewController.swift */; };
 		FA15C2961C40864500333D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA15C2951C40864500333D3E /* Assets.xcassets */; };
@@ -123,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA150B551CEE300B00D36513 /* CloudKit.framework in Frameworks */,
 				FA150B541CEDF8E300D36513 /* Pods__procrastinate_Today_Extension.framework in Frameworks */,
 				FAAD6F4D1C50509D005F552C /* NotificationCenter.framework in Frameworks */,
 			);

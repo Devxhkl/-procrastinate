@@ -60,6 +60,7 @@ class CKHandler {
 				}
 			} else if let recordID = recordID {
 				print(recordID.recordName + " Deleted")
+				NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: "lastSyncDate")
 			}
 		}
 	}
@@ -70,6 +71,7 @@ class CKHandler {
 				print(error)
 			} else if let record = record {
 				print("Record saved: \"" + (record["title"] as! String) + "\"")
+				NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: "lastSyncDate")
 			}
 		}
 	}
@@ -128,6 +130,33 @@ class CKHandler {
 				}
 			}
 		}
+		takeOutTrash()
+	}
+	
+	func takeOutTrash() {
+		privateDatabase.performQuery(CKQuery(recordType: "Statistics", predicate: NSPredicate(value: true)), inZoneWithID: nil) { records, error in
+			
+			if let records = records {
+				for record in records {
+					self.privateDatabase.deleteRecordWithID(record.recordID) { recordID, error in
+						print(recordID)
+					}
+				}
+			}
+		}
+		
+		privateDatabase.performQuery(CKQuery(recordType: "Task", predicate: NSPredicate(value: true)), inZoneWithID: nil) { records, error in
+			
+			if let records = records {
+				for record in records {
+					self.privateDatabase.deleteRecordWithID(record.recordID) { recordID, error in
+						print(recordID)
+					}
+				}
+			}
+		}
+		
+		NSUserDefaults.standardUserDefaults().setBool(true, forKey: "leftovers")
 	}
 	
 }
