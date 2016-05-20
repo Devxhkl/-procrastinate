@@ -128,6 +128,7 @@ class TaskCell: UITableViewCell {
 		}
 		
 		titleTextView.attributedText = attributedString
+
 	}
 	
 	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {

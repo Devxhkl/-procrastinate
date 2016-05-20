@@ -13,8 +13,8 @@ class ViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	var placeholderCell: PlaceholderCell!
-	var pullDownInProgress = false
 	var tapToAddInProgress = false
+	var newTaskInProgress = false
 	var lastActiveTextView: UITextView?
 	
 	override func viewDidLoad() {
@@ -39,14 +39,6 @@ class ViewController: UIViewController {
 		                                                 selector: #selector(didBecomeActive),
 		                                                 name: UIApplicationDidBecomeActiveNotification,
 		                                                 object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, 
-		                                                 selector: #selector(resignResponder),
-		                                                 name: UIApplicationWillResignActiveNotification,
-		                                                 object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, 
-		                                                 selector: #selector(resignResponder),
-		                                                 name: UIApplicationWillTerminateNotification,
-		                                                 object: nil)
 	}
 	
 	func newTask() {
@@ -54,16 +46,11 @@ class ViewController: UIViewController {
 		
 		RealmHandler.sharedInstance.tasks.insert(task, atIndex: 0)
 		
-		taskAdded()
-	}
-	
-	func taskAdded() {
 		reloadData()
 		
 		let visibleCells = tableView.visibleCells as! [TaskCell]
 		visibleCells[0].titleTextView.becomeFirstResponder()
 	}
-
 	
 	func resignResponder() {
 		if let lastActiveTextView = lastActiveTextView {
@@ -73,7 +60,7 @@ class ViewController: UIViewController {
 		if tapToAddInProgress {
 			tapToAddInProgress = false
 			return
-		} else if RealmHandler.sharedInstance.tasks.isEmpty && !pullDownInProgress {
+		} else if RealmHandler.sharedInstance.tasks.isEmpty {
 			tapToAddInProgress = true
 			newTask()
 		}
@@ -93,30 +80,35 @@ extension ViewController {
 	
 	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
 		resignResponder()
-		if !tapToAddInProgress {
-			pullDownInProgress = scrollView.contentOffset.y <= 0.0
-			if pullDownInProgress {
-				tableView.insertSubview(placeholderCell, atIndex: 0)
-			}
-		}
+		
+		tableView.insertSubview(placeholderCell, atIndex: 0)
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		let scrollViewContentOffsetY = scrollView.contentOffset.y
 		
-		if pullDownInProgress && scrollView.contentOffset.y <= 0.0 {
-			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
-			placeholderCell.feedbackLabel.text = -scrollViewContentOffsetY > 44.0 ? "release to add task" : "pull to add task"
-			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
+		if scrollViewContentOffsetY < -42.0 {
+			scrollView.setContentOffset(CGPoint(x: 0.0, y: -42.0), animated: false)
+			newTaskInProgress = true
+		} else if scrollViewContentOffsetY < 0.0 {
+			placeholderCell.frame = CGRect(x: 0, y: -42.0, width: tableView.frame.size.width, height: 42.0)
+			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 63.0)
+			newTaskInProgress = false
 		}
 	}
 	
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
+		if newTaskInProgress {
 			newTask()
+			placeholderCell.removeFromSuperview()
 		}
-		pullDownInProgress = false
-		placeholderCell.removeFromSuperview()
+	}
+	
+	func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+		if newTaskInProgress {
+			scrollView.setContentOffset(CGPointZero, animated: false)
+			newTaskInProgress = false
+		}
 	}
 }
 
@@ -175,7 +167,6 @@ extension ViewController: UITextViewDelegate {
 			}
 		}
 		
-		textView.resignFirstResponder()
 	}
 }
 

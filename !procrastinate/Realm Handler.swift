@@ -90,6 +90,7 @@ class RealmHandler {
 		self.tasks = Array(results)
 		
 		token = results.addNotificationBlock() { (changes: RealmCollectionChange) in
+			self.tasks.sortInPlace { !$0.completed && $1.completed }
 			if let delegate = self.delegate {
 				delegate.reloadData()
 			}
