@@ -160,13 +160,13 @@ extension ViewController: UITextViewDelegate {
 		if textView.text == "" {
 			deleted(task)
 		} else {
+			RealmHandler.sharedInstance.reload = false
 			if task.createdDate == 0.0 {
 				RealmHandler.sharedInstance.newTask(task, title: textView.text!)
 			} else {
 				RealmHandler.sharedInstance.updateTask(task, title: textView.text!)
 			}
 		}
-		
 	}
 }
 
@@ -175,9 +175,7 @@ extension ViewController: TaskCellDelegate {
 	func completedStateChanged() {
 		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
 		
-		tableView.beginUpdates()
 		reloadData()
-		tableView.endUpdates()
 	}
 	
 	func deleted(task: Task) {
@@ -189,6 +187,7 @@ extension ViewController: TaskCellDelegate {
 		tableView.endUpdates()
 		
 		if task.createdDate != 0.0 {
+			RealmHandler.sharedInstance.reload = false
 			RealmHandler.sharedInstance.deleteTask(task)
 		}
 	}

@@ -25,12 +25,8 @@ class TodayCell: UITableViewCell {
 		}
 	}
 	
-	override func awakeFromNib() {
-		super.awakeFromNib()
-		// Initialization code
-	}
-	
 	@IBAction func tickButtonTapped(sender: UIButton) {
+		RealmHandler.sharedInstance.reload = true
 		RealmHandler.sharedInstance.updateTask(task, completed: !task.completed)
 		
 		setAppropriateAttributes()
@@ -38,12 +34,6 @@ class TodayCell: UITableViewCell {
 		if let delegate = delegate {
 			delegate.completedStateChanged()
 		}
-	}
-	
-	override func setSelected(selected: Bool, animated: Bool) {
-		super.setSelected(selected, animated: animated)
-		
-		// Configure the view for the selected state
 	}
 	
 	func setAppropriateAttributes() {

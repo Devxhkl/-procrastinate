@@ -22,6 +22,7 @@ class RealmHandler {
 	var token: NotificationToken!
 	
 	var tasks = [Task]()
+	var reload = true
 	
 	init() {
 		let container = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.zzzel.to-day")!
@@ -90,9 +91,11 @@ class RealmHandler {
 		self.tasks = Array(results)
 		
 		token = results.addNotificationBlock() { (changes: RealmCollectionChange) in
-			self.tasks.sortInPlace { !$0.completed && $1.completed }
-			if let delegate = self.delegate {
-				delegate.reloadData()
+			if self.reload {
+				self.tasks.sortInPlace { !$0.completed && $1.completed }
+				if let delegate = self.delegate {
+					delegate.reloadData()
+				}
 			}
 		}
 	}
