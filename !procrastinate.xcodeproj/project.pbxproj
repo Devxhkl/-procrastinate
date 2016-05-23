@@ -41,6 +41,8 @@
 		FACF0EF71CDB83B20087C19C /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EF61CDB83B20087C19C /* CKHandler.swift */; };
 		FACF0EFC1CDBF7D50087C19C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF0EFB1CDBF7D50087C19C /* Reachability.swift */; };
 		FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF26B891C414879006487AE /* TaskCell.swift */; };
+		FAF2ADF51CF3BBA100AC08E1 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF2ADF41CF3BBA100AC08E1 /* UpdateViewController.swift */; };
+		FAF2ADF71CF3BBAF00AC08E1 /* Update.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF2ADF61CF3BBAF00AC08E1 /* Update.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		FACF0EF61CDB83B20087C19C /* CKHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CKHandler.swift; path = CloudKit/CKHandler.swift; sourceTree = "<group>"; };
 		FACF0EFB1CDBF7D50087C19C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		FAF26B891C414879006487AE /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		FAF2ADF41CF3BBA100AC08E1 /* UpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		FAF2ADF61CF3BBAF00AC08E1 /* Update.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Update.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,7 @@
 			children = (
 				FA3D63BC1C5A4FFE00743CB7 /* ViewController */,
 				FA0F853F1CAD7C830036B048 /* Onboarding */,
+				FAF2ADF31CF3BB7500AC08E1 /* Update */,
 				FADD5CD11CC478F200B4C2EB /* Launch Screen */,
 				FA0886E41C5BF5B300683A0D /* Data Models */,
 				FAB170D81CE9157E002BC337 /* Realm */,
@@ -297,6 +302,15 @@
 				FA15C2971C40864500333D3E /* LaunchScreen.storyboard */,
 			);
 			name = "Launch Screen";
+			sourceTree = "<group>";
+		};
+		FAF2ADF31CF3BB7500AC08E1 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				FAF2ADF41CF3BBA100AC08E1 /* UpdateViewController.swift */,
+				FAF2ADF61CF3BBAF00AC08E1 /* Update.storyboard */,
+			);
+			name = Update;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +420,7 @@
 				FA15C2991C40864500333D3E /* LaunchScreen.storyboard in Resources */,
 				FA0F85411CAD7CA60036B048 /* Onboarding.storyboard in Resources */,
 				FA15C2961C40864500333D3E /* Assets.xcassets in Resources */,
+				FAF2ADF71CF3BBAF00AC08E1 /* Update.storyboard in Resources */,
 				FACDCAB41CA994AA002AAE4D /* SlideView.xib in Resources */,
 				FA0886E31C5BF59100683A0D /* Main.storyboard in Resources */,
 			);
@@ -511,6 +526,7 @@
 				FACDCAB81CA995BB002AAE4D /* SlideView.swift in Sources */,
 				FA15C2911C40864500333D3E /* ViewController.swift in Sources */,
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
+				FAF2ADF51CF3BBA100AC08E1 /* UpdateViewController.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
 				FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */,
 				FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */,

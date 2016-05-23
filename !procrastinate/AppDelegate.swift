@@ -31,6 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			if NSUserDefaults.standardUserDefaults().valueForKey("checkDate") == nil {
 				newCheckDate()
 			}
+		} else if !NSUserDefaults.standardUserDefaults().boolForKey("1.1.0") {
+			let updateStoryboard = UIStoryboard(name: "Update", bundle: nil)
+			if let updateViewController = updateStoryboard.instantiateInitialViewController() as? UpdateViewController {
+				window?.rootViewController = updateViewController
+				window?.makeKeyAndVisible()
+				
+//				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "1.1.0")
+			}
 		}
 		
 		// Remove in 1.1.1
