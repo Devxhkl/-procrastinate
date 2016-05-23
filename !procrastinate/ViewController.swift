@@ -11,11 +11,14 @@ import UIKit
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet var emptyListLabel: UILabel!
 	
 	var placeholderCell: PlaceholderCell!
 	var tapToAddInProgress = false
 	var newTaskInProgress = false
 	var lastActiveTextView: UITextView?
+	
+	private let rowHeight: CGFloat = 42.0
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,7 +32,7 @@ class ViewController: UIViewController {
 		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "pattern_done")!)
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
-		tableView.estimatedRowHeight = 44.0
+		tableView.estimatedRowHeight = rowHeight
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		
@@ -74,6 +77,15 @@ class ViewController: UIViewController {
 			}
 		}
 	}
+	
+	func checkIfEmptyList() {
+		if RealmHandler.sharedInstance.tasks.isEmpty {
+			emptyListLabel.center = tableView.center
+			tableView.addSubview(emptyListLabel)
+		} else {
+			emptyListLabel.removeFromSuperview()
+		}
+	}
 }
 
 extension ViewController {
@@ -87,12 +99,12 @@ extension ViewController {
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		let scrollViewContentOffsetY = scrollView.contentOffset.y
 		
-		if scrollViewContentOffsetY < -42.0 {
-			scrollView.setContentOffset(CGPoint(x: 0.0, y: -42.0), animated: false)
+		if scrollViewContentOffsetY < -rowHeight {
+			scrollView.setContentOffset(CGPoint(x: 0.0, y: -rowHeight), animated: false)
 			newTaskInProgress = true
 		} else if scrollViewContentOffsetY < 0.0 {
-			placeholderCell.frame = CGRect(x: 0, y: -42.0, width: tableView.frame.size.width, height: 42.0)
-			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 63.0)
+			placeholderCell.frame = CGRect(x: 0, y: -rowHeight, width: tableView.frame.size.width, height: rowHeight)
+			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / rowHeight)
 			newTaskInProgress = false
 		}
 	}
@@ -101,6 +113,8 @@ extension ViewController {
 		if newTaskInProgress {
 			newTask()
 			placeholderCell.removeFromSuperview()
+		} else {
+			checkIfEmptyList()
 		}
 	}
 	
@@ -190,6 +204,7 @@ extension ViewController: TaskCellDelegate {
 			RealmHandler.sharedInstance.reload = false
 			RealmHandler.sharedInstance.deleteTask(task)
 		}
+		checkIfEmptyList()
 	}
 }
 
@@ -197,6 +212,7 @@ extension ViewController: RealmHandlerDelegate {
 	
 	func reloadData() {
 		tableView.reloadData()
+		checkIfEmptyList()
 	}
 }
 
