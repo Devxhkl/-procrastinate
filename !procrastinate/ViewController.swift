@@ -24,6 +24,7 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		
 		RealmHandler.sharedInstance.delegate = self
+		RealmHandler.sharedInstance.reload = true
 		RealmHandler.sharedInstance.fetchTasks()
 
 		didBecomeActive()
@@ -70,6 +71,9 @@ class ViewController: UIViewController {
 	}
 	
 	func didBecomeActive() {
+		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
+		reloadData()
+		
 		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
 			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
 				RealmHandler.sharedInstance.fetchTasks()
@@ -80,9 +84,11 @@ class ViewController: UIViewController {
 	
 	func checkIfEmptyList() {
 		if RealmHandler.sharedInstance.tasks.isEmpty {
+			tableView.scrollEnabled = false
 			emptyListLabel.center = tableView.center
 			tableView.addSubview(emptyListLabel)
 		} else {
+			tableView.scrollEnabled = true
 			emptyListLabel.removeFromSuperview()
 		}
 	}
