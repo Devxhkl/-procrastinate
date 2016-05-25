@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_2044" translatesAutoresizingMaskIntoConstraints="NO" id="DNP-eI-oG2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9W-Kd-Hjn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nTU-9Y-voR">
@@ -33,16 +36,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark tasks done/undone without even opening the app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9Wh-3j-tnj">
-                                                    <rect key="frame" x="0.0" y="49" width="260" height="45.5"/>
+                                                    <rect key="frame" x="0.0" y="49" width="260" height="46"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="widget" translatesAutoresizingMaskIntoConstraints="NO" id="EjI-3a-qrt">
-                                                    <rect key="frame" x="0.0" y="109.5" width="260" height="204"/>
+                                                    <rect key="frame" x="0.0" y="110" width="260" height="204"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZFX-gj-Zng">
-                                                    <rect key="frame" x="0.0" y="328.5" width="260" height="59.5"/>
+                                                    <rect key="frame" x="0.0" y="329" width="260" height="60"/>
                                                     <string key="text">If the app provides value to you or you just like using it, 
 please leave a review. 🙏 </string>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
@@ -53,7 +56,7 @@ please leave a review. 🙏 </string>
                                                     <rect key="frame" x="0.0" y="403" width="260" height="105"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54w-nw-jBL">
-                                                            <rect key="frame" x="39.5" y="0.0" width="181" height="45"/>
+                                                            <rect key="frame" x="40" y="0.0" width="181" height="45"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="181" id="FDA-xx-CkP"/>
@@ -68,9 +71,12 @@ please leave a review. 🙏 </string>
                                                                     <integer key="value" value="10"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="leaveAReviewTapped:" destination="7mK-Sp-Fqu" eventType="touchUpInside" id="37L-R1-DIR"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5Z-wJ-N68">
-                                                            <rect key="frame" x="95.5" y="60" width="69" height="45"/>
+                                                            <rect key="frame" x="96" y="60" width="69" height="45"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="45" id="6Tq-rj-kA9"/>
                                                                 <constraint firstAttribute="width" constant="69" id="zSM-39-BkU"/>
@@ -87,13 +93,15 @@ please leave a review. 🙏 </string>
                                                                     <integer key="value" value="10"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <segue destination="xI1-jA-KeE" kind="modal" id="bc9-4I-n7t"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="GGT-pw-TxO" secondAttribute="bottom" constant="30" id="6xm-j0-jQ2"/>
                                         <constraint firstAttribute="trailing" secondItem="GGT-pw-TxO" secondAttribute="trailing" constant="30" id="Ogd-TP-QeP"/>
@@ -101,7 +109,7 @@ please leave a review. 🙏 </string>
                                         <constraint firstItem="GGT-pw-TxO" firstAttribute="leading" secondItem="nTU-9Y-voR" secondAttribute="leading" constant="30" id="UYg-jt-1iA"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,16 +117,32 @@ please leave a review. 🙏 </string>
                             <constraint firstAttribute="trailing" secondItem="d9W-Kd-Hjn" secondAttribute="trailing" id="49a-tS-axJ"/>
                             <constraint firstItem="d9W-Kd-Hjn" firstAttribute="top" secondItem="RQ8-5U-DGx" secondAttribute="bottom" constant="-20" id="bV9-Zm-KCG"/>
                             <constraint firstItem="rQF-aU-1R2" firstAttribute="top" secondItem="d9W-Kd-Hjn" secondAttribute="bottom" id="ec5-8o-yb2"/>
+                            <constraint firstAttribute="trailing" secondItem="DNP-eI-oG2" secondAttribute="trailing" id="f3A-of-nXR"/>
+                            <constraint firstItem="DNP-eI-oG2" firstAttribute="leading" secondItem="koI-yU-pZX" secondAttribute="leading" id="k3c-7c-rRk"/>
                             <constraint firstItem="d9W-Kd-Hjn" firstAttribute="leading" secondItem="koI-yU-pZX" secondAttribute="leading" id="nmG-Vf-dnr"/>
+                            <constraint firstItem="rQF-aU-1R2" firstAttribute="top" secondItem="DNP-eI-oG2" secondAttribute="bottom" id="uXJ-jq-ls7"/>
+                            <constraint firstItem="DNP-eI-oG2" firstAttribute="top" secondItem="RQ8-5U-DGx" secondAttribute="bottom" constant="-20" id="xkT-et-9fu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="skipButton" destination="f5Z-wJ-N68" id="vvm-7s-SB8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5C-Eo-MO5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="177" y="350"/>
         </scene>
+        <!--Main-->
+        <scene sceneID="Rb2-sv-K4F">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="xI1-jA-KeE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PBd-y1-FCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="463" y="350"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="IMG_2044" width="750" height="1334"/>
         <image name="widget" width="263" height="215"/>
     </resources>
 </document>

@@ -9,27 +9,21 @@
 import UIKit
 
 class UpdateViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	
+	@IBOutlet weak var skipButton: UIButton!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		skipButton.layer.borderColor = UIColor.whiteColor().CGColor
+	}
+	
+	@IBAction func leaveAReviewTapped(sender: AnyObject) {
+		UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1079983430&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software")!)
+	}
+	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+	
 }

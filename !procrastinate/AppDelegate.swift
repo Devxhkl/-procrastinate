@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				window?.rootViewController = updateViewController
 				window?.makeKeyAndVisible()
 				
-//				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "1.1.0")
+				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "1.1.0")
 			}
 		}
 		
