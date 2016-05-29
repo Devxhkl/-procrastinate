@@ -11,12 +11,35 @@ import XCTest
 
 class To_dayTests: XCTestCase {
 	
+	class MockRealm: NSObject, UITableViewDataSource {
+		
+		var arr = ["One", "Two"]
+		
+		func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+			return arr.count
+		}
+		
+		func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+			let cell = UITableViewCell()
+			
+			cell.textLabel?.text = arr[indexPath.row]
+			
+			return cell
+		}
+	}
+	
 	var viewController: ViewController!
+	var mockRealm: MockRealm!
 	
 	override func setUp() {
 		super.setUp()
 		
 		viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+		
+		_ = viewController.view
+		
+		mockRealm = MockRealm()
+		viewController.tableView.dataSource = mockRealm
 	}
 	
 	override func tearDown() {
@@ -24,12 +47,17 @@ class To_dayTests: XCTestCase {
 		super.tearDown()
 	}
 	
-	func testSomething() {
-		XCTAssertNil(viewController.tableView, "tableView is not nil")
+	func testTableViewDataSource() {
+		XCTAssert(viewController.tableView.dataSource! === mockRealm, "TableView Data Source is not MockRealm")
 		
-//		let _ = viewController.view
+		XCTAssert(mockRealm.tableView(viewController.tableView, numberOfRowsInSection: 0) == 2, "Number of rows is not 2")
+	}
+	
+	func testTimeReset() {
+		mockRealm.arr = [String]()
+		viewController.tableView.reloadData()
 		
-		XCTAssertNotNil(viewController.tableView, "tableView is nil")
+		XCTAssert(viewController.tableView.visibleCells.isEmpty, "There are still visible cells")
 	}
 	
 }

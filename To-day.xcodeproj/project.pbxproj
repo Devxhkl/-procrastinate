@@ -414,7 +414,6 @@
 				FAAD6F461C50509D005F552C /* Sources */,
 				FAAD6F471C50509D005F552C /* Frameworks */,
 				FAAD6F481C50509D005F552C /* Resources */,
-				A0A6E793A3715D909C92125E /* 📦 Embed Pods Frameworks */,
 				7A8C133B2CDE339CB9F5C379 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
@@ -608,21 +607,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-To-day/Pods-To-day-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A0A6E793A3715D909C92125E /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-To-day Today Extension/Pods-To-day Today Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E34CF429119A19C1BA427A2C /* 📦 Copy Pods Resources */ = {
@@ -858,7 +842,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "To-dayTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.To-dayTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/To-day.app/To-day";
@@ -874,7 +858,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "To-dayTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.To-dayTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/To-day.app/To-day";

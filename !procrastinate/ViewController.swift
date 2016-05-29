@@ -70,14 +70,14 @@ class ViewController: UIViewController {
 		}
 	}
 	
-	func didBecomeActive() {
-		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
-		reloadData()
-		
+	func didBecomeActive() {		
 		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
 			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
 				RealmHandler.sharedInstance.fetchTasks()
 				newCheckDate()
+			} else {
+				RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
+				reloadData()
 			}
 		}
 	}
