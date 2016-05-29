@@ -1,10 +1,10 @@
 PODS:
   - DeviceKit (0.3.2)
-  - Realm (0.101.0):
-    - Realm/Headers (= 0.101.0)
-  - Realm/Headers (0.101.0)
-  - RealmSwift (0.101.0):
-    - Realm (= 0.101.0)
+  - Realm (1.0.0):
+    - Realm/Headers (= 1.0.0)
+  - Realm/Headers (1.0.0)
+  - RealmSwift (1.0.0):
+    - Realm (= 1.0.0)
 
 DEPENDENCIES:
   - DeviceKit
@@ -12,9 +12,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DeviceKit: 79182140c0aa8daaf4f4b3920e0b079f5fa9db79
-  Realm: b21596d6d7e1c054f6fae967d27263d2593ca309
-  RealmSwift: 5247501bcd68b9db3a718cba808e1ce45ba67034
+  Realm: e15cd8e7c11d3e576f628ba0b7cb855269b4991c
+  RealmSwift: 3229306d020d96f83b335f87a0dcbf2cef0e6a2b
 
-PODFILE CHECKSUM: c091c55065db0494baeb43c8862efae365472254
+PODFILE CHECKSUM: f949d392a32c59afdba09e1f68555bc79933a2ad
 
 COCOAPODS: 1.0.0.rc.1

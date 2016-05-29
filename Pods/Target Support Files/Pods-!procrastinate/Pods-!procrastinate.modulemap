@@ -1,6 +1,0 @@
-framework module Pods__procrastinate {
-  umbrella header "Pods-!procrastinate-umbrella.h"
-
-  export *
-  module * { export * }
-}

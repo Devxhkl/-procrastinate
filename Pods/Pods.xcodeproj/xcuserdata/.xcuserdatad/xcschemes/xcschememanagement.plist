@@ -9,22 +9,37 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-!procrastinate Today Extension.xcscheme</key>
+		<key>Pods-To-day Today Extension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-!procrastinate.xcscheme</key>
+		<key>Pods-To-day.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Realm.xcscheme</key>
+		<key>Pods-To-dayTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RealmSwift.xcscheme</key>
+		<key>Realm-iOS9.2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Realm-iOS9.3.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift-iOS9.2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift-iOS9.3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

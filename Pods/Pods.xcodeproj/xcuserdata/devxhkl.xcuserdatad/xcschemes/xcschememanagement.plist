@@ -19,10 +19,45 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>Pods-To-day Today Extension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>Pods-To-day.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-To-dayTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Realm-iOS9.2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Realm-iOS9.3.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>Realm.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>RealmSwift-iOS9.2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>RealmSwift-iOS9.3.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>RealmSwift.xcscheme</key>
 		<dict>
@@ -32,7 +67,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0CFBF6385151819D6E93989AB0841A21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4F71CD4482A994CB90B932C6FB683031</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>56E199678A87CDC8E1676C2968F55B42</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,6 +92,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>874D9ADFCF2162107CD20B4C9F561CDC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>970CE396C97D7F5C2D503449E35E6ED1</key>
 		<dict>
 			<key>primary</key>
@@ -57,7 +107,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B599E3703F683731CFDD429B2FB38D9D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B84E2CB77E598BCDB5A14944C7EB7FC3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BCEE986405FFBEE641CB16F5BC38DF3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDB728AFCBF8381123B63D9A93DB7381</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DE86AED80F86FF850DA2DCF3FFD27C33</key>
 		<dict>
 			<key>primary</key>
 			<true/>
