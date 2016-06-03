@@ -23,6 +23,8 @@
 		FA25ACC71CC8031D0059D767 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */; };
 		FA3D63BB1C5A4FF600743CB7 /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */; };
 		FA44BDCC1CEC89990005D307 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9D637B1CEBB6E700B1ABCF /* CloudKit.framework */; };
+		FA802FE11D00A75C00318A6A /* Realm Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802FE01D00A75C00318A6A /* Realm Provider.swift */; };
+		FA802FE21D00ADAF00318A6A /* Realm Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA802FE01D00A75C00318A6A /* Realm Provider.swift */; };
 		FA9382C81CFAFE5800F6357D /* To_dayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9382C71CFAFE5800F6357D /* To_dayTests.swift */; };
 		FA9D63751CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FA9D636F1CEBB6BC00B1ABCF /* !procrastinate Today Extension.entitlements */; };
 		FA9D63771CEBB6BC00B1ABCF /* Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9D63711CEBB6BC00B1ABCF /* Extension Assets.xcassets */; };
@@ -106,6 +108,7 @@
 		FA1F03FA1C449E0A00593F01 /* !procrastinate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "!procrastinate.entitlements"; sourceTree = "<group>"; };
 		FA25ACC61CC8031D0059D767 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		FA3D63BA1C5A4FF600743CB7 /* PlaceholderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderCell.swift; sourceTree = "<group>"; };
+		FA802FE01D00A75C00318A6A /* Realm Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm Provider.swift"; sourceTree = "<group>"; };
 		FA9382C51CFAFE5800F6357D /* To-dayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "To-dayTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9382C71CFAFE5800F6357D /* To_dayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = To_dayTests.swift; sourceTree = "<group>"; };
 		FA9382C91CFAFE5800F6357D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -321,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB170D51CE91356002BC337 /* Realm Handler.swift */,
+				FA802FE01D00A75C00318A6A /* Realm Provider.swift */,
 			);
 			name = Realm;
 			sourceTree = "<group>";
@@ -415,6 +419,7 @@
 				FAAD6F471C50509D005F552C /* Frameworks */,
 				FAAD6F481C50509D005F552C /* Resources */,
 				7A8C133B2CDE339CB9F5C379 /* 📦 Copy Pods Resources */,
+				3CE96808F6EA9F16B5435AAD /* 📦 Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -564,6 +569,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-To-day/Pods-To-day-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3CE96808F6EA9F16B5435AAD /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-To-day Today Extension/Pods-To-day Today Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		77BE88D5D3474F79AEA3C438 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,6 +673,7 @@
 				FAF26B8A1C414879006487AE /* TaskCell.swift in Sources */,
 				FAF2ADF51CF3BBA100AC08E1 /* UpdateViewController.swift in Sources */,
 				FA15C28F1C40864500333D3E /* AppDelegate.swift in Sources */,
+				FA802FE11D00A75C00318A6A /* Realm Provider.swift in Sources */,
 				FACDCAD81CAB1E8E002AAE4D /* SharedCode.swift in Sources */,
 				FA0F85431CAD7E6D0036B048 /* OnboardingViewController.swift in Sources */,
 				FAB170D31CE911C9002BC337 /* Task.swift in Sources */,
@@ -678,6 +699,7 @@
 				FA150B521CEDD64B00D36513 /* DateHandler.swift in Sources */,
 				FA9D63891CEBBB5D00B1ABCF /* Reachability.swift in Sources */,
 				FA9D63881CEBBB2A00B1ABCF /* Task.swift in Sources */,
+				FA802FE21D00ADAF00318A6A /* Realm Provider.swift in Sources */,
 				FA9D63861CEBBAB400B1ABCF /* Realm Handler.swift in Sources */,
 				FA9D63871CEBBAB400B1ABCF /* CKHandler.swift in Sources */,
 				FA9D637A1CEBB6BC00B1ABCF /* TodayViewController.swift in Sources */,
@@ -806,6 +828,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "!procrastinate/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.-procrastinate";
 				PRODUCT_NAME = "To-day";
@@ -825,6 +848,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "!procrastinate/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.-procrastinate";
 				PRODUCT_NAME = "To-day";
@@ -841,7 +865,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "To-dayTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.To-dayTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -857,7 +881,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "To-dayTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.To-dayTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -876,6 +900,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "!procrastinate Today Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.-procrastinate.today-extension";
 				PRODUCT_NAME = "To-day";
@@ -895,6 +920,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "!procrastinate Today Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zzzel.-procrastinate.today-extension";
 				PRODUCT_NAME = "To-day";

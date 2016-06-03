@@ -18,21 +18,11 @@ class RealmHandler {
 	static let sharedInstance = RealmHandler()
 	
 	var delegate: RealmHandlerDelegate?
-	var realm: Realm!
+	var realm = RealmProvider.realm()
 	var token: NotificationToken!
 	
 	var tasks = [Task]()
 	var reload = true
-	
-	init() {
-		let container = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.zzzel.to-day")!
-		let realmURL = container.URLByAppendingPathComponent("db.realm")
-		var config = Realm.Configuration()
-		config.fileURL = realmURL
-		Realm.Configuration.defaultConfiguration = config
-		
-		realm = try! Realm()
-	}	
 	
 	func newTask(task: Task, title: String) {
 		let now = NSDate().timeIntervalSinceReferenceDate

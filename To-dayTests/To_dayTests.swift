@@ -7,39 +7,24 @@
 //
 
 import XCTest
-@testable import To_day
+import RealmSwift
+
+@testable
+import To_day
 
 class To_dayTests: XCTestCase {
 	
-	class MockRealm: NSObject, UITableViewDataSource {
-		
-		var arr = ["One", "Two"]
-		
-		func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-			return arr.count
-		}
-		
-		func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-			let cell = UITableViewCell()
-			
-			cell.textLabel?.text = arr[indexPath.row]
-			
-			return cell
-		}
-	}
-	
 	var viewController: ViewController!
-	var mockRealm: MockRealm!
 	
 	override func setUp() {
 		super.setUp()
 		
 		viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
-		
 		_ = viewController.view
 		
-		mockRealm = MockRealm()
-		viewController.tableView.dataSource = mockRealm
+		try! RealmHandler.sharedInstance.realm.write {
+			RealmHandler.sharedInstance.realm.deleteAll()
+		}
 	}
 	
 	override func tearDown() {
@@ -47,17 +32,22 @@ class To_dayTests: XCTestCase {
 		super.tearDown()
 	}
 	
-	func testTableViewDataSource() {
-		XCTAssert(viewController.tableView.dataSource! === mockRealm, "TableView Data Source is not MockRealm")
+	func test_morningResetTableView_isEmpty() {
+		let testTask1 = Task()
+		RealmHandler.sharedInstance.newTask(testTask1, title: "Test Task 1")
+		let testTask2 = Task()
+		RealmHandler.sharedInstance.newTask(testTask2, title: "Test Task 2")
 		
-		XCTAssert(mockRealm.tableView(viewController.tableView, numberOfRowsInSection: 0) == 2, "Number of rows is not 2")
-	}
-	
-	func testTimeReset() {
-		mockRealm.arr = [String]()
-		viewController.tableView.reloadData()
+		RealmHandler.sharedInstance.fetchTasks()
 		
-		XCTAssert(viewController.tableView.visibleCells.isEmpty, "There are still visible cells")
+		XCTAssertEqual(viewController.tableView.numberOfRowsInSection(0), 2, "number of rows should be 2")
+		
+		viewController.didBecomeActive()
+		
+		// Change today5AM to return NSDate().timeIntervalSinceReferenceData -1
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+			XCTAssertEqual(self.viewController.tableView.numberOfRowsInSection(0), 0, "number of rows should be 0")
+		}
 	}
 	
 }

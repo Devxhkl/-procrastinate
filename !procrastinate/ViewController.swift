@@ -73,6 +73,7 @@ class ViewController: UIViewController {
 	func didBecomeActive() {		
 		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
 			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
+				RealmHandler.sharedInstance.reload = true
 				RealmHandler.sharedInstance.fetchTasks()
 				newCheckDate()
 			} else {
