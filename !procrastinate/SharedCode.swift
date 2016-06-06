@@ -9,20 +9,6 @@
 import Foundation
 import DeviceKit
 
-func newCheckDate() {
-	let calendar = NSCalendar.currentCalendar()
-	var nextCheckDate: NSDate!
-	if calendar.component(.Hour, fromDate: NSDate()) < 5 {
-		nextCheckDate = calendar.dateByAddingUnit(.Hour, value: 5, toDate: calendar.startOfDayForDate(NSDate()), options: [])
-	} else {
-		let components = NSDateComponents()
-		components.day = 1
-		components.hour = 5
-		nextCheckDate = calendar.dateByAddingComponents(components, toDate: calendar.startOfDayForDate(NSDate()), options: [])
-	}
-	NSUserDefaults.standardUserDefaults().setValue(nextCheckDate, forKey: "checkDate")
-}
-
 func widthForScreenSize(big: Bool) -> CGFloat {
 	switch Device() {
 	case .iPhone5, .iPhone5s, .iPhoneSE, .Simulator(.iPhone5), .Simulator(.iPhone5s), .Simulator(.iPhoneSE):

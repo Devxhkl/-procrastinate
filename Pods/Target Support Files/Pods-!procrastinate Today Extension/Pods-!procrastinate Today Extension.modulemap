@@ -1,6 +1,0 @@
-framework module Pods__procrastinate_Today_Extension {
-  umbrella header "Pods-!procrastinate Today Extension-umbrella.h"
-
-  export *
-  module * { export * }
-}

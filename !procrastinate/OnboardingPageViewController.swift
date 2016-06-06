@@ -24,7 +24,7 @@ class OnboardingPageViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		for i in -1...2 {
+		for i in -1...3 {
 			let page = storyboard!.instantiateViewControllerWithIdentifier("OnboardingViewController") as! OnboardingViewController
 			page.index = i
 			pages.append(page)
@@ -47,6 +47,7 @@ class OnboardingPageViewController: UIViewController {
 }
 
 extension OnboardingPageViewController: UIPageViewControllerDataSource {
+	
 	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
 		
 		let currentIndex = pages.indexOf(viewController as! OnboardingViewController)!
@@ -69,6 +70,7 @@ extension OnboardingPageViewController: UIPageViewControllerDataSource {
 }
 
 extension OnboardingPageViewController: UIPageViewControllerDelegate {
+	
 	func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
 		
 		pendingIndex = pages.indexOf(pendingViewControllers.first! as! OnboardingViewController)
@@ -80,9 +82,9 @@ extension OnboardingPageViewController: UIPageViewControllerDelegate {
 			currentIndex = pendingIndex
 			if let index = currentIndex {
 				pageControl.currentPage = index
-				if index == 3 {
+				if index == 4 {
 					skipTutorialButton.setTitle("Done", forState: .Normal)
-				} else if index == 2 {
+				} else if index == 3 {
 					skipTutorialButton.setTitle("Skip", forState: .Normal)
 				}
 			}

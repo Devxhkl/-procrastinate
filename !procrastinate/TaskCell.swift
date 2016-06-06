@@ -9,8 +9,8 @@
 import UIKit
 
 protocol TaskCellDelegate {
-	func completeTask(task: Task)
-	func deleteTask(task: Task)
+	func completedStateChanged()
+	func deleted(task: Task)
 }
 
 class TaskCell: UITableViewCell {
@@ -77,15 +77,9 @@ class TaskCell: UITableViewCell {
 			
 			if markComplete {
 				if let delegate = delegate {
-					task.completed = !task.completed
-					if task.completed {
-						task.completedDate = NSDate().timeIntervalSinceReferenceDate
-					} else {
-						task.completedDate = 0.0
-					}
-					task.updatedDate = NSDate().timeIntervalSinceReferenceDate
+					RealmHandler.sharedInstance.updateTask(task, completed: !task.completed)
 					
-					delegate.completeTask(task)
+					delegate.completedStateChanged()
 					
 					strikesthroghOrNot()
 				}
@@ -93,7 +87,7 @@ class TaskCell: UITableViewCell {
 				markComplete = false
 			} else if delete {
 				if let delegate = delegate {
-					delegate.deleteTask(task)
+					delegate.deleted(task)
 					UIView.animateWithDuration(0.2, animations: {
 						self.stageView.alpha = 0.0
 						}, completion: { _ in
@@ -124,16 +118,17 @@ class TaskCell: UITableViewCell {
 		var attributedString: NSAttributedString!
 		
 		if task.completed {
-			attributedString = NSAttributedString(string: task.title!, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
+			attributedString = NSAttributedString(string: task.title, attributes: [NSStrikethroughStyleAttributeName: 1, NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightUltraLight)])
 		} else {
 			var taskTitle = ""
-			if let title = task.title {
-				taskTitle = title
+			if task.title != "" {
+				taskTitle = task.title
 			}
 			attributedString = NSAttributedString(string: taskTitle, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)])
 		}
 		
 		titleTextView.attributedText = attributedString
+
 	}
 	
 	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {

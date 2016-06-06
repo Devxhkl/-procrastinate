@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:!procrastinate.xcodeproj">
+      location = "group:/Users/devxhkl/Library/Mobile Documents/com~apple~CloudDocs/Projects/to_day/To-day.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

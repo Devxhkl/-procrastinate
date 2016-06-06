@@ -17,28 +17,27 @@ class OnboardingViewController: UIViewController {
 	@IBOutlet weak var screensImageViewWidthConstraint: NSLayoutConstraint!
 	
 	var index: Int!
-	let texts = ["simply add new tasks...", "mark as done/undone...", "or delete."]
+	let texts = ["Add New Tasks", "Mark as Done/Undone", "Delete", "Use the Today Widget"]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		if index >= 0 {
-			let numberOfImages = [6, 6, 3]
+			let numberOfImages = [5, 6, 3, 2]
 			
 			var images = [UIImage]()
 			for i in 0...numberOfImages[index] {
-				images.append(UIImage(named: "slice " + index.description + "." + i.description)!)
+				images.append(UIImage(named: "screen " + index.description + "." + i.description)!)
 			}
 			
 			screensImageView.animationImages = images
-			screensImageView.animationDuration = Double(numberOfImages[index]) * 0.66
+			screensImageView.animationDuration = Double(numberOfImages[index]) * 0.5
 			
 			textLabel.text = texts[index]
 		} else {
-			textLabel.text = "Start every day with a fresh list..."
+			textLabel.text = "Start Every Day With A Fresh List"
 		}
 		
-//		textLabelWidthConstraint.constant = widthForScreenSize(true)
 		screensImageViewWidthConstraint.constant = widthForScreenSize(false)
 		textLabelBottomConstraint.constant = textLabelBottomDistance()
 	}

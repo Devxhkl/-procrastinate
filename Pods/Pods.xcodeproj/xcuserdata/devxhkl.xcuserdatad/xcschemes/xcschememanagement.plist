@@ -6,18 +6,103 @@
 	<dict>
 		<key>DeviceKit.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-!procrastinate Today Extension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-!procrastinate.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Pods-To-day Today Extension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>Pods-To-day.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-To-dayTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Realm-iOS9.2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Realm-iOS9.3.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>RealmSwift-iOS9.2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>RealmSwift-iOS9.3.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>301E4528BE8239304270BA3EDF137E08</key>
+		<key>0CFBF6385151819D6E93989AB0841A21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0F155FFA9A7AC7F4EE480EA327EA182F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3CC476BC3912F6F18D0325C2C794C9D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F71CD4482A994CB90B932C6FB683031</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>56E199678A87CDC8E1676C2968F55B42</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5EB109D5CE32E24643A684521EFCA509</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>660D4BD1FF035FE8F547B7D824378DBC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>741578AE6CCE54C21FDFD527D2979A6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -27,12 +112,57 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>874D9ADFCF2162107CD20B4C9F561CDC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>970CE396C97D7F5C2D503449E35E6ED1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD32221D382EB9D5A1EED6348FED1BCA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B599E3703F683731CFDD429B2FB38D9D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B84E2CB77E598BCDB5A14944C7EB7FC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BCEE986405FFBEE641CB16F5BC38DF3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDB728AFCBF8381123B63D9A93DB7381</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DE86AED80F86FF850DA2DCF3FFD27C33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EF78824223C74AA13AE655CD2ACF32A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F778531DF3C72B9C54BB17D63DD62F40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB82F7472F596EE6C41B53D0AE42C86D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

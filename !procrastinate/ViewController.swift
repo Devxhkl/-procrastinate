@@ -7,23 +7,25 @@
 //
 
 import UIKit
-import CoreData
 
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet var emptyListLabel: UILabel!
 	
-	let taskHandler = TaskHandler.sharedInstance
 	var placeholderCell: PlaceholderCell!
-	var pullDownInProgress = false
 	var tapToAddInProgress = false
+	var newTaskInProgress = false
 	var lastActiveTextView: UITextView?
+	
+	private let rowHeight: CGFloat = 42.0
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		taskHandler.delegate = self
-		taskHandler.fetchTasks()
+		RealmHandler.sharedInstance.delegate = self
+		RealmHandler.sharedInstance.reload = true
+		RealmHandler.sharedInstance.fetchTasks()
 
 		didBecomeActive()
 		
@@ -31,7 +33,7 @@ class ViewController: UIViewController {
 		navigationController?.navigationBar.barTintColor = UIColor(patternImage: UIImage(named: "pattern_done")!)
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
-		tableView.estimatedRowHeight = 44.0
+		tableView.estimatedRowHeight = rowHeight
 		
 		placeholderCell = tableView.dequeueReusableCellWithIdentifier("PlaceholderCell") as! PlaceholderCell
 		
@@ -41,14 +43,17 @@ class ViewController: UIViewController {
 		                                                 selector: #selector(didBecomeActive),
 		                                                 name: UIApplicationDidBecomeActiveNotification,
 		                                                 object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, 
-		                                                 selector: #selector(resignResponder),
-		                                                 name: UIApplicationWillResignActiveNotification,
-		                                                 object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, 
-		                                                 selector: #selector(resignResponder),
-		                                                 name: UIApplicationWillTerminateNotification,
-		                                                 object: nil)
+	}
+	
+	func newTask() {
+		let task = Task()
+		
+		RealmHandler.sharedInstance.tasks.insert(task, atIndex: 0)
+		
+		reloadData()
+		
+		let visibleCells = tableView.visibleCells as! [TaskCell]
+		visibleCells[0].titleTextView.becomeFirstResponder()
 	}
 	
 	func resignResponder() {
@@ -59,18 +64,33 @@ class ViewController: UIViewController {
 		if tapToAddInProgress {
 			tapToAddInProgress = false
 			return
-		} else if taskHandler.tasks.isEmpty && !pullDownInProgress {
+		} else if RealmHandler.sharedInstance.tasks.isEmpty {
 			tapToAddInProgress = true
-			taskHandler.newTask()
+			newTask()
 		}
 	}
 	
-	func didBecomeActive() {
+	func didBecomeActive() {		
 		if let checkDate = NSUserDefaults.standardUserDefaults().valueForKey("checkDate") as? NSDate {
 			if NSDate().timeIntervalSinceReferenceDate > checkDate.timeIntervalSinceReferenceDate {
-				taskHandler.fetchTasks()
+				RealmHandler.sharedInstance.reload = true
+				RealmHandler.sharedInstance.fetchTasks()
 				newCheckDate()
+			} else {
+				RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
+				reloadData()
 			}
+		}
+	}
+	
+	func checkIfEmptyList() {
+		if RealmHandler.sharedInstance.tasks.isEmpty {
+			tableView.scrollEnabled = false
+			emptyListLabel.center = tableView.center
+			tableView.addSubview(emptyListLabel)
+		} else {
+			tableView.scrollEnabled = true
+			emptyListLabel.removeFromSuperview()
 		}
 	}
 }
@@ -79,44 +99,51 @@ extension ViewController {
 	
 	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
 		resignResponder()
-		if !tapToAddInProgress {
-			pullDownInProgress = scrollView.contentOffset.y <= 0.0
-			if pullDownInProgress {
-				tableView.insertSubview(placeholderCell, atIndex: 0)
-			}
-		}
+		
+		tableView.insertSubview(placeholderCell, atIndex: 0)
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		let scrollViewContentOffsetY = scrollView.contentOffset.y
 		
-		if pullDownInProgress && scrollView.contentOffset.y <= 0.0 {
-			placeholderCell.frame = CGRect(x: 0, y: -44.0, width: tableView.frame.size.width, height: 44.0)
-			placeholderCell.feedbackLabel.text = -scrollViewContentOffsetY > 44.0 ? "release to add task" : "pull to add task"
-			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / 44.0)
+		if scrollViewContentOffsetY < -rowHeight {
+			scrollView.setContentOffset(CGPoint(x: 0.0, y: -rowHeight), animated: false)
+			newTaskInProgress = true
+		} else if scrollViewContentOffsetY < 0.0 {
+			placeholderCell.frame = CGRect(x: 0, y: -rowHeight, width: tableView.frame.size.width, height: rowHeight)
+			placeholderCell.alpha = min(1.0, -scrollViewContentOffsetY / rowHeight)
+			newTaskInProgress = false
 		}
 	}
 	
 	func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-		if pullDownInProgress && -scrollView.contentOffset.y > 44.0 {
-			taskHandler.newTask()
+		if newTaskInProgress {
+			newTask()
+			placeholderCell.removeFromSuperview()
+		} else {
+			checkIfEmptyList()
 		}
-		pullDownInProgress = false
-		placeholderCell.removeFromSuperview()
+	}
+	
+	func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+		if newTaskInProgress {
+			scrollView.setContentOffset(CGPointZero, animated: false)
+			newTaskInProgress = false
+		}
 	}
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return taskHandler.tasks.count
+		return RealmHandler.sharedInstance.tasks.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("TaskCell", forIndexPath: indexPath) as! TaskCell
 
 		cell.delegate = self
-		cell.task = taskHandler.tasks[indexPath.row]
+		cell.task = RealmHandler.sharedInstance.tasks[indexPath.row]
 		
 		return cell
 	}
@@ -152,60 +179,47 @@ extension ViewController: UITextViewDelegate {
 		let task = (textView.superview!.superview as! TaskCell).task
 		
 		if textView.text == "" {
-			deleteTask(task)
+			deleted(task)
 		} else {
-			task.title = textView.text
-			task.updatedDate = NSDate.timeIntervalSinceReferenceDate()
-			
-			if let _ = task.id {
-				CKHandler.sharedInstance.updateTask(task)
+			RealmHandler.sharedInstance.reload = false
+			if task.createdDate == 0.0 {
+				RealmHandler.sharedInstance.newTask(task, title: textView.text!)
 			} else {
-				task.id = NSUUID().UUIDString
-				CKHandler.sharedInstance.newTask(task)
+				RealmHandler.sharedInstance.updateTask(task, title: textView.text!)
 			}
-			
-			taskHandler.saveContext()
 		}
-		textView.resignFirstResponder()
 	}
 }
 
 extension ViewController: TaskCellDelegate {
 	
-	func completeTask(task: Task) {
-		taskHandler.tasks.sortInPlace { !$0.completed && $1.completed }
-		tableView.beginUpdates()
+	func completedStateChanged() {
+		RealmHandler.sharedInstance.tasks.sortInPlace { !$0.completed && $1.completed }
+		
 		reloadData()
-		tableView.endUpdates()
-		
-		CKHandler.sharedInstance.updateTask(task)
-		
-		taskHandler.saveContext()
 	}
 	
-	func deleteTask(task: Task) {
-		let index = taskHandler.tasks.indexOf { $0.id	== task.id }
-		taskHandler.tasks.removeAtIndex(index!)
+	func deleted(task: Task) {
+		let index = RealmHandler.sharedInstance.tasks.indexOf { $0.id	== task.id }
+		RealmHandler.sharedInstance.tasks.removeAtIndex(index!)
 		
 		tableView.beginUpdates()
 		tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Right)
 		tableView.endUpdates()
-
-		taskHandler.deleteTask(task)
+		
+		if task.createdDate != 0.0 {
+			RealmHandler.sharedInstance.reload = false
+			RealmHandler.sharedInstance.deleteTask(task)
+		}
+		checkIfEmptyList()
 	}
 }
 
-extension ViewController: TaskHandlerDelegate {
+extension ViewController: RealmHandlerDelegate {
 	
 	func reloadData() {
 		tableView.reloadData()
-	}
-	
-	func taskAdded(task: Task) {
-		reloadData()
-		
-		let visibleCells = tableView.visibleCells as! [TaskCell]
-		visibleCells[0].titleTextView.becomeFirstResponder()
+		checkIfEmptyList()
 	}
 }
 
