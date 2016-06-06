@@ -95,7 +95,7 @@ class RealmHandler {
 	}
 	
 	func preloadTasks() {
-		let texts = ["Delete this one", "This one needs to be done", "Edit this task by tapping on it", "This one is already done"]
+		let texts = ["Delete this one 🗑", "This one needs to be done ✔️", "Edit this task by tapping on it ✏️", "This one is already done 👍"]
 		for i in 0...3 {
 			let task = Task()
 			if i == 3 {
